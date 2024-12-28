@@ -1,5 +1,6 @@
 {pkgs, ...}: {
-  import = ./xmr-swap.nix;
+
+  imports = [./xmr-swap.nix];
 
   environment.systemPackages = with pkgs; [
     alejandra

@@ -8,6 +8,10 @@ let
     hash = "";
   };
 in
-appimageTools.wrapType2 {
-  inherit pname version src;
+{
+  environment.systemPackages = [
+    (appimageTools.wrapType2 {
+      inherit pname version src;
+    })
+  ];
 }
