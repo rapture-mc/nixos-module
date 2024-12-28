@@ -31,7 +31,7 @@
       genericName = "XMR Swap";
       exec = "UnstoppableSwap";
       terminal = false;
-      icon = ./monero.svg;
+      icon = ./unstoppable-swap.svg;
     };
   };
 }
