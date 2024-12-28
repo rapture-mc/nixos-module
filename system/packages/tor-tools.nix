@@ -9,8 +9,13 @@ let
   };
 
   StartWhonix = pkgs.writeShellScriptBin "StartWhonix" ''
+    whoami
+    ${pkgs.virtualbox}/bin/VBoxManage list vms
+
     ${pkgs.virtualbox}/bin/VBoxManage startvm Whonix-Gateway-Xfce --type headless
+
     sleep 1
+
     ${pkgs.virtualbox}/bin/VBoxManage startvm Whonix-Workstation-Xfce
   '';
 in
