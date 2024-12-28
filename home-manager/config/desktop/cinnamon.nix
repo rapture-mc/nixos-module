@@ -42,7 +42,7 @@
         sleep 1
         ${pkgs.virtualbox}/bin/VBoxManage startvm "Whonix-Workstation-Xfce"
       '';
-      terminal = false;
+      # terminal = false;
     };
   };
 }
