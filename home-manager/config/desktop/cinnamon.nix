@@ -38,7 +38,7 @@
     StartWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Start Whonix";
       exec = "StartWhonix";
-      terminal = true;
+      terminal = false;
       icon = ./whonix.svg;
     };
   };
