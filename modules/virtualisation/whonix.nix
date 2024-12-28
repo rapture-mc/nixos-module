@@ -11,7 +11,7 @@
     hash = "${cfg.hash}";
   };
 
-  installWhonix = pkgs.writeShellScriptBin "ImportWhonix" ''
+  installWhonix = pkgs.writeShellScriptBin "installWhonix" ''
     if ! VBoxManage list vms | grep -q "Whonix"; then
       echo "Whonix VMs don't exist, importing..."
       VBoxManage import ${ova} --vsys 0 --eula accept --vsys 1 --eula accept
