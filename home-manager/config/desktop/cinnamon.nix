@@ -24,4 +24,13 @@
       Icon=${./logout.png}
     '';
   };
+
+  xdg.desktopEntries = {
+    UnstoppableSwap = {
+      name = "UnstoppableSwap";
+      genericName = "XMR Swap";
+      exec = "UnstoppableSwap";
+      terminal = false;
+    };
+  };
 }
