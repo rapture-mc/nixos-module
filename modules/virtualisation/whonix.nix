@@ -24,7 +24,7 @@
 
           if ! VBoxManage list vms | grep -q "Whonix"; then
             echo "Whonix VMs don't exist, importing..."
-            VBoxManage import ${ova} --vsys 0 --eula accept --vsys 1 --eula accept
+            VBoxManage import /tmp/Whonix-Xfce-${version}.ova --vsys 0 --eula accept --vsys 1 --eula accept
           else
             echo "Whonix VMs already exist, skipping..."
             exit 1
