@@ -5,7 +5,7 @@ let
 
   src = pkgs.fetchurl {
     url = "https://github.com/UnstoppableSwap/core/releases/download/${version}/${pname}_${version}_amd64.AppImage";
-    hash = "ot9yHm2mUaFJL9G80T6VhzYrpRmoSR9wUL79tnZiuyA=";
+    hash = "sha256-ot9yHm2mUaFJL9G80T6VhzYrpRmoSR9wUL79tnZiuyA=";
   };
 in
 {
