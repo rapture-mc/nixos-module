@@ -36,10 +36,9 @@ in {
 
   config = {
     networking.firewall.allowedTCPPorts =
-      (lib.mkIf cfg.server.enable
-        [
-          80
-        ])
+      [
+        80
+      ]
       ++ (
         if !cfg.server.reverse-proxied
         then [443]
