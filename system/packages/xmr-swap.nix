@@ -1,4 +1,4 @@
-{ appimageTools, fetchurl, ... }:
+{ pkgs, fetchurl, ... }:
 let
   pname = "UnstoppableSwap";
   version = "1.0.0-rc.11";
@@ -9,7 +9,7 @@ let
   };
 in
 {
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     (appimageTools.wrapType2 {
       inherit pname version src;
     })
