@@ -6,9 +6,13 @@
 }: let
   cfg = config.megacorp.virtualisation.whonix;
 
+  version = "17.2.3.7";
+
+  hash = "sha256-rTMax0Dc9fWNZUxu0gGFK/E5Rsg43eetB8mmsj+MxB0=";
+
   ova = pkgs.fetchurl {
-    url = "https://download.whonix.org/ova/${cfg.version}/Whonix-Xfce-${cfg.version}.ova";
-    hash = "${cfg.hash}";
+    url = "https://download.whonix.org/ova/${version}/Whonix-Xfce-${version}.ova";
+    hash = "${hash}";
   };
 
   installWhonix = pkgs.writeShellScriptBin "installWhonix" ''
@@ -23,18 +27,6 @@
 in {
   options.megacorp.virtualisation.whonix = with lib; {
     enable = mkEnableOption "Enable Whonix Gateway and Workstation VMs";
-
-    version = mkOption {
-      type = types.str;
-      default = "17.2.3.7";
-      description = "Whonix Version to download";
-    };
-
-    hash = mkOption {
-      type = types.str;
-      default = "sha256-rTMax0Dc9fWNZUxu0gGFK/E5Rsg43eetB8mmsj+MxB0=";
-      description = "Whonix Version hash";
-    };
   };
 
   config = lib.mkIf cfg.enable {
