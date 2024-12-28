@@ -1,6 +1,7 @@
 {
   osConfig,
   lib,
+  pkgs,
   ...
 }: {
   dconf.settings = {
@@ -32,6 +33,16 @@
       exec = "UnstoppableSwap";
       terminal = false;
       icon = ./unstoppable-swap.svg;
+    };
+
+    StartWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
+      name = "Start Whonix";
+      exec = ''
+        ${pkgs.virtualbox}/bin/VBoxManage startvm "Whonix-Gateway-Xfce" --type headless
+        sleep 1
+        ${pkgs.virtualbox}/bin/VBoxManage startvm "Whonix-Workstation-Xfce"
+      '';
+      terminal = false;
     };
   };
 }
