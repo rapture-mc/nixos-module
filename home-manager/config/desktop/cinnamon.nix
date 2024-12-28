@@ -37,9 +37,7 @@
 
     StartWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Start Whonix";
-      exec = ''
-        sh -c "${pkgs.virtualbox}/bin/VirtualBox && ${pkgs.virtualbox}/bin/VBoxManage startvm Whonix-Gateway-Xfce --type headless && sleep 1 && ${pkgs.virtualbox}/bin/VBoxManage startvm Whonix-Workstation-Xfce"
-        '';
+      exec = "StartWhonix";
       terminal = true;
       icon = ./whonix.svg;
     };
