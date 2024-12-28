@@ -8,13 +8,6 @@
 
   version = "17.2.3.7";
 
-  hash = "sha256-rTMax0Dc9fWNZUxu0gGFK/E5Rsg43eetB8mmsj+MxB0=";
-
-  ova = pkgs.fetchurl {
-    url = "";
-    hash = "${hash}";
-  };
-
   installWhonix = pkgs.writeShellScriptBin "installWhonix" ''
     echo -e "This script will check for the existence of Whonix and if not found download Whonix from the internet and import it into VirtualBox"
 
