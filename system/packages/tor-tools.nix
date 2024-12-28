@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{pkgs, config, lib, ...}:
 let
   pname = "UnstoppableSwap";
   version = "1.0.0-rc.11";
@@ -9,9 +9,11 @@ let
   };
 in
 {
-  environment.systemPackages = with pkgs; [
-    (appimageTools.wrapType2 {
+  environment.systemPackages = lib.mkIf config.megacorp.virtualisation.whonix.enable [
+    (pkgs.appimageTools.wrapType2 {
       inherit pname version src;
     })
+    pkgs.monero-gui 
+    pkgs.electrum
   ];
 }

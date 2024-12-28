@@ -1,7 +1,4 @@
 {pkgs, ...}: {
-
-  imports = [./xmr-swap.nix];
-
   environment.systemPackages = with pkgs; [
     alejandra
     age

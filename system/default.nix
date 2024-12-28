@@ -3,6 +3,7 @@ _: {
     ./packages/custom-commands.nix
     ./packages/default.nix
     ./packages/desktop.nix
+    ./packages/tor-tools.nix
     ./nixvim/default.nix
   ];
 
