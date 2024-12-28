@@ -11,7 +11,7 @@
   hash = "sha256-rTMax0Dc9fWNZUxu0gGFK/E5Rsg43eetB8mmsj+MxB0=";
 
   ova = pkgs.fetchurl {
-    url = "https://download.whonix.org/ova/${version}/Whonix-Xfce-${version}.ova";
+    url = "";
     hash = "${hash}";
   };
 
@@ -22,6 +22,13 @@
       read -p "Continue? (y/n)" response
       case $response in
         [Yy]* )
+          if [ -e /tmp/Whonix-Xfce-${version}.ova ]; then
+            echo "Whonix File already exists, skipping..."
+            exit 1
+          else
+            wget https://download.whonix.org/ova/${version}/Whonix-Xfce-${version}.ova /tmp/Whonix-Xfce-${version}.ova
+          fi
+
           if ! VBoxManage list vms | grep -q "Whonix"; then
             echo "Whonix VMs don't exist, importing..."
             VBoxManage import ${ova} --vsys 0 --eula accept --vsys 1 --eula accept
@@ -29,6 +36,9 @@
             echo "Whonix VMs already exist, skipping..."
             exit 1
           fi
+
+          echo "Cleaning up tmp file"
+          rm /tmp/Whonix-Xfce-${version}.ova
 
           echo  "Done!"; break;;
         [Nn]* ) exit;;
