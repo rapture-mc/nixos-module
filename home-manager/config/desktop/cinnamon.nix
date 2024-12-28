@@ -26,7 +26,7 @@
   };
 
   xdg.desktopEntries = {
-    UnstoppableSwap = {
+    UnstoppableSwap = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "UnstoppableSwap";
       genericName = "XMR Swap";
       exec = "UnstoppableSwap";
