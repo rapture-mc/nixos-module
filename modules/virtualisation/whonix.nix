@@ -16,13 +16,25 @@
   };
 
   installWhonix = pkgs.writeShellScriptBin "installWhonix" ''
-    if ! VBoxManage list vms | grep -q "Whonix"; then
-      echo "Whonix VMs don't exist, importing..."
-      VBoxManage import ${ova} --vsys 0 --eula accept --vsys 1 --eula accept
-    else
-      echo "Whonix VMs already exist, skipping..."
-      exit 1
-    fi
+    echo -e "This script will check for the existence of Whonix and if not found download Whonix from the internet and import it into VirtualBox"
+
+    while true; do
+      read -p "Continue? (y/n)" response
+      case $response in
+        [Yy]* )
+          if ! VBoxManage list vms | grep -q "Whonix"; then
+            echo "Whonix VMs don't exist, importing..."
+            VBoxManage import ${ova} --vsys 0 --eula accept --vsys 1 --eula accept
+          else
+            echo "Whonix VMs already exist, skipping..."
+            exit 1
+          fi
+
+          echo  "Done!"; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer y or n.";;
+      esac
+    done
   '';
 in {
   options.megacorp.virtualisation.whonix = with lib; {
