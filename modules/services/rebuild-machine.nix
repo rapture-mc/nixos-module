@@ -53,7 +53,7 @@ in {
             git clone https://gitea.megacorp.industries/${cfg.org}/nixos $working_dir
 
             echo "Running nixos-rebuild switch..."
-            cd $working_dir && nixos-rebuild switch --flake .#${config.megacorp.config.system.hostname}
+            cd $working_dir && nixos-rebuild switch --flake .#${config.megacorp.config.system.hostname} || rm -r $working_dir
             echo "Succesfully switched to new system configuration"
 
             chown -R ${config.megacorp.config.users.admin-user}:root /megacorp/nixos
