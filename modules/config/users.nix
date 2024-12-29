@@ -27,31 +27,38 @@ in {
   config = {
     programs.zsh.enable = true;
 
-    home-manager.users = {
-      ${cfg.admin-user} = {...}: {
-        imports = [../../home-manager/default.nix];
-      };
-      ${cfg.regular-user.name} = {...}: {
-        imports = [../../home-manager/default.nix];
-      };
-    };
+    home-manager.users = lib.mkMerge [
+      {
+        ${cfg.admin-user} = {
+          imports = [../../home-manager/default.nix];
+        };
+      }
 
-    users.users = {
-      ${cfg.admin-user} = {
-        isNormalUser = true;
-        initialPassword = "changeme";
-        shell = pkgs.zsh;
-        extraGroups = ["wheel"];
-      };
+      (lib.mkIf cfg.regular-user.enable {
+        ${cfg.regular-user.name} = {
+          imports = [../../home-manager/default.nix];
+        };
+      })
+    ];
 
-      ${cfg.regular-user.name} = {
-        isNormalUser = true;
-        initialPassword = "changeme";
-        shell =
-          if cfg.regular-user.enable
-          then pkgs.zsh
-          else "/run/current-system/sw/bin/nologin";
-      };
-    };
+
+    users.users = lib.mkMerge [
+      {
+        ${cfg.admin-user} = {
+          isNormalUser = true;
+          initialPassword = "changeme";
+          shell = pkgs.zsh;
+          extraGroups = ["wheel"];
+        };
+      }
+
+      (lib.mkIf cfg.regular-user.enable {
+        ${cfg.regular-user.name} = {
+          isNormalUser = true;
+          initialPassword = "changeme";
+          shell = pkgs.zsh;
+        };
+      })
+    ];
   };
 }
