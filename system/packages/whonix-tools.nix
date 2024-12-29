@@ -21,7 +21,7 @@ in
     (pkgs.appimageTools.wrapType2 {
       inherit pname version src;
     })
-    pkgs.bisq-desktop
+    pkgs.bisq2
     pkgs.electrum
     pkgs.monero-gui
     StartWhonix
