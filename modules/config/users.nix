@@ -31,7 +31,7 @@ in {
       ${cfg.admin-user} = {...}: {
         imports = [../../home-manager/default.nix];
       };
-      ${cfg.regular-user.name} = {...}: {
+      ${cfg.regular-user.name} = {...}: cfg.regular-user.enable {
         imports = [../../home-manager/default.nix];
       };
     };
@@ -44,13 +44,10 @@ in {
         extraGroups = ["wheel"];
       };
 
-      ${cfg.regular-user.name} = {
+      ${cfg.regular-user.name} = cfg.regular-user.enable {
         isNormalUser = true;
         initialPassword = "changeme";
-        shell =
-          if cfg.regular-user.enable
-          then pkgs.zsh
-          else "/run/current-system/sw/bin/nologin";
+        shell = pkgs.zsh;
       };
     };
   };
