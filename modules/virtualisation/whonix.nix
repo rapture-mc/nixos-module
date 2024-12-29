@@ -20,7 +20,7 @@
 
             VBoxManage import /tmp/Whonix-Xfce-${version}.ova --vsys 0 --eula accept --vsys 1 --eula accept
 
-          elif [ VBoxManage list vms | grep -q "Whonix" ] && [ ! -e /tmp/Whonix-Xfce-${version}.ova ]
+          elif [ VBoxManage list vms | grep -q "Whonix" ] && [ ! -e /tmp/Whonix-Xfce-${version}.ova ]; then
             echo "Whonix VMs don't exist and Whonix OVA file doesn't exist, downloading OVA file..."
 
             wget https://download.whonix.org/ova/${version}/Whonix-Xfce-${version}.ova /tmp/Whonix-Xfce-${version}.ova
