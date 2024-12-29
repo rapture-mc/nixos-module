@@ -21,8 +21,9 @@ in
     (pkgs.appimageTools.wrapType2 {
       inherit pname version src;
     })
-    pkgs.monero-gui 
+    pkgs.bisq-desktop
     pkgs.electrum
+    pkgs.monero-gui
     StartWhonix
   ];
 }
