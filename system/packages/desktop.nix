@@ -11,6 +11,7 @@ with pkgs; {
     keepassxc
     libreoffice
     remmina
+    shutter
     thunderbird
     vlc
   ];
