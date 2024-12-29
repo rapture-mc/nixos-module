@@ -15,23 +15,28 @@
       read -p "Continue? (y/n)" response
       case $response in
         [Yy]* )
-          if [ -e /tmp/Whonix-Xfce-${version}.ova ]; then
-            echo "Whonix File already exists, skipping..."
-            exit 1
-          else
-            wget https://download.whonix.org/ova/${version}/Whonix-Xfce-${version}.ova /tmp/Whonix-Xfce-${version}.ova
-          fi
-
-          if ! VBoxManage list vms | grep -q "Whonix"; then
+          if [ VBoxManage list vms | grep -q "Whonix" ] && [ -e /tmp/Whonix-Xfce-${version}.ova ]; then
             echo "Whonix VMs don't exist, importing..."
+
             VBoxManage import /tmp/Whonix-Xfce-${version}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+
+          elif [ VBoxManage list vms | grep -q "Whonix" ] && [ ! -e /tmp/Whonix-Xfce-${version}.ova ]
+            echo "Whonix VMs don't exist and Whonix OVA file doesn't exist, downloading OVA file..."
+
+            wget https://download.whonix.org/ova/${version}/Whonix-Xfce-${version}.ova /tmp/Whonix-Xfce-${version}.ova
+
+            VBoxManage import /tmp/Whonix-Xfce-${version}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+
+            echo -e "Import successful!\n Cleaning up OVA file from /tmp folder..."
+
+            rm /tmp/Whonix-Xfce-${version}.ova
+
           else
             echo "Whonix VMs already exist, skipping..."
-            exit 1
-          fi
 
-          echo "Cleaning up tmp file"
-          rm /tmp/Whonix-Xfce-${version}.ova
+            exit 1
+
+          fi
 
           echo  "Done!"; break;;
         [Nn]* ) exit;;
