@@ -4,6 +4,7 @@
     ./programs/tmux.nix
     ./programs/kitty.nix
     ./programs/btop.nix
+    ./config/desktop/applications.nix
 
     (
       if

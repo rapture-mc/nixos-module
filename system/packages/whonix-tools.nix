@@ -15,15 +15,21 @@ let
 
     VBoxManage startvm Whonix-Workstation-Xfce
   '';
+
+  StopWhonix = pkgs.writeShellScriptBin "StopWhonix" ''
+    VBoxManage controlvm Whonix-Workstation-Xfce poweroff
+
+    VBoxManage controlvm Whonix-Gateway-Xfce poweroff
+  '';
 in
 {
   environment.systemPackages = lib.mkIf config.megacorp.virtualisation.whonix.enable [
     (pkgs.appimageTools.wrapType2 {
       inherit pname version src;
     })
-    pkgs.bisq2
     pkgs.electrum
     pkgs.monero-gui
     StartWhonix
+    StopWhonix
   ];
 }

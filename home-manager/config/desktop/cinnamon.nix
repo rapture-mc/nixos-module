@@ -1,7 +1,6 @@
 {
   osConfig,
   lib,
-  pkgs,
   ...
 }: {
   dconf.settings = {
@@ -24,22 +23,5 @@
       Comment=To log out of the desktop
       Icon=${./logout.png}
     '';
-  };
-
-  xdg.desktopEntries = {
-    UnstoppableSwap = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
-      name = "UnstoppableSwap";
-      genericName = "XMR Swap";
-      exec = "UnstoppableSwap";
-      terminal = false;
-      icon = ./unstoppable-swap.svg;
-    };
-
-    StartWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
-      name = "Start Whonix";
-      exec = "StartWhonix";
-      terminal = false;
-      icon = ./whonix.svg;
-    };
   };
 }
