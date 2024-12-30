@@ -28,6 +28,5 @@ _: {
     ./virtualisation/guest.nix
     ./virtualisation/hypervisor.nix
     ./virtualisation/whonix.nix
-    ./virtualisation/windows.nix
   ];
 }

@@ -71,9 +71,66 @@
       esac
     done
   '';
+
+  whonixVersion = "17.2.3.7";
+  installWhonix = pkgs.writeShellScriptBin "installWhonix" ''
+    echo -e "This script will check for the existence of Whonix and if not found download Whonix from the internet and import it into VirtualBox"
+
+    while true; do
+      read -p "Continue? (y/n)" response
+      case $response in
+        [Yy]* )
+          if ! VBoxManage list vms | grep -q "Whonix" && [ -e /tmp/Whonix-Xfce-${whonixVersion}.ova ]; then
+            echo "Whonix VMs don't exist, importing..."
+
+            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+
+          elif ! VBoxManage list vms | grep -q "Whonix" && [ ! -e /tmp/Whonix-Xfce-${whonixVersion}.ova ]; then
+            echo "Whonix VMs don't exist and Whonix OVA file doesn't exist, downloading OVA file..."
+
+            wget https://download.whonix.org/ova/${whonixVersion}/Whonix-Xfce-${whonixVersion}.ova -O /tmp/Whonix-Xfce-${whonixVersion}.ova
+
+            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+
+            echo -e "Import successful!\n Cleaning up OVA file from /tmp folder..."
+
+            rm /tmp/Whonix-Xfce-${whonixVersion}.ova
+
+          else
+            echo "Whonix VMs already exist, skipping..."
+
+            exit 1
+
+          fi
+
+          echo  "Done!"; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer y or n.";;
+      esac
+    done
+  '';
+
+  startWhonix = pkgs.writeShellScriptBin "startWhonix" ''
+    VBoxManage startvm Whonix-Gateway-Xfce --type headless
+
+    sleep 1
+
+    VBoxManage startvm Whonix-Workstation-Xfce
+  '';
+
+  stopWhonix = pkgs.writeShellScriptBin "stopWhonix" ''
+    VBoxManage controlvm Whonix-Workstation-Xfce poweroff
+
+    VBoxManage controlvm Whonix-Gateway-Xfce poweroff
+  '';
 in {
   environment.systemPackages =
     lib.optionals config.megacorp.services.restic.sftp-server.enable [makeRepoGroupWriteable]
     ++ lib.optionals config.megacorp.virtualisation.hypervisor.enable [generateWin22Image]
+    ++ lib.optionals config.megacorp.virtualisation.whonix.enable [
+      installWhonix
+      startWhonix
+      stopWhonix
+    ]
     ++ [generateAgeKey];
 }

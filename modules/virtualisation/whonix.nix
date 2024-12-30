@@ -6,44 +6,14 @@
 }: let
   cfg = config.megacorp.virtualisation.whonix;
 
-  version = "17.2.3.7";
+  pname = "UnstoppableSwap";
+  version = "1.0.0-rc.11";
 
-  installWhonix = pkgs.writeShellScriptBin "installWhonix" ''
-    echo -e "This script will check for the existence of Whonix and if not found download Whonix from the internet and import it into VirtualBox"
+  src = pkgs.fetchurl {
+    url = "https://github.com/UnstoppableSwap/core/releases/download/${version}/${pname}_${version}_amd64.AppImage";
+    hash = "sha256-ot9yHm2mUaFJL9G80T6VhzYrpRmoSR9wUL79tnZiuyA=";
+  };
 
-    while true; do
-      read -p "Continue? (y/n)" response
-      case $response in
-        [Yy]* )
-          if ! VBoxManage list vms | grep -q "Whonix" && [ -e /tmp/Whonix-Xfce-${version}.ova ]; then
-            echo "Whonix VMs don't exist, importing..."
-
-            VBoxManage import /tmp/Whonix-Xfce-${version}.ova --vsys 0 --eula accept --vsys 1 --eula accept
-
-          elif ! VBoxManage list vms | grep -q "Whonix" && [ ! -e /tmp/Whonix-Xfce-${version}.ova ]; then
-            echo "Whonix VMs don't exist and Whonix OVA file doesn't exist, downloading OVA file..."
-
-            wget https://download.whonix.org/ova/${version}/Whonix-Xfce-${version}.ova -O /tmp/Whonix-Xfce-${version}.ova
-
-            VBoxManage import /tmp/Whonix-Xfce-${version}.ova --vsys 0 --eula accept --vsys 1 --eula accept
-
-            echo -e "Import successful!\n Cleaning up OVA file from /tmp folder..."
-
-            rm /tmp/Whonix-Xfce-${version}.ova
-
-          else
-            echo "Whonix VMs already exist, skipping..."
-
-            exit 1
-
-          fi
-
-          echo  "Done!"; break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer y or n.";;
-      esac
-    done
-  '';
 in {
   options.megacorp.virtualisation.whonix = with lib; {
     enable = mkEnableOption "Enable Whonix Gateway and Workstation VMs";
@@ -52,6 +22,12 @@ in {
   config = lib.mkIf cfg.enable {
     virtualisation.virtualbox.host.enable = true;
 
-    environment.systemPackages = [installWhonix];
+    environment.systemPackages = lib.mkIf config.megacorp.virtualisation.whonix.enable [
+      (pkgs.appimageTools.wrapType2 {
+        inherit pname version src;
+      })
+      pkgs.electrum
+      pkgs.monero-gui
+    ];
   };
 }

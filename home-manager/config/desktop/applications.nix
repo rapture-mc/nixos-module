@@ -14,14 +14,14 @@
 
     StartWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Start Whonix";
-      exec = "StartWhonix";
+      exec = "startWhonix";
       terminal = false;
       icon = ./whonix.svg;
     };
 
     StopWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Stop Whonix";
-      exec = "StopWhonix";
+      exec = "stopWhonix";
       terminal = false;
       icon = ./whonix.svg;
     };
