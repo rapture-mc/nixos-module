@@ -7,7 +7,7 @@ _: {
     ./config/ssh.nix
     ./config/system.nix
     ./config/users.nix
-    ./services/deploy-rs.nix
+    ./services/controller.nix
     ./services/dnsmasq.nix
     ./services/gitea.nix
     ./services/gitea-runner.nix

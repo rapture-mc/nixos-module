@@ -4,20 +4,20 @@
   pkgs,
   ...
 }: let
-  cfg = config.megacorp.services.deploy-rs;
+  cfg = config.megacorp.services.controller;
 in {
-  options.megacorp.services.deploy-rs = with lib; {
-    agent.enable = mkEnableOption "Enable deploy-rs agent";
+  options.megacorp.services.controller = with lib; {
+    agent.enable = mkEnableOption "Enable controller agent component";
 
     server = {
-      enable = mkEnableOption "Enable deploy-rs server";
+      enable = mkEnableOption "Enable controller server component";
 
-      logo = mkEnableOption "Whether to show deploy-rs logo on shell startup";
+      logo = mkEnableOption "Whether to show controller logo on shell startup";
 
       public-key = mkOption {
         type = types.listOf types.str;
         default = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBbY2IFwCtrP1KZjL7D+fNA4kBKnkydS17oIJL9VxAl benny@MGC-DRS-02"];
-        description = "The public SSH key for the deploy server user";
+        description = "The public SSH key for the controller server user";
       };
     };
   };
@@ -25,7 +25,7 @@ in {
   config = {
     environment.systemPackages = lib.mkIf cfg.server.enable [pkgs.deploy-rs];
 
-    users.users.deploy = lib.mkIf cfg.agent.enable {
+    users.users.controller = lib.mkIf cfg.agent.enable {
       isNormalUser = true;
       extraGroups = ["wheel"];
       openssh.authorizedKeys.keys = cfg.server.public-key;
@@ -33,7 +33,7 @@ in {
 
     security.sudo.extraRules = lib.mkIf cfg.agent.enable [
       {
-        users = ["deploy"];
+        users = ["controller"];
         commands = [
           {
             command = "ALL";

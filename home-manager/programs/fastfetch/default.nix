@@ -8,8 +8,8 @@ in {
     source = (
       if cfg.services.sshd.bastion.logo
       then ./bastion-logo
-      else if cfg.services.deploy-rs.server.logo
-      then ./deploy-logo
+      else if cfg.services.controller.server.logo
+      then ./controller-logo
       else if cfg.virtualisation.hypervisor.logo
       then ./hypervisor-logo
       else if cfg.services.nginx.logo
