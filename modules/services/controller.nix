@@ -16,7 +16,7 @@ in {
 
       public-key = mkOption {
         type = types.listOf types.str;
-        default = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBbY2IFwCtrP1KZjL7D+fNA4kBKnkydS17oIJL9VxAl benny@MGC-DRS-02"];
+        default = [];
         description = "The public SSH key for the controller server user";
       };
     };
