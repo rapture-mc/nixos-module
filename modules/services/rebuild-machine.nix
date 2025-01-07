@@ -50,7 +50,7 @@ in {
             echo "$working_dir directory doesn't exist, creating..."
             mkdir -p -m 750 $working_dir
 
-            git clone https://gitea.megacorp.industries/${cfg.org}/nixos $working_dir
+            git clone https://github.com/rapture-mc/${cfg.org}-machines $working_dir
 
             echo "Running nixos-rebuild switch..."
             cd $working_dir && nixos-rebuild switch --flake .#${config.megacorp.config.system.hostname} || rm -r $working_dir

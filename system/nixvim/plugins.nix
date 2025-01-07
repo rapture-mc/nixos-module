@@ -39,7 +39,7 @@
             enable = true;
             settings = {
               nixpkgs.expr = "import <nixpkgs> { }";
-              options.nixos.expr = "(builtins.getFlake \"git+https://gitea.megacorp.industries/mgc/nixos\").nixosConfigurations.MGC-HVS-01.options";
+              options.nixos.expr = "(builtins.getFlake \"git+https://github.com/rapture-mc/mgc-machines\").nixosConfigurations.MGC-HVS-01.options";
             };
           };
           gopls.enable = true;
