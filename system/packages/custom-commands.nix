@@ -123,6 +123,23 @@
 
     VBoxManage controlvm Whonix-Gateway-Xfce poweroff
   '';
+
+  firstTimeSetup = pkgs.writeShellScriptBin "firstTimeSetup" ''
+    if [ $# -ne 1 ]; then
+      echo "You must supply at least one argument (the hostname)"
+      exit 1
+    fi
+
+    echo "Cloning git directory to /tmp/mgc-machines"
+    git clone https://github.com/rapture-mc/mgc-machines /tmp/mgc-machines
+
+    cd /tmp/mgc-machines
+
+    git checkout dev
+
+    echo "Running nh os switch..."
+    nh os switch . -H $1
+  '';
 in {
   environment.systemPackages =
     lib.optionals config.megacorp.services.restic.sftp-server.enable [makeRepoGroupWriteable]
@@ -132,5 +149,8 @@ in {
       startWhonix
       stopWhonix
     ]
-    ++ [generateAgeKey];
+    ++ [
+      generateAgeKey
+      firstTimeSetup
+    ];
 }
