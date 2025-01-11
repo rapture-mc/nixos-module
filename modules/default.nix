@@ -1,7 +1,7 @@
-_: {
+{ inputs, ... }: {
   imports = [
     ./config/bootloader.nix
-    ./config/desktop.nix
+    (import ./config/desktop.nix {inherit inputs;})
     ./config/networking/static.nix
     ./config/networking/wireless.nix
     ./config/ssh.nix
