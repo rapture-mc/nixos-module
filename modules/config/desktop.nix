@@ -27,11 +27,10 @@ in {
   config = lib.mkIf cfg.enable {
     services = {
       xserver = {
-        displayManager.${cfg.display-manager}.enable = (if cfg.desktop-manager == "hyprland" then false else true);
+        displayManager.${cfg.display-manager}.enable = true;
         desktopManager.${cfg.desktop-manager}.enable = true;
         enable = true;
       };
-
       xrdp = lib.mkIf cfg.xrdp {
         enable = true;
         openFirewall = true;
