@@ -1,8 +1,6 @@
 { pkgs, ... }: let
-  startupScript = pkgs.writeShellScriptBin "startupScript" ''
-    sleep 1
-
-    ${pkgs.swww}/bin/swww-daemon --no-cache &
+  startupScript = pkgs.writeShellScriptBin "start" ''
+    ${pkgs.swww}/bin/swww-daemon &
 
     sleep 1
 
@@ -13,7 +11,7 @@ in {
     enable = true;
 
     settings = {
-      exec-once = "${startupScript}/bin/startupScript";
+      exec-once = ''${startupScript}/bin/start'';
 
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";
