@@ -22,13 +22,11 @@ in {
       default = "lightdm";
       description = "Lock screen to set";
     };
-
-    hyprland.enable = mkEnableOption "Whether to enable Hyprland";
   };
 
   config = lib.mkIf cfg.enable {
     services = {
-      xserver = lib.mkIf (!cfg.hyprland.enable) {
+      xserver = {
         enable = true;
         displayManager.${cfg.display-manager}.enable = true;
         desktopManager.${cfg.desktop-manager}.enable = true;
@@ -40,18 +38,6 @@ in {
         openFirewall = true;
         defaultWindowManager = "${cfg.desktop-manager}-session";
       };
-    };
-
-    services.xserver = lib.mkIf cfg.hyprland.enable {
-      enable = true;
-      displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
-
-    programs.hyprland = lib.mkIf cfg.hyprland.enable {
-      enable = true;
     };
 
     networking.networkmanager.enable = true;
