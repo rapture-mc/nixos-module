@@ -31,7 +31,7 @@ in {
       xserver = {
         displayManager.${cfg.display-manager}.enable = true;
         desktopManager.${cfg.desktop-manager}.enable = if cfg.hyprland.enable then false else true;
-        enable = true;
+        enable = if cfg.hyprland.enable then false else true;
       };
 
       xrdp = lib.mkIf cfg.xrdp {
