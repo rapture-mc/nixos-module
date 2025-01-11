@@ -10,6 +10,8 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
 
+    systemd.enable = true;
+
     settings = {
       exec-once = ''${startupScript}/bin/start'';
 
