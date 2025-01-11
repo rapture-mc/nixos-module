@@ -2,7 +2,7 @@
   startupScript = pkgs.writeShellScriptBin "startupScript" ''
     ${pkgs.swww}/bin/swww-daemon &
 
-    sleep 3
+    sleep 10
 
     ${pkgs.swww}/bin/swww img ${./desktop-wallpaper.jpg} &
   '';
