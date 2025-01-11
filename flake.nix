@@ -44,7 +44,7 @@
         home-manager.nixosModules.home-manager
         arion.nixosModules.arion
         ./system
-        (import ./modules {inherit inputs;})
+        ./modules
       ];
     };
   };
