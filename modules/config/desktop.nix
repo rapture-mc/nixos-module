@@ -42,6 +42,14 @@ in {
       };
     };
 
+    services.xserver = lib.mkIf cfg.hyprland.enable {
+      enable = true;
+      displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
+
     programs.hyprland = lib.mkIf cfg.hyprland.enable {
       enable = true;
     };
