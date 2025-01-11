@@ -1,5 +1,7 @@
 { pkgs, ... }: let
   startupScript = pkgs.writeShellScriptBin "startupScript" ''
+    sleep 1
+
     ${pkgs.swww}/bin/swww-daemon --no-cache &
 
     sleep 1
