@@ -2,6 +2,7 @@ _: {
   imports = [
     ./config/bootloader.nix
     ./config/desktop.nix
+    ./config/hyprland.nix
     ./config/networking/static.nix
     ./config/networking/wireless.nix
     ./config/ssh.nix
