@@ -10,12 +10,12 @@
         osConfig.megacorp.config.desktop.desktop-manager
         == "cinnamon"
         && osConfig.megacorp.config.desktop.enable
-        && !osConfig.megacorp.config.desktop.hyprland.enable
+        && !osConfig.megacorp.config.hyprland.enable
       then ./config/desktop/cinnamon.nix
       else ./config/desktop/none.nix
     )
     (
-      if osConfig.megacorp.config.desktop.hyprland.enable
+      if osConfig.megacorp.config.hyprland.enable
       then ./config/desktop/hyprland.nix
       else ./config/desktop/none.nix
     )
