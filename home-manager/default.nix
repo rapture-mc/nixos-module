@@ -5,7 +5,6 @@
     ./programs/kitty.nix
     ./programs/btop.nix
     ./config/desktop/applications.nix
-
     (
       if
         osConfig.megacorp.config.desktop.desktop-manager
@@ -13,6 +12,11 @@
         && osConfig.megacorp.config.desktop.enable
         && !osConfig.megacorp.config.desktop.hyprland.enable
       then ./config/desktop/cinnamon.nix
+      else ./config/desktop/none.nix
+    )
+    (
+      if osConfig.megacorp.config.desktop.hyprland.enable
+      then ./config/desktop/hyprland.nix
       else ./config/desktop/none.nix
     )
   ];
