@@ -135,8 +135,6 @@
 
     cd /tmp/mgc-machines
 
-    git checkout dev
-
     echo "Running nh os switch..."
     nh os switch . -H $1
   '';
