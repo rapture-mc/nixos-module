@@ -1,10 +1,8 @@
 { pkgs, ... }: let
   startupScript = pkgs.writeShellScriptBin "start" ''
-    ${pkgs.swww}/bin/swww-daemon &
-
     sleep 1
 
-    ${pkgs.swww}/bin/swww img ${./desktop-wallpaper.jpg} &
+    ${pkgs.hyprpaper}/bin/hyprpaper &
   '';
 in {
   wayland.windowManager.hyprland = {
@@ -23,6 +21,14 @@ in {
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
       ];
+    };
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = "${./desktop-wallpaper.jpg}";
+      wallpaper = "eDP-1, ${./desktop-wallpaper.jpg}";
     };
   };
 }
