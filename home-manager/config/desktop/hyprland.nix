@@ -8,8 +8,8 @@ _: {
       "$browser" = "firefox";
 
       bind = [
-        "$mainMod, W, exec $browser"
-        "$mainMod, Q, exec $terminal"
+        "$mainMod, W, exec, $browser"
+        "$mainMod, Q, exec, $terminal"
       ];
     };
   };
