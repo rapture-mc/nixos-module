@@ -19,6 +19,8 @@ in {
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
       ];
+
+      disable_hyprland_logo = true;
     };
   };
 
