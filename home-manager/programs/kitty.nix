@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  programs = lib.mkIf osConfig.megacorp.config.desktop.enable {
+  programs = lib.mkIf (osConfig.megacorp.config.desktop.enable || osConfig.megacorp.config.hyprland.enable) {
     kitty = {
       enable = true;
       shellIntegration.enableZshIntegration = true;
