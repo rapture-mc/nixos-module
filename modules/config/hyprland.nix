@@ -15,7 +15,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.xserver = lib.mkIf cfg.hyprland.enable {
+    services.xserver = {
       enable = true;
       displayManager.sddm = {
         enable = true;
