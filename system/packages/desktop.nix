@@ -10,6 +10,7 @@ with pkgs; {
     firefox
     keepassxc
     libreoffice
+    networkmanager
     remmina
     shutter
     thunderbird
