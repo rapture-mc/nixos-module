@@ -43,7 +43,7 @@ in {
       };
     };
 
-    programs.hyprland = lib.mkIf cfg.desktop.hyprland.enable {
+    programs.hyprland = lib.mkIf cfg.hyprland.enable {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
