@@ -36,6 +36,7 @@
     home-manager,
     nixvim,
     arion,
+    pkgs,
     ...
   } @ inputs: {
     nixosModules.default = {
