@@ -5,7 +5,6 @@
 }: let
   cfg = config.megacorp.config.hyprland;
 in {
-
   imports = [
     ./desktop-shared.nix
   ];
@@ -15,13 +14,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.xserver = {
-      enable = true;
-      displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
+    # services.xserver = {
+    #   enable = true;
+    #   displayManager.sddm = {
+    #     enable = true;
+    #     wayland.enable = true;
+    #   };
+    # };
 
     programs.hyprland.enable = true;
   };
