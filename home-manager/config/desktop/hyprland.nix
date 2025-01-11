@@ -1,7 +1,5 @@
 { pkgs, ... }: let
   startupScript = pkgs.writeShellScriptBin "start" ''
-    sleep 1
-
     ${pkgs.hyprpaper}/bin/hyprpaper &
   '';
 in {
