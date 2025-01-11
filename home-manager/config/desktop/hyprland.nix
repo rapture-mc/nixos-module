@@ -23,6 +23,11 @@ in {
       misc = {
         "disable_hyprland_logo" = true;
       };
+
+      decoration = {
+        "rounding" = "0.5";
+
+      };
     };
   };
 
