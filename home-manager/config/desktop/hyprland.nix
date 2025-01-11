@@ -1,11 +1,10 @@
 { pkgs, ... }: let
   startupScript = pkgs.writeShellScriptBin "startupScript" ''
-    kitty
-    # ${pkgs.swww}/bin/swww init &
-    #
-    # sleep 1
-    #
-    # ${pkgs.swww}/bin/swww img ${./desktop-wallpaper.jpg} &
+    ${pkgs.swww}/bin/swww-daemon &
+
+    sleep 1
+
+    ${pkgs.swww}/bin/swww img ${./desktop-wallpaper.jpg} &
   '';
 in {
   wayland.windowManager.hyprland = {
