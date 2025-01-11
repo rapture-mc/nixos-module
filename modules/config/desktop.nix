@@ -29,9 +29,10 @@ in {
   config = lib.mkIf cfg.enable {
     services = {
       xserver = lib.mkIf (!cfg.hyprland.enable) {
+        enable = true;
         displayManager.${cfg.display-manager}.enable = true;
         desktopManager.${cfg.desktop-manager}.enable = true;
-        enable = true;
+        xkb.layout = "au";
       };
 
       xrdp = lib.mkIf cfg.xrdp {
@@ -61,7 +62,5 @@ in {
       };
       pulse.enable = true;
     };
-
-    services.xserver.xkb.layout = "au";
   };
 }
