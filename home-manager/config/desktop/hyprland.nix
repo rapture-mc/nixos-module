@@ -21,6 +21,7 @@ in {
         "$mainMod, P, exec, $browser"
         "$mainMod, O, exec, $terminal"
         "$mainMod, Q, killactive,"
+        "$mainMod, M, exit,"
       ];
     };
   };
