@@ -4,14 +4,17 @@
 
     sleep 1
 
-    ${pkgs.swww}/bin/swww img ${./desktop-wallpaper.jpg} &
   '';
 in {
   wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {
-      exec-once = ''${startupScript}/bin/start'';
+      exec-once = ''
+        ${startupScript}/bin/start
+
+        ${pkgs.swww}/bin/swww img ${./desktop-wallpaper.jpg} &
+      '';
 
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";
