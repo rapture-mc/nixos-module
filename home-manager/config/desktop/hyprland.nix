@@ -1,8 +1,8 @@
 { pkgs, ... }: let
   startupScript = pkgs.writeShellScriptBin "startupScript" ''
-    ${pkgs.swww}/bin/swww-daemon &
+    ${pkgs.swww}/bin/swww-daemon --no-cache &
 
-    sleep 10
+    sleep 1
 
     ${pkgs.swww}/bin/swww img ${./desktop-wallpaper.jpg} &
   '';
