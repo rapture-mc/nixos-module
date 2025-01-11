@@ -5,7 +5,7 @@
   ...
 }:
 with pkgs; {
-  environment.systemPackages = lib.mkIf config.megacorp.config.desktop.enable || config.megacorp.config.hyprland.enable [
+  environment.systemPackages = (lib.mkIf config.megacorp.config.desktop.enable || config.megacorp.config.hyprland.enable) [
     chromium
     firefox
     keepassxc
