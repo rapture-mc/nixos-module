@@ -25,8 +25,7 @@ in {
       };
 
       decoration = {
-        "rounding" = "0.5";
-
+        "rounding" = 10;
       };
     };
   };
