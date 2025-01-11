@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: let
   cfg = config.megacorp.config.desktop;
@@ -40,6 +41,12 @@ in {
         openFirewall = true;
         defaultWindowManager = "${cfg.desktop-manager}-session";
       };
+    };
+
+    programs.hyprland = lib.mkIf cfg.desktop.hyprland.enable {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     networking.networkmanager.enable = true;
