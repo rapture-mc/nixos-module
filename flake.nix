@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixvim = {
       url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +31,6 @@
     home-manager,
     nixvim,
     arion,
-    pkgs,
     ...
   } @ inputs: {
     nixosModules.default = {
@@ -45,7 +39,7 @@
         home-manager.nixosModules.home-manager
         arion.nixosModules.arion
         ./system
-        (import ./modules {inherit inputs pkgs;})
+        ./modules
       ];
     };
   };

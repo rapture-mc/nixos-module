@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: let
   cfg = config.megacorp.config.desktop;
@@ -45,8 +44,6 @@ in {
 
     programs.hyprland = lib.mkIf cfg.hyprland.enable {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     networking.networkmanager.enable = true;
