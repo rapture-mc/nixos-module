@@ -37,4 +37,8 @@ in {
       wallpaper = "eDP-1, ${./desktop-wallpaper.jpg}";
     };
   };
+
+  programs.hyprlock = {
+    enable = true;
+  };
 }
