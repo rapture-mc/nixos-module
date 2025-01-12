@@ -22,8 +22,9 @@ in {
     #   };
     # };
 
-    security.pam.services.hyprlock = {};
-
-    programs.hyprland.enable = true;
+    programs = {
+      hyprland.enable = true;
+      hyprlock.enable = true;
+    };
   };
 }
