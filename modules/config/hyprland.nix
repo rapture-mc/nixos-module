@@ -14,17 +14,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # services.xserver = {
-    #   enable = true;
-    #   displayManager.sddm = {
-    #     enable = true;
-    #     wayland.enable = true;
-    #   };
-    # };
-
     programs = {
       hyprland.enable = true;
-      hyprlock.enable = true;
     };
+
+    security.pam.services.swaylock = {};
   };
 }
