@@ -13,6 +13,7 @@ with pkgs; {
     networkmanager
     remmina
     shutter
+    signal-desktop
     thunderbird
     vlc
   ];
