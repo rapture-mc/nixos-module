@@ -19,13 +19,10 @@ in {
       hyprland.enable = true;
     };
 
-    services.xserver = {
+    services.displayManager.sddm = {
       enable = true;
-      displayManager.sddm = {
-        enable = true;
-        theme = "where_is_my_sddm_theme";
-        wayland.enable = true;
-      };
+      theme = "where_is_my_sddm_theme";
+      wayland.enable = true;
     };
 
     environment.systemPackages = [pkgs.where-is-my-sddm-theme];
