@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.megacorp.config.hyprland;
@@ -26,5 +27,7 @@ in {
         wayland.enable = true;
       };
     };
+
+    environment.systemPackages = [pkgs.where-is-my-sddm-theme];
   };
 }
