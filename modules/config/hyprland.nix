@@ -23,7 +23,7 @@ in {
       enable = true;
       displayManager.sddm = {
         enable = true;
-        theme = "where_is_my_sddm_theme";
+        theme = "${pkgs.where-is-my-sddm-theme}/share/sddm/themes/where_is_my_sddm_theme";
         wayland.enable = true;
       };
     };
