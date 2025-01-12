@@ -18,6 +18,13 @@ in {
       hyprland.enable = true;
     };
 
-    security.pam.services.swaylock = {};
+    services.xserver = {
+      enable = true;
+      displayManager.sddm = {
+        enable = true;
+        theme = "where_is_my_sddm_theme";
+        wayland.enable = true;
+      };
+    };
   };
 }

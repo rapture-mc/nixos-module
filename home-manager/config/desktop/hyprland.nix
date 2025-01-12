@@ -37,6 +37,4 @@ in {
       wallpaper = "eDP-1, ${./desktop-wallpaper.jpg}";
     };
   };
-
-  programs.swaylock.enable = true;
 }
