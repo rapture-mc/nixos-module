@@ -75,6 +75,24 @@ in {
           "hyprland/workspaces"
           "wlr/taskbar"
         ];
+        modules-center = [];
+        modules-right = [
+          "cpu"
+          "temperature"
+          "memory"
+          "disk"
+          "tray"
+          "pulseaudio"
+          "network"
+          "battery"
+          "hyprland/language"
+          "clock"
+        ];
+        "hyprland/language" = {
+          format = "{}";
+          format-en = "ENG";
+          format-ru = "PYC";
+        };
       };
     };
   };
