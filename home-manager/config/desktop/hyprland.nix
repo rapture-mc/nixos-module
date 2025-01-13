@@ -93,6 +93,10 @@ in {
           format-en = "ENG";
           format-ru = "PYC";
         };
+        "cpu" = {
+          interval = 5;
+          max-length = 10;
+        };
       };
     };
   };
