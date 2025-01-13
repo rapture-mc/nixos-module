@@ -19,11 +19,19 @@ in {
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
 
+        # Window Navigation
         "$mainMod, h, movefocus, l"
         "$mainMod, l, movefocus, r"
         "$mainMod, k, movefocus, u"
         "$mainMod, j, movefocus, d"
 
+        # Window Resizing
+        "$mainMod+SHIFT+h resize left 10"
+        "$mainMod+SHIFT+l resize right 10"
+        "$mainMod+SHIFT+k resize up 10"
+        "$mainMod+SHIFT+j resize down 10"
+
+        # Workspace Navigation
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
