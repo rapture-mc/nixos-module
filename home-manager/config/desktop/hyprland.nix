@@ -60,44 +60,5 @@ in {
 
   programs.waybar = {
     enable = true;
-    style = ./waybar.css;
-    settings = {
-      mainBar = {
-        layer = "bottom";
-        position = "bottom";
-        mod = "dock";
-        exclusive = true;
-        gtk-layer-shell = true;
-        margin-bottom = -1;
-        passthrough = false;
-        modules-left = [
-          "custom/os_button"
-          "hyprland/workspaces"
-          "wlr/taskbar"
-        ];
-        modules-center = [];
-        modules-right = [
-          "cpu"
-          "temperature"
-          "memory"
-          "disk"
-          "tray"
-          "pulseaudio"
-          "network"
-          "battery"
-          "hyprland/language"
-          "clock"
-        ];
-        "hyprland/language" = {
-          format = "{}";
-          format-en = "ENG";
-          format-ru = "PYC";
-        };
-        "cpu" = {
-          interval = 5;
-          max-length = 10;
-        };
-      };
-    };
   };
 }
