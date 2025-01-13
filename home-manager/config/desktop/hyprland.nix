@@ -27,9 +27,9 @@ in {
 
         # Window Resizing
         "$mainMod SHIFT, H, moveactive -10 0"
-        "$mainMod SHIFT, L, moveactive right 10 0"
-        "$mainMod SHIFT, K, moveactive up 0 -10"
-        "$mainMod SHIFT, J, moveactive down 0 10"
+        "$mainMod SHIFT, L, moveactive 10 0"
+        "$mainMod SHIFT, K, moveactive 0 -10"
+        "$mainMod SHIFT, J, moveactive 0 10"
 
         # Workspace Navigation
         "$mainMod, 1, workspace, 1"
