@@ -68,7 +68,7 @@ in {
         mod = "dock";
         exclusive = true;
         gtk-layer-shell = true;
-        margin-bottom = "-1";
+        margin-bottom = -1;
         passthrough = false;
         modules-left = [
           "custom/os_button"
