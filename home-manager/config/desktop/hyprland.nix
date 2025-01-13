@@ -18,6 +18,15 @@ in {
         "$mainMod, O, exec, $terminal"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
+
+        "$mainMod, left, movefocus, h"
+        "$mainMod, right, movefocus, l"
+        "$mainMod, up, movefocus, k"
+        "$mainMod, down, movefocus, j"
+
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
       ];
 
       misc = {
