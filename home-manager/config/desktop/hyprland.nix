@@ -19,10 +19,10 @@ in {
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
 
-        "$mainMod, left, movefocus, h"
-        "$mainMod, right, movefocus, l"
-        "$mainMod, up, movefocus, k"
-        "$mainMod, down, movefocus, j"
+        "$mainMod, h, movefocus, l"
+        "$mainMod, l, movefocus, r"
+        "$mainMod, k, movefocus, u"
+        "$mainMod, j, movefocus, d"
 
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
