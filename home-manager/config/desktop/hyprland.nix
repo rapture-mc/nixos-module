@@ -26,10 +26,10 @@ in {
         "$mainMod, j, movefocus, d"
 
         # Window Resizing
-        "$mainMod SHIFT, H, moveactive -10 0"
-        "$mainMod SHIFT, L, moveactive 10 0"
-        "$mainMod SHIFT, K, moveactive 0 -10"
-        "$mainMod SHIFT, J, moveactive 0 10"
+        "$mainMod SHIFT, H, resizeactive, -10 0"
+        "$mainMod SHIFT, L, resizeactive, 10 0"
+        "$mainMod SHIFT, K, resizeactive, 0 -10"
+        "$mainMod SHIFT, J, resizeactive, 0 10"
 
         # Workspace Navigation
         "$mainMod, 1, workspace, 1"
