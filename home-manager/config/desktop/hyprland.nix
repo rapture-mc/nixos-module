@@ -1,6 +1,7 @@
 {pkgs, ...}: let
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.hyprpaper}/bin/hyprpaper &
+    ${pkgs.waybar}/bin/waybar &
   '';
 in {
   wayland.windowManager.hyprland = {
@@ -55,5 +56,9 @@ in {
       preload = "${./desktop-wallpaper.jpg}";
       wallpaper = "eDP-1, ${./desktop-wallpaper.jpg}";
     };
+  };
+
+  programs.waybar = {
+    enable = true;
   };
 }
