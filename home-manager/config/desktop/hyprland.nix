@@ -25,16 +25,18 @@ in {
         "$mainMod, k, movefocus, u"
         "$mainMod, j, movefocus, d"
 
+        # Workspace Navigation
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
+      ];
+
+      binde = [
         # Window Resizing
         "$mainMod SHIFT, H, resizeactive, -30 0"
         "$mainMod SHIFT, L, resizeactive, 30 0"
         "$mainMod SHIFT, K, resizeactive, 0 -30"
         "$mainMod SHIFT, J, resizeactive, 0 30"
-
-        # Workspace Navigation
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
       ];
 
       misc = {
