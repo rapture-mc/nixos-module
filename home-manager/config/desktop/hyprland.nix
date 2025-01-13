@@ -61,14 +61,12 @@ in {
   programs.waybar = {
     enable = true;
     style = ./waybar.css;
-    settings = [
-      {
-        mainBar = {
-          layer = "bottom";
-          position = "bottom";
-          mod = "dock";
-        };
-      } 
-    ];
+    settings = {
+      mainBar = {
+        layer = "bottom";
+        position = "bottom";
+        mod = "dock";
+      };
+    };
   };
 }
