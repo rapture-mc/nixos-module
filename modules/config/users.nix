@@ -41,7 +41,6 @@ in {
       })
     ];
 
-
     users.users = lib.mkMerge [
       {
         ${cfg.admin-user} = {

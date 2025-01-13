@@ -1,4 +1,4 @@
-{ pkgs, ... }: let
+{pkgs, ...}: let
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.hyprpaper}/bin/hyprpaper &
   '';

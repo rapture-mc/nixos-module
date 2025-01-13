@@ -1,6 +1,7 @@
-{ stdenv, fetchFromGitHub }:
-
 {
+  stdenv,
+  fetchFromGitHub,
+}: {
   sddm-sugar-candy-theme = stdenv.mkDerivation {
     pname = "sddm-sugar-candy-theme";
     version = "1.6";
