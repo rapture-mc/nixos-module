@@ -66,6 +66,15 @@ in {
         layer = "bottom";
         position = "bottom";
         mod = "dock";
+        exclusive = true;
+        gtk-layer-shell = true;
+        margin-bottom = "-1";
+        passthrough = false;
+        modules-left = [
+          "custom/os_button"
+          "hyprland/workspaces"
+          "wlr/taskbar"
+        ];
       };
     };
   };
