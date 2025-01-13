@@ -19,12 +19,15 @@ in {
       hyprland.enable = true;
     };
 
+    environment.systemPackages = with pkgs; [
+      (callPackage ./sddm-theme.nix {}).sddm-sugar-candy-theme
+      libsForQt5.qt5.qtgraphicaleffects
+    ];
+
     services.displayManager.sddm = {
       enable = true;
-      theme = "where_is_my_sddm_theme";
+      theme = "sugar-candy";
       wayland.enable = true;
     };
-
-    environment.systemPackages = [pkgs.where-is-my-sddm-theme];
   };
 }
