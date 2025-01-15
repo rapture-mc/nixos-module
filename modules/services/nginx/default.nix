@@ -6,12 +6,13 @@
   cfg = config.megacorp.services.nginx;
 in {
   imports = [
-    ./nextcloud.nix
+    ./file-browser.nix
     ./gitea.nix
     ./guacamole.nix
     ./grafana.nix
-    ./semaphore.nix
     ./jenkins.nix
+    ./nextcloud.nix
+    ./semaphore.nix
   ];
 
   options.megacorp.services.nginx = with lib; {
