@@ -85,7 +85,7 @@ in {
                     image = "hurlenko/filebrowser";
                     user = "1000:1000";
                     restart = "always";
-                    ports = ["443:8080"];
+                    ports = ["8080:80"];
                     volumes = [
                       "file-browser-data:/data"
                       "file-browser-config:/config"
