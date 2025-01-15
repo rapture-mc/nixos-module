@@ -10,6 +10,7 @@ _: {
     ./config/users.nix
     ./services/controller.nix
     ./services/dnsmasq.nix
+    ./services/file-browser.nix
     ./services/gitea.nix
     ./services/gitea-runner.nix
     ./services/grafana.nix
