@@ -31,7 +31,7 @@ in {
 
     data-path = mkOption {
       type = types.str;
-      default = "/opt/file-browser-data";
+      default = "/data/file-browser";
       description = "The full path of the file browser data";
     };
   };
