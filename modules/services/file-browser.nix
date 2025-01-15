@@ -28,6 +28,12 @@ in {
         NOTE: Don't include "https://" (this is prepended to the value)
       '';
     };
+
+    data-path = mkOption {
+      type = types.str;
+      default = "/opt/file-browser-data";
+      description = "The full path of the file browser data";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -63,6 +69,21 @@ in {
         };
       };
     };
+    systemd.services."file-browser-setup" = {
+      wantedBy = ["file-browser.service"];
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+      script = ''
+        if [ ! -d "${cfg.data-path}" ]; then
+          echo "Directory ${cfg.data-path} doesn't exist... Creating..."
+          mkdir -p ${cfg.data-path}
+        else
+          echo "Directory ${cfg.data-path} already exists... Skipping..."
+        fi
+      '';
+    };
 
     virtualisation = {
       docker.enable = true;
@@ -75,7 +96,6 @@ in {
             config = {
               project.name = "file-browser";
               docker-compose.volumes = {
-                file-browser-data = {};
                 file-browser-config = {};
               };
 
@@ -87,8 +107,8 @@ in {
                     restart = "always";
                     ports = ["8080:8080"];
                     volumes = [
-                      "./data:/data"
-                      "./config:/config"
+                      "${cfg.data-path}:/data"
+                      "file-browser-config:/config"
                     ];
                   };
                 };
