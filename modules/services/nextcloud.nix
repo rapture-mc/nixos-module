@@ -94,6 +94,7 @@ in {
         };
         settings = {
           trusted_proxies = cfg.trusted-proxies;
+          trusted_domains = ["${cfg.fqdn}"];
         };
       };
     };
