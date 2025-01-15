@@ -87,8 +87,8 @@ in {
                     restart = "always";
                     ports = ["8080:8080"];
                     volumes = [
-                      "file-browser-data:/data"
-                      "file-browser-config:/config"
+                      "./data:/data"
+                      "./config:/config"
                     ];
                   };
                 };
