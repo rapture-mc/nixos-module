@@ -79,6 +79,7 @@ in {
         if [ ! -d "${cfg.data-path}" ]; then
           echo "Directory ${cfg.data-path} doesn't exist... Creating..."
           mkdir -p ${cfg.data-path}
+          chown 1000:1000 ${cfg.data-path}
         else
           echo "Directory ${cfg.data-path} already exists... Skipping..."
         fi
