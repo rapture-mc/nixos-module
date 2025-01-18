@@ -42,7 +42,7 @@ in {
         defaultWindowManager = "${cfg.desktop-manager}-session";
         extraConfDirCommands = ''
           substituteInPlace $out/xrdp.ini
-            --replace-quiet fork=true fork=false
+            --replace fork=true fork=false
         '';
       };
     };
