@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: let
   cfg = config.megacorp.config.desktop;
@@ -41,6 +40,10 @@ in {
         enable = true;
         openFirewall = true;
         defaultWindowManager = "${cfg.desktop-manager}-session";
+        extraConfDirCommands = ''
+          substitueInPlace $out/xrdp.ini
+            --replace fork=true fork=false
+        '';
       };
     };
   };
