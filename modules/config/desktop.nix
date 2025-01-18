@@ -41,8 +41,8 @@ in {
         openFirewall = true;
         defaultWindowManager = "${cfg.desktop-manager}-session";
         extraConfDirCommands = ''
-          substitueInPlace $out/xrdp.ini
-            --replace fork=true fork=false
+          substituteInPlace $out/xrdp.ini
+            --replace-quiet fork=true fork=false
         '';
       };
     };
