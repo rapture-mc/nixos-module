@@ -69,7 +69,7 @@ in {
             {
               publicKey = "${cfg.server.public-key}";
               allowedIPs = ["${cfg.subnet}/${builtins.toString cfg.prefix}"];
-              endpoint = "${cfg.server.ipv4}:${cfg.server.port}";
+              endpoint = "${cfg.server.ipv4}:${builtins.toString cfg.server.port}";
               persistentKeepalive = 25;
             }
           ];
