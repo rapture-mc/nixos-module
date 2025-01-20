@@ -26,6 +26,7 @@ _: {
     ./services/restic.nix
     ./services/sshd.nix
     ./services/semaphore.nix
+    ./services/wireguard-server.nix
     ./services/zabbix.nix
     ./virtualisation/guest.nix
     ./virtualisation/hypervisor.nix
