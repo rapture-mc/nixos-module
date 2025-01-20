@@ -26,6 +26,8 @@ in {
       then ./k3s-logo
       else if cfg.services.password-store.logo
       then ./password-logo
+      else if cfg.services.wireguard-server.logo
+      then ./wireguard-logo
       else if cfg.services.restic.sftp-server.logo
       then ./restic-logo
       else ./megacorp-logo

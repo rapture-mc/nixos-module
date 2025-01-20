@@ -9,6 +9,8 @@ in {
   options.megacorp.services.wireguard-server = with lib; {
     enable = mkEnableOption "Whether to wireguard server";
 
+    logo = mkEnableOption "Whether to show wireguard logo on shell startup";
+
     physical-interface = mkOption {
       type = types.str;
       default = "ens3";
