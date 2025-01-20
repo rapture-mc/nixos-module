@@ -27,6 +27,7 @@ _: {
     ./services/sshd.nix
     ./services/semaphore.nix
     ./services/wireguard-server.nix
+    ./services/wireguard-client.nix
     ./services/zabbix.nix
     ./virtualisation/guest.nix
     ./virtualisation/hypervisor.nix
