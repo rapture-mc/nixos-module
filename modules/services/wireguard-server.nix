@@ -20,7 +20,7 @@ in {
     };
 
     peers = mkOption {
-      type = types.listOf types.submodule;
+      type = types.listOf types.attrs;
       default = [
         {
           publicKey = "";
