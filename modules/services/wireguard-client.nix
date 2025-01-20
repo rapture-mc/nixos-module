@@ -63,7 +63,7 @@ in {
         enable = true;
         interfaces.wg0 = {
           ips = ["${cfg.ipv4}/${builtins.toString cfg.prefix}"];
-          listenPort = cfg.port;
+          listenPort = 51820;
           privateKeyFile = cfg.private-key-file;
           peers = [
             {
