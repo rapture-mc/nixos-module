@@ -17,7 +17,7 @@ in {
 
     ipv4 = mkOption {
       type = types.str;
-      default = "10.100.0.1";
+      default = "10.100.0.2";
       description = "The wireguard IPv4 address of the client";
     };
 
