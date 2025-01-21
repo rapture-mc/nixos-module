@@ -33,6 +33,18 @@ in {
       description = "The prefix for the wireguard hosts";
     };
 
+    allowed-ips = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = ''
+        IPs in CIDR notation that are allowed to send traffic to this wireguard client.
+
+        The wireguard network CIDR is automatically added as an allowed IP.
+
+        Note: If you want this client to access the wireguard servers private subnet add that subnet CIDR to this option
+      '';
+    };
+
     server = {
       ipv4 = mkOption {
         type = types.str;
@@ -70,8 +82,7 @@ in {
               publicKey = "${cfg.server.public-key}";
               allowedIPs = [
                 "${cfg.subnet}/${builtins.toString cfg.prefix}"
-                "192.168.1.0/24"
-              ];
+              ] ++ cfg.allowed-ips;
               endpoint = "${cfg.server.ipv4}:${builtins.toString cfg.server.port}";
               persistentKeepalive = 25;
             }
