@@ -68,7 +68,10 @@ in {
           peers = [
             {
               publicKey = "${cfg.server.public-key}";
-              allowedIPs = ["${cfg.subnet}/${builtins.toString cfg.prefix}"];
+              allowedIPs = [
+                "${cfg.subnet}/${builtins.toString cfg.prefix}"
+                "192.168.1.0/24"
+              ];
               endpoint = "${cfg.server.ipv4}:${builtins.toString cfg.server.port}";
               persistentKeepalive = 25;
             }
