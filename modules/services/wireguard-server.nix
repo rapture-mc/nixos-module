@@ -90,6 +90,7 @@ in {
             ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${cfg.subnet}/${builtins.toString cfg.prefix} -o ${cfg.physical-interface} -j MASQUERADE
           '';
           privateKeyFile = cfg.private-key-file;
+          generatePrivateKeyFile = true;
           peers = cfg.peers;
         };
       };
