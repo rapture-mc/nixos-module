@@ -31,6 +31,22 @@
     '';
   };
 
+  totpExtension = pkgs.stdenv.mkDerivation {
+    name = "guacamole-auth-totp-${guacVer}";
+    src = pkgs.fetchurl {
+      url = "";
+      sha256 = "";
+    };
+    phases = "unpackPhase installPhase";
+    unpackPhase = ''
+      tar -xzf $src
+    '';
+    installPhase = ''
+      mkdir -p $out
+      cp guacamole-auth-totp-${guacVer}/guacamole-auth-totp-${guacVer}.jar $out
+    '';
+  };
+
   psql = "${pkgs.postgresql}/bin/psql";
   cat = "${pkgs.coreutils-full}/bin/cat";
 in {
@@ -80,6 +96,8 @@ in {
       "guacamole/lib/postgresql-${pgsqlVer}.jar".source = pgsqlDriverSrc;
 
       "guacamole/extensions/guacamole-auth-jdbc-postgresql-${guacVer}.jar".source = "${pgsqlExtension}/guacamole-auth-jdbc-postgresql-${guacVer}.jar";
+
+      "guacamole/extensions/guacamole-auth-totp-${guacVer}.jar".source = "${totpExtension}/guacamole-auth-totp-${guacVer}.jar";
     };
 
     systemd.services = {
