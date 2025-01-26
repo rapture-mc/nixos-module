@@ -55,6 +55,8 @@ in {
 
     logo = mkEnableOption "Whether to show Guacamole logo on shell startup";
 
+    mfa = mkEnableOption "Whether to enable MFA extension";
+
     reverse-proxied = mkEnableOption "Whether Guacamole is served behind a reverse proxy";
 
     tls-email = mkOption {
@@ -97,7 +99,7 @@ in {
 
       "guacamole/extensions/guacamole-auth-jdbc-postgresql-${guacVer}.jar".source = "${pgsqlExtension}/guacamole-auth-jdbc-postgresql-${guacVer}.jar";
 
-      "guacamole/extensions/guacamole-auth-totp-${guacVer}.jar".source = "${totpExtension}/guacamole-auth-totp-${guacVer}.jar";
+      "guacamole/extensions/guacamole-auth-totp-${guacVer}.jar".source = lib.mkIf cfg.mfa "${totpExtension}/guacamole-auth-totp-${guacVer}.jar";
     };
 
     systemd.services = {
