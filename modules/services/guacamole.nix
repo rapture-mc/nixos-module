@@ -34,7 +34,7 @@
   totpExtension = pkgs.stdenv.mkDerivation {
     name = "guacamole-auth-totp-${guacVer}";
     src = pkgs.fetchurl {
-      url = "";
+      url = "https://apache.org/dyn/closer.lua/guacamole/${guacVer}/binary/guacamole-auth-totp-${guacVer}tar.gz?action=download";
       sha256 = "";
     };
     phases = "unpackPhase installPhase";
