@@ -35,7 +35,7 @@
     name = "guacamole-auth-totp-${guacVer}";
     src = pkgs.fetchurl {
       url = "https://apache.org/dyn/closer.lua/guacamole/${guacVer}/binary/guacamole-auth-totp-${guacVer}.tar.gz?action=download";
-      sha256 = "";
+      sha256 = "sha256-N/L52Jto28tE5TSeMEdKONeSJNvrCmfwPs/nh6X+r0I=";
     };
     phases = "unpackPhase installPhase";
     unpackPhase = ''
