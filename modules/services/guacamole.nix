@@ -115,7 +115,7 @@ in {
         enable = true;
         requires = ["postgresql.service"];
         after = ["postgresql.service"];
-        wantedBy = ["tomcat.service" "multi-user.target"]; # ??
+        wantedBy = ["tomcat.service" "multi-user.target"];
         script = ''
           echo "[guacamole-bootstrapper] Info: checking if database '${app}' exists but is empty..."
           output=$(${psql} -U ${app} -c "\dt" 2>&1)
@@ -128,7 +128,6 @@ in {
     };
 
     services = {
-      # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
       nginx = lib.mkIf (!cfg.reverse-proxied) {
         enable = true;
         virtualHosts."${cfg.fqdn}" = {
