@@ -31,6 +31,18 @@ in {
         '';
       };
 
+      target-folders = mkOption {
+        type = types.listOf types.str;
+        default = [];
+        description = ''
+          The folders to backup. These folders will be backed up as well as the below default folders:
+            - /home/<admin-user>/.ssh
+            - /home/<admin-user>/.config/sops
+            - /etc/ssh/ssh_host_ed25519_key
+            - /etc/ssh/ssh_host_ed25519_key.pub
+        '';
+      };
+
       target-host = mkOption {
         type = types.str;
         default = "";
@@ -84,6 +96,7 @@ in {
         isSystemUser = true;
         openssh.authorizedKeys.keys = cfg.sftp-server.authorized-keys;
       };
+
       groups.restic-backup.members = [
         "restic"
         "${config.megacorp.config.users.admin-user}"
@@ -97,13 +110,14 @@ in {
         initialize = true;
         user = cfg.backups.run-as;
         passwordFile = cfg.backups.repository-password-file;
+        repository = "sftp:restic-backup@${cfg.backups.target-host}:${cfg.backups.target-path}/${cfg.backups.repository-name}";
         paths = [
           "/home/${config.megacorp.config.users.admin-user}/.ssh"
           "/home/${config.megacorp.config.users.admin-user}/.config/sops"
           "/etc/ssh/ssh_host_ed25519_key"
           "/etc/ssh/ssh_host_ed25519_key.pub"
-        ];
-        repository = "sftp:restic-backup@${cfg.backups.target-host}:${cfg.backups.target-path}/${cfg.backups.repository-name}";
+        ] ++ cfg.backups.target-folders;
+
         timerConfig = {
           OnCalendar = cfg.backups.frequency;
           Persistent = true;
