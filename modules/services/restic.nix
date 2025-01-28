@@ -114,6 +114,7 @@ in {
         paths = [
           "/home/${config.megacorp.config.users.admin-user}/.ssh"
           "/home/${config.megacorp.config.users.admin-user}/.config/sops"
+          "/root/.ssh"
           "/etc/ssh/ssh_host_ed25519_key"
           "/etc/ssh/ssh_host_ed25519_key.pub"
         ] ++ cfg.backups.target-folders;
