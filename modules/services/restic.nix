@@ -111,6 +111,9 @@ in {
         user = cfg.backups.run-as;
         passwordFile = cfg.backups.repository-password-file;
         repository = "sftp:restic-backup@${cfg.backups.target-host}:${cfg.backups.target-path}/${cfg.backups.repository-name}";
+        extraBackupArgs = [
+          "--skip-if-unchanged"
+        ];
         paths = [
           "/home/${config.megacorp.config.users.admin-user}/.ssh"
           "/home/${config.megacorp.config.users.admin-user}/.config/sops"
