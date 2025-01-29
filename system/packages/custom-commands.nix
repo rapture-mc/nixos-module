@@ -14,6 +14,7 @@
       exit 1
     else
       echo "Generating age private key from this hosts SSH ed25519 key and outputting to ~/.config/sops/age/keys.txt"
+      mkdir -p /home/$SUDO_USER/.config/sops/age
       sudo ssh-to-age -private-key -i /etc/ssh/ssh_host_ed25519_key > /home/$SUDO_USER/.config/sops/age/keys.txt
       echo -e "Done!\n"
 
