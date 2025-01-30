@@ -9,3 +9,5 @@ ENV WEB_HOST=${WEB_HOST}
 RUN echo '$WEB_HOST' > /didthiswork
 
 USER semaphore
+
+ENTRYPOINT ["/sbin/tini"]
