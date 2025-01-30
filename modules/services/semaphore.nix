@@ -100,7 +100,7 @@ in {
 
                 semaphore = {
                   service = {
-                    image = "semaphoreui/semaphore";
+                    build = ./Dockerfile;
                     restart = "always";
                     ports = ["3000:3000"];
                     environment = {
