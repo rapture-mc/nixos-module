@@ -9,7 +9,7 @@ in {
     enable = mkEnableOption "Enable dnsmasq";
 
     domain = mkOption {
-      type = lib.str;
+      type = types.str;
       default = "localhost";
       description = "The domain name that dnsmasq will be deployed in";
     };
