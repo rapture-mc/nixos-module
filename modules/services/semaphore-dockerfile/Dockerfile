@@ -2,8 +2,25 @@ FROM semaphoreui/semaphore:latest
 
 USER root
 
-ARG WEB_HOST
+RUN apk --no-cache add \
+    su-exec \
+    python3 \
+    py3-pip \
+    build-base \
+    python3-dev \
+    krb5-dev \
+    krb5
 
-RUN echo "${WEB_HOST}" > /didthiswork
+RUN pip3 install --upgrade pip \
+    && pip3 install \
+    pywinrm \
+    requests \
+    pykerberos \
+    krb5 \
+    ldap3 \
+    dnspython \
+    pyspnego \
+    pyspnego[kerberos] \
+    sansldap
 
 USER semaphore
