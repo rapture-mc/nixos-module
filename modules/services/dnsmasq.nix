@@ -7,6 +7,12 @@
 in {
   options.megacorp.services.dnsmasq = with lib; {
     enable = mkEnableOption "Enable dnsmasq";
+
+    domain = mkOption {
+      type = lib.str;
+      default = "localhost";
+      description = "The domain name that dnsmasq will be deployed in";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -19,6 +25,8 @@ in {
           "8.8.4.4"
         ];
         domain-needed = true;
+        expand-hosts = true;
+        domain = cfg.domain;
         bogus-priv = true;
       };
     };
