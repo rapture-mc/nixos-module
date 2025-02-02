@@ -10,6 +10,7 @@ RUN apk --no-cache add \
     python3-dev \
     krb5-dev \
     krb5
+    samba
 
 RUN pip3 install --upgrade pip \
     && pip3 install \
