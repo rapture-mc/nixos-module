@@ -103,6 +103,9 @@ in {
                     build.context = "${./semaphore-dockerfile}";
                     restart = "always";
                     ports = ["3000:3000"];
+                    volumes = [
+                      "/etc/krb5.conf:/etc/krb5.conf"
+                    ];
                     environment = {
                       WEB_HOST = "https://${cfg.fqdn}";
                       SEMAPHORE_DB_USER = "semaphore";
