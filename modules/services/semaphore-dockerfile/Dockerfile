@@ -23,6 +23,6 @@ RUN pip3 install --upgrade pip \
     pyspnego[kerberos] \
     sansldap
 
-RUN touch /testing
+RUN echo "something" > /testing
 
 USER semaphore

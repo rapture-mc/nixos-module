@@ -100,7 +100,7 @@ in {
 
                 semaphore = {
                   service = {
-                    build.context = "${./semaphore-dockerfile}";
+                    build.dockerfile = "${./semaphore-dockerfile/Dockerfile}";
                     # image = "semaphoreui/semaphore";
                     restart = "always";
                     ports = ["3000:3000"];
