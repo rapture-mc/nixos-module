@@ -101,7 +101,6 @@ in {
                 semaphore = {
                   service = {
                     build.context = "${./semaphore-dockerfile}";
-                    # image = "semaphoreui/semaphore";
                     restart = "always";
                     ports = ["3000:3000"];
                     volumes = [
