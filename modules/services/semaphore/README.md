@@ -6,19 +6,16 @@ This module deploys [Semaphore](https://semaphoreui.com/) in a docker compose st
 ## Features
 - Kerberos Support (for Windows AD authentication integration)
 - Easy docker container administration using [Lazydocker](https://github.com/jesseduffield/lazydocker)
-- Automatic TLS reverse proxy support
 
 ## Deployment
-### Deploy using:
+Deploy using:
 ```
 megacorp.services.semaphore = {
   enable = true;
 };
 ```
-- This will deploy 2x containers (1x for semaphore and 1x for postgres) with Nginx serving as a reverse proxy on the same host.
-- Postgres data is stored in a docker volume
 
-### Activate Kerberos authentication using:
+Activate Kerberos authentication using:
 ```
 megacorp.services.semaphore = {
   enable = true;
