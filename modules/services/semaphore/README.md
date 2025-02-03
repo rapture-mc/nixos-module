@@ -6,3 +6,23 @@ This module deploys [Semaphore](https://semaphoreui.com/) in a docker compose st
 ## Features
 - Kerberos Support (for Windows AD authentication integration)
 - Easy docker container administration using [Lazydocker](https://github.com/jesseduffield/lazydocker)
+
+## Deployment
+Deploy using:
+```
+megacorp.services.semaphore = {
+  enable = true;
+};
+```
+
+Activate Kerberos authentication using:
+```
+megacorp.services.semaphore = {
+  enable = true;
+  kerberos = {
+    enable = true;
+    kdc = "<domain-controller-hostname>";
+    domain = "<domain-name>";
+  };
+};
+```
