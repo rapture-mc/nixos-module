@@ -15,7 +15,7 @@ megacorp.services.semaphore = {
   enable = true;
 };
 ```
-- This will deploy 2x containers (1x for semaphore and 1x for postgres) with Nginx serving as a reverse proxy on the same host.
+- This will deploy 2x containers (1x for semaphore and 1x for postgres) with Nginx serving as a reverse proxy on the same host. Service will fail if Lets encrypt can't obtain a SSL certificate for the host defined in "semaphore.fqdn" so ensure the necssary DNS, port forwards and firewall rules are setup prior.
 - Postgres data is stored in a docker volume
 
 ### Activate Kerberos authentication using:
