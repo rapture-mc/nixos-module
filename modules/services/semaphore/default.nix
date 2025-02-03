@@ -148,7 +148,7 @@ in {
                     build.context = "${./docker}";
                     restart = "always";
                     ports = ["3000:3000"];
-                    volumes = [
+                    volumes = lib.mkIf cfg.kerberos.enable [
                       "/etc/krb5.conf:/etc/krb5.conf"
                     ];
                     environment = {
