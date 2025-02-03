@@ -12,7 +12,7 @@ megacorp.services.nginx = {
 };
 ```
 
-### Example nginx deployment with corresponding file-browser application server:
+### Example nginx deployment with external file-browser application server:
 ```
 megacorp.services.nginx = {
   enable = true;
