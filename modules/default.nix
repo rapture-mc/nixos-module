@@ -25,7 +25,7 @@ _: {
     ./services/rebuild-machine.nix
     ./services/restic.nix
     ./services/sshd.nix
-    ./services/semaphore.nix
+    ./services/semaphore
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
     ./services/zabbix.nix
