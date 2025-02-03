@@ -28,6 +28,22 @@ in {
         NOTE: Don't include "https://" (this is prepended to the value)
       '';
     };
+
+    kerberos = {
+      enable = mkEnableOption "Enable Kerberos authentication";
+
+      kdc = mkOption {
+        type = types.str;
+        default = "";
+        description = "The hostname of the KDC server (hostname of the domain controller)";
+      };
+
+      domain = mkOption {
+        type = types.str;
+        default = "";
+        description = "The domain name (e.g. contoso.com) of the domain controller";
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -48,6 +64,35 @@ in {
     security.acme = lib.mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.tls-email}";
+    };
+
+    security.krb5 = lib.mkIf cfg.kerberos.enable {
+      enable = true;
+      settings = {
+        logging = {
+          default = "FILE:/var/log/krb5libs.log";
+          kdc = "FILE:/var/log/krb5kdc.log";
+          admin_server = "FILE:/var/log/kadmin.log";
+        };
+
+        libdefaults = {
+          dns_lookup_realm = false;
+          ticket_lifetime = "24h";
+          renew_lifetime = "7d";
+          forwardeable = true;
+          rdns = false;
+          default_realm = "${pkgs.lib.toUpper cfg.kerberos.domain}";
+        };
+
+        realms = {
+          "${pkgs.lib.toUpper cfg.kerberos.domain}" = {
+            admin_server = "${cfg.kerberos.kdc}.${cfg.kerberos.domain}";
+            kdc = [
+              "${cfg.kerberos.kdc}.${cfg.kerberos.domain}"
+            ];
+          };
+        };
+      };
     };
 
     # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
