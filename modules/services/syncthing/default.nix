@@ -36,6 +36,15 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    networking.firewall = {
+      allowedTCPPorts = [
+        22000
+      ];
+      allowedUDPPorts = [
+        22000
+        21027
+      ];
+    };
     services = {
       syncthing = {
         enable = true;
