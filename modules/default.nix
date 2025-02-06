@@ -26,6 +26,7 @@ _: {
     ./services/restic.nix
     ./services/sshd.nix
     ./services/semaphore
+    ./services/syncthing
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
     ./services/zabbix.nix
