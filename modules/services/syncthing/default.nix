@@ -51,7 +51,7 @@ in {
         group = "users";
         user = cfg.user;
         dataDir = "/home/${cfg.user}/Documents";
-        configDir = "/home/${cfg.user}/Documents/.config/syncthing";
+        configDir = "/home/${cfg.user}/.config/syncthing";
         overrideDevices = true;
         overrideFolders = true;
         settings = {
