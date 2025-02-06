@@ -55,6 +55,7 @@ in {
         overrideDevices = true;
         overrideFolders = true;
         settings = {
+          options.urAccepted = -1;
           devices = cfg.synced-devices;
 
           folders = {
