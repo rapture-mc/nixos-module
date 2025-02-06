@@ -41,16 +41,16 @@ in {
         enable = true;
         group = cfg.user;
         user = cfg.user;
-        dataDir = "/home/${cfg.user}/Syncthing";
-        configDir = "/home/${cfg.user}/Syncthing/.config/syncthing";
+        dataDir = "/home/${cfg.user}/Documents";
+        configDir = "/home/${cfg.user}/Documents/.config/syncthing";
         overrideDevices = true;
         overrideFolders = true;
         settings = {
           devices = cfg.synced-devices;
 
           folders = {
-            "Syncthing" = {  # Name of folder in Syncthing, also the folder ID
-              path = "/home/${cfg.user}/Syncthing";  # Which folder to add to Syncthing
+            "Documents" = {  # Name of folder in Syncthing, also the folder ID
+              path = "/home/${cfg.user}/Documents";  # Which folder to add to Syncthing
               devices = cfg.allowed-devices;  # Which devices to share the folder with
             };
           };
