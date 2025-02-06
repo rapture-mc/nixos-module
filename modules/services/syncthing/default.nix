@@ -39,7 +39,7 @@ in {
     services = {
       syncthing = {
         enable = true;
-        group = cfg.user;
+        group = "users";
         user = cfg.user;
         dataDir = "/home/${cfg.user}/Documents";
         configDir = "/home/${cfg.user}/Documents/.config/syncthing";
