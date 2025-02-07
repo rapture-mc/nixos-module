@@ -35,9 +35,10 @@ in {
     services.prometheus = {
       enable = true;
       port = 9001;
+      globalConfig.scrape_interval = "10s";
       scrapeConfigs = lib.mkIf cfg.scraper.enable [
         {
-          job_name = "export-linux-system-metrics";
+          job_name = "scrape-all";
           static_configs = [
             {
               targets = cfg.scraper.targets;
