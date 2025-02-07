@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.megacorp.services.syncthing;
@@ -14,28 +15,46 @@ in {
       default = config.megacorp.config.users.admin-user;
     };
 
-    synced-devices = mkOption {
+    devices = mkOption {
       type = types.attrs;
       description = ''
         Devices that Syncthing should be able to communicate with.
-        Should be an attribute set like the following:
 
+        See services.syncthing.settings.devices (in nixpkgs) for more info
+
+        E.g:
         devices = {
-          "device1" = { id = "<DEVICE-ID>"; }
-          "device2" = { id = "<DEVICE-ID>"; }
-        }
+          device1 = {
+            id = "<DEVICE-ID>";
+            autoAcceptFolders = true;
+          };
+        };
       '';
       default = {};
     };
 
-    allowed-devices = mkOption {
-      type = types.listOf types.str;
-      description = "Devices that are allowed to sync with the default folder";
-      default = [];
+    folders = mkOption {
+      type = types.attrs;
+      description = ''
+        Folders to be shared by Syncthing.
+
+        See services.syncthing.settings.folders (in nixpkgs) for more info
+
+        E.g:
+        folders = {
+          "Documents" = {
+            devices = "device1";
+            path = /home/<USER>/Documents;
+          };
+        };
+      '';
+      default = {};
     };
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [pkgs.syncthing];
+
     networking.firewall = {
       allowedTCPPorts = [
         22000
@@ -45,6 +64,7 @@ in {
         21027
       ];
     };
+
     services = {
       syncthing = {
         enable = true;
@@ -56,14 +76,8 @@ in {
         overrideFolders = true;
         settings = {
           options.urAccepted = -1;
-          devices = cfg.synced-devices;
-
-          folders = {
-            "Documents" = {  # Name of folder in Syncthing, also the folder ID
-              path = "/home/${cfg.user}/Documents";  # Which folder to add to Syncthing
-              devices = cfg.allowed-devices;  # Which devices to share the folder with
-            };
-          };
+          devices = cfg.devices;
+          folders = cfg.folders;
         };
       };
     };
