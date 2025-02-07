@@ -11,9 +11,19 @@ in {
 
     user = mkOption {
       type = types.str;
-      description = "The user to run syncthing as";
+      description = ''
+        The user to run syncthing as
+
+        Default is Megacorp admin user
+      '';
       default = config.megacorp.config.users.admin-user;
     };
+
+    gui = mkEnableOption ''
+      Whether to enable the GUI. Will be available at the hosts IP on port 8384.
+
+      NOTE: GUI will be unprotected until you set a password.
+    '';
 
     devices = mkOption {
       type = types.attrs;
@@ -58,7 +68,13 @@ in {
     networking.firewall = {
       allowedTCPPorts = [
         22000
-      ];
+      ]
+      ++ (
+        if cfg.gui
+        then [8384]
+        else []
+      );
+
       allowedUDPPorts = [
         22000
         21027
@@ -70,6 +86,7 @@ in {
         enable = true;
         group = "users";
         user = cfg.user;
+        guiAddress = if cfg.gui then "0.0.0.0:8384" else "127.0.0.1:8384";
         dataDir = "/home/${cfg.user}/Documents";
         configDir = "/home/${cfg.user}/.config/syncthing";
         overrideDevices = true;
