@@ -5,7 +5,7 @@
 }: let
   cfg = config.megacorp.hardening.bootloader;
 in {
-  options.megacorp.config.bootloader = with lib; {
+  options.megacorp.hardening.bootloader = with lib; {
     enable = mkEnableOption ''
       Whether to enable bootloader hardening.
 
