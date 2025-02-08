@@ -2,14 +2,18 @@
   osConfig,
   lib,
   ...
-}: {
+}: let
+  inherit (lib)
+    mkIf
+    ;
+in {
   dconf.settings = {
     "org/cinnamon/desktop/background" = {
       "picture-uri" = "file://${./desktop-wallpaper.jpg}";
     };
   };
 
-  home.file.logout = lib.mkIf osConfig.megacorp.config.desktop.xrdp {
+  home.file.logout = mkIf osConfig.megacorp.config.desktop.xrdp {
     enable = true;
     executable = true;
     target = "Desktop/Logout.desktop";

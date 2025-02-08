@@ -12,8 +12,15 @@
     rev = "e8433860b11abb08720d7c32f5b9a2a534011bca";
     sha256 = "sha256-mvb44mFVToZ11V09fTeEQRplabswQhqnkYHH/057wLE=";
   };
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.config.bootloader = with lib; {
+  options.megacorp.config.bootloader = {
     enable = mkOption {
       type = types.bool;
       default = true;
@@ -29,7 +36,7 @@ in {
     efi.enable = mkEnableOption "Whether to enable EFI support";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     boot.loader = {
       grub = {
         enable =
@@ -48,7 +55,7 @@ in {
         theme = fallout;
       };
 
-      generic-extlinux-compatible = lib.mkIf (cfg.type == "extlinux") {
+      generic-extlinux-compatible = mkIf (cfg.type == "extlinux") {
         enable = true;
       };
     };
