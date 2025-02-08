@@ -12,9 +12,9 @@ This module deploys [Semaphore](https://semaphoreui.com/) in a docker compose st
 
 ### Secrets (use sops-nix)
 The following Secrets must exist at the following locations prior to deployment:
-- /run/secrets/postgres-password                  <-- Password for the postgres database
-- /run/secrets/semaphore-db-pass                  <-- Should be the same as /run/secrets/postgres-password
-- /run/secrets/semaphore-access-key-encryption    <-- Access key for semaphore (generate using "head -c32 /dev/urandom | base64")
+1. /run/secrets/postgres-password                  <-- Password for the postgres database
+2. /run/secrets/semaphore-db-pass                  <-- Should be the same as /run/secrets/postgres-password
+3. /run/secrets/semaphore-access-key-encryption    <-- Access key for semaphore (generate using "head -c32 /dev/urandom | base64")
 
 These files will then be mounted by docker as environment variables which in turn will contain the necessary Semaphore/Postgres secrets.
 
