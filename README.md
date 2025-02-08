@@ -28,6 +28,7 @@ file: flake.nix
 {
   inputs = {
     megacorp.url = "github:rapture-mc/nixos-module";             # <--- Import the megacorp module into your flake
+    nixpkgs.follows = "megacorp/nixpkgs";                        # <--- Lock nixpkgs to follow the same nixpkgs as the megacorp module
   };
 
   outputs = {
