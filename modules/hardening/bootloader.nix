@@ -3,9 +3,15 @@
   config,
   ...
 }: let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
   cfg = config.megacorp.hardening.bootloader;
 in {
-  options.megacorp.hardening.bootloader = with lib; {
+  options.megacorp.hardening.bootloader = {
     enable = mkEnableOption ''
       Whether to enable bootloader hardening.
 
@@ -24,7 +30,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     boot.loader.grub.users.${config.megacorp.config.users.admin-user}.hashedPasswordFile = cfg.password-file;
   };
 }
