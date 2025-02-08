@@ -5,8 +5,15 @@
   ...
 }: let
   cfg = config.megacorp.services.file-browser;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.file-browser = with lib; {
+  options.megacorp.services.file-browser = {
     enable = mkEnableOption "Enable File Browser";
 
     reverse-proxied = mkEnableOption "Whether File Browser is served behind a reverse proxy";
@@ -36,7 +43,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     users.users.${config.megacorp.config.users.admin-user}.extraGroups = ["docker"];
 
     environment.systemPackages = [pkgs.lazydocker];
@@ -51,13 +58,13 @@ in {
         else []
       );
 
-    security.acme = lib.mkIf (!cfg.reverse-proxied) {
+    security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.tls-email}";
     };
 
     # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
-    services.nginx = lib.mkIf (!cfg.reverse-proxied) {
+    services.nginx = mkIf (!cfg.reverse-proxied) {
       enable = true;
       virtualHosts."${cfg.fqdn}" = {
         forceSSL = true;

@@ -5,8 +5,15 @@
   ...
 }: let
   cfg = config.megacorp.services.semaphore;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.semaphore = with lib; {
+  options.megacorp.services.semaphore = {
     enable = mkEnableOption "Enable Semaphore";
 
     reverse-proxied = mkEnableOption "Whether Semaphore is served behind a reverse proxy";
@@ -46,7 +53,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     users.users.${config.megacorp.config.users.admin-user}.extraGroups = ["docker"];
 
     environment.systemPackages = [pkgs.lazydocker];
@@ -61,12 +68,12 @@ in {
         else []
       );
 
-    security.acme = lib.mkIf (!cfg.reverse-proxied) {
+    security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.tls-email}";
     };
 
-    security.krb5 = lib.mkIf cfg.kerberos.enable {
+    security.krb5 = mkIf cfg.kerberos.enable {
       enable = true;
       settings = {
         logging = {
@@ -96,7 +103,7 @@ in {
     };
 
     # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
-    services.nginx = lib.mkIf (!cfg.reverse-proxied) {
+    services.nginx = mkIf (!cfg.reverse-proxied) {
       enable = true;
       virtualHosts."${cfg.fqdn}" = {
         forceSSL = true;
@@ -148,7 +155,7 @@ in {
                     build.context = "${./docker}";
                     restart = "always";
                     ports = ["3000:3000"];
-                    volumes = lib.mkIf cfg.kerberos.enable [
+                    volumes = mkIf cfg.kerberos.enable [
                       "/etc/krb5.conf:/etc/krb5.conf"
                     ];
                     environment = {

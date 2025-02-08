@@ -4,8 +4,15 @@
   ...
 }: let
   cfg = config.megacorp.services.nginx.nextcloud;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.nginx.nextcloud = with lib; {
+  options.megacorp.services.nginx.nextcloud = {
     enable = mkEnableOption "Enable Nextcloud reverse proxy";
 
     ipv4 = mkOption {
@@ -25,7 +32,7 @@ in {
   };
 
   config = {
-    services = lib.mkIf cfg.enable {
+    services = mkIf cfg.enable {
       nginx.virtualHosts."${cfg.fqdn}" = {
         forceSSL = true;
         enableACME = true;

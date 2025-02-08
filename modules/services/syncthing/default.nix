@@ -5,8 +5,15 @@
   ...
 }: let
   cfg = config.megacorp.services.syncthing;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.syncthing = with lib; {
+  options.megacorp.services.syncthing = {
     enable = mkEnableOption "Enable syncthing";
 
     user = mkOption {
@@ -62,7 +69,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.syncthing];
 
     networking.firewall = {

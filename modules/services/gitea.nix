@@ -4,8 +4,15 @@
   ...
 }: let
   cfg = config.megacorp.services.gitea;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.gitea = with lib; {
+  options.megacorp.services.gitea = {
     enable = mkEnableOption "Enable Gitea";
 
     logo = mkEnableOption "Whether to show Gitea logo on shell startup";
@@ -48,7 +55,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     users.groups.gitea.members = ["${config.megacorp.config.users.admin-user}"];
 
     networking.firewall.allowedTCPPorts =
@@ -61,14 +68,14 @@ in {
         else []
       );
 
-    security.acme = lib.mkIf (!cfg.reverse-proxied) {
+    security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.tls-email}";
     };
 
     services = {
       # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
-      nginx = lib.mkIf (!cfg.reverse-proxied) {
+      nginx = mkIf (!cfg.reverse-proxied) {
         enable = true;
         virtualHosts."${cfg.fqdn}" = {
           forceSSL = true;
@@ -82,7 +89,7 @@ in {
       gitea = {
         enable = true;
         appName = "Gitea Server";
-        dump = lib.mkIf cfg.backups.enable {
+        dump = mkIf cfg.backups.enable {
           enable = true;
           interval = cfg.backups.frequency;
         };

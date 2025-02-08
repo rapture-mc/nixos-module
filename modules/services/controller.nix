@@ -5,8 +5,15 @@
   ...
 }: let
   cfg = config.megacorp.services.controller;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.controller = with lib; {
+  options.megacorp.services.controller = {
     agent.enable = mkEnableOption "Enable controller agent component";
 
     server = {
@@ -23,15 +30,15 @@ in {
   };
 
   config = {
-    environment.systemPackages = lib.mkIf cfg.server.enable [pkgs.deploy-rs];
+    environment.systemPackages = mkIf cfg.server.enable [pkgs.deploy-rs];
 
-    users.users.controller = lib.mkIf cfg.agent.enable {
+    users.users.controller = mkIf cfg.agent.enable {
       isNormalUser = true;
       extraGroups = ["wheel"];
       openssh.authorizedKeys.keys = cfg.server.public-key;
     };
 
-    security.sudo.extraRules = lib.mkIf cfg.agent.enable [
+    security.sudo.extraRules = mkIf cfg.agent.enable [
       {
         users = ["controller"];
         commands = [

@@ -5,8 +5,15 @@
   ...
 }: let
   cfg = config.megacorp.services.gitea-runner;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.gitea-runner = with lib; {
+  options.megacorp.services.gitea-runner = {
     enable = mkEnableOption "Enable Gitea runner";
 
     name = mkOption {
@@ -65,7 +72,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.gitea-actions-runner.instances.${cfg.name} = {
       enable = true;
       url = "https://${cfg.url}";

@@ -4,8 +4,15 @@
   ...
 }: let
   cfg = config.megacorp.services.dnsmasq;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.dnsmasq = with lib; {
+  options.megacorp.services.dnsmasq = {
     enable = mkEnableOption "Enable dnsmasq";
 
     domain = mkOption {
@@ -15,7 +22,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.dnsmasq = {
       enable = true;
       settings = {

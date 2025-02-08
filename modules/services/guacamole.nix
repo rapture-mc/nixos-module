@@ -49,8 +49,15 @@
 
   psql = "${pkgs.postgresql}/bin/psql";
   cat = "${pkgs.coreutils-full}/bin/cat";
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.guacamole = with lib; {
+  options.megacorp.services.guacamole = {
     enable = mkEnableOption "Enable Guacamole";
 
     logo = mkEnableOption "Whether to show Guacamole logo on shell startup";
@@ -78,7 +85,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts =
       [
         8080
@@ -89,7 +96,7 @@ in {
         else []
       );
 
-    security.acme = lib.mkIf (!cfg.reverse-proxied) {
+    security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.tls-email}";
     };
@@ -128,7 +135,7 @@ in {
     };
 
     services = {
-      nginx = lib.mkIf (!cfg.reverse-proxied) {
+      nginx = mkIf (!cfg.reverse-proxied) {
         enable = true;
         virtualHosts."${cfg.fqdn}" = {
           forceSSL = true;
