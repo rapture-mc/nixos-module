@@ -2,14 +2,6 @@
   config = {
     networking.networkmanager.enable = true;
 
-    # fonts = {
-    #   enableDefaultPackages = true;
-    #   packages = with pkgs; [
-    #     (nerdfonts.override {fonts = ["Terminus"];})
-    #     noto-fonts-emoji
-    #   ];
-    # };
-
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
