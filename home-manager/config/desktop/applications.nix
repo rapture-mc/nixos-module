@@ -2,9 +2,13 @@
   osConfig,
   lib,
   ...
-}: {
+}: let
+  inherit (lib)
+    mkIf
+    ;
+in {
   xdg.desktopEntries = {
-    UnstoppableSwap = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
+    UnstoppableSwap = mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "UnstoppableSwap";
       genericName = "XMR Swap";
       exec = "UnstoppableSwap";
@@ -12,14 +16,14 @@
       icon = ./unstoppable-swap.svg;
     };
 
-    StartWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
+    StartWhonix = mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Start Whonix";
       exec = "startWhonix";
       terminal = false;
       icon = ./whonix.svg;
     };
 
-    StopWhonix = lib.mkIf osConfig.megacorp.virtualisation.whonix.enable {
+    StopWhonix = mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Stop Whonix";
       exec = "stopWhonix";
       terminal = false;
