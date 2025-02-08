@@ -4,8 +4,13 @@
   ...
 }: let
   cfg = config.megacorp.config.system;
+
+  inherit (lib)
+    mkOption
+    types
+    ;
 in {
-  options.megacorp.config.system = with lib; {
+  options.megacorp.config.system = {
     hostname = mkOption {
       type = types.str;
       default = "nixos";

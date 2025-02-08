@@ -5,8 +5,16 @@
   ...
 }: let
   cfg = config.megacorp.config.users;
+
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkMerge
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.config.users = with lib; {
+  options.megacorp.config.users = {
     admin-user = mkOption {
       type = types.str;
       default = "megaroot";
@@ -27,21 +35,21 @@ in {
   config = {
     programs.zsh.enable = true;
 
-    home-manager.users = lib.mkMerge [
+    home-manager.users = mkMerge [
       {
         ${cfg.admin-user} = {
           imports = [../../home-manager/default.nix];
         };
       }
 
-      (lib.mkIf cfg.regular-user.enable {
+      (mkIf cfg.regular-user.enable {
         ${cfg.regular-user.name} = {
           imports = [../../home-manager/default.nix];
         };
       })
     ];
 
-    users.users = lib.mkMerge [
+    users.users = mkMerge [
       {
         ${cfg.admin-user} = {
           isNormalUser = true;
@@ -51,7 +59,7 @@ in {
         };
       }
 
-      (lib.mkIf cfg.regular-user.enable {
+      (mkIf cfg.regular-user.enable {
         ${cfg.regular-user.name} = {
           isNormalUser = true;
           initialPassword = "changeme";

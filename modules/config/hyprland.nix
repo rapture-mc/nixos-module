@@ -5,16 +5,21 @@
   ...
 }: let
   cfg = config.megacorp.config.hyprland;
+
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 in {
   imports = [
     ./desktop-shared.nix
   ];
 
-  options.megacorp.config.hyprland = with lib; {
+  options.megacorp.config.hyprland = {
     enable = mkEnableOption "Whether to enable hyprland";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs = {
       hyprland.enable = true;
     };

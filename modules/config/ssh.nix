@@ -4,8 +4,13 @@
   ...
 }: let
   cfg = config.megacorp.config.ssh;
+
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 in {
-  options.megacorp.config.ssh = with lib; {
+  options.megacorp.config.ssh = {
     accept-host-key = mkEnableOption ''
       Whether to automatically accept remote machines SSH key
 
@@ -14,6 +19,6 @@ in {
   };
 
   config = {
-    programs.ssh.extraConfig = lib.mkIf cfg.accept-host-key "StrictHostKeyChecking=accept-new";
+    programs.ssh.extraConfig = mkIf cfg.accept-host-key "StrictHostKeyChecking=accept-new";
   };
 }

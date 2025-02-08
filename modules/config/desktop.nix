@@ -4,12 +4,18 @@
   ...
 }: let
   cfg = config.megacorp.config.desktop;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
   imports = [
     ./desktop-shared.nix
   ];
 
-  options.megacorp.config.desktop = with lib; {
+  options.megacorp.config.desktop = {
     enable = mkEnableOption "Whether to enable desktop environment";
 
     xrdp = mkEnableOption "Whether to enable RDP server";
@@ -27,7 +33,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services = {
       xserver = {
         enable = true;
@@ -36,7 +42,7 @@ in {
         xkb.layout = "au";
       };
 
-      xrdp = lib.mkIf cfg.xrdp {
+      xrdp = mkIf cfg.xrdp {
         enable = true;
         openFirewall = true;
         defaultWindowManager = "${cfg.desktop-manager}-session";
