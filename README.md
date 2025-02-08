@@ -19,7 +19,9 @@
 
 ## Getting started
 
-To consume this module add this repository to your Nix flake inputs like so:
+To consume this module add this repository to your Nix flake inputs.
+
+Minimal viable example:
 ```
 file: flake.nix
 
