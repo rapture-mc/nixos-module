@@ -6,7 +6,8 @@
 }: let
   cfg = config.megacorp.config.users;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkMerge

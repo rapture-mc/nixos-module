@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.nginx.guacamole;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

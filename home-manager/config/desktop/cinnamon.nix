@@ -3,7 +3,8 @@
   lib,
   ...
 }: let
-  inherit (lib)
+  inherit
+    (lib)
     mkIf
     ;
 in {

@@ -6,7 +6,8 @@
 }: let
   cfg = config.megacorp.config.hyprland;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;

@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.nginx.grafana;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

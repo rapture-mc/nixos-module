@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.nginx;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
@@ -16,7 +17,8 @@ in {
     ./file-browser.nix
     ./gitea.nix
     ./guacamole.nix
-    ./grafana.nix ./jenkins.nix
+    ./grafana.nix
+    ./jenkins.nix
     ./nextcloud.nix
     ./semaphore.nix
   ];

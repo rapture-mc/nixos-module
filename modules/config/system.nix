@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.config.system;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkOption
     types
     ;

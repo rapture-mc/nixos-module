@@ -6,7 +6,8 @@
 }: let
   cfg = config.megacorp.services.gitea-runner;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

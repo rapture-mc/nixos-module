@@ -6,7 +6,8 @@
 }: let
   cfg = config.megacorp.services.syncthing;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
@@ -73,14 +74,15 @@ in {
     environment.systemPackages = [pkgs.syncthing];
 
     networking.firewall = {
-      allowedTCPPorts = [
-        22000
-      ]
-      ++ (
-        if cfg.gui
-        then [8384]
-        else []
-      );
+      allowedTCPPorts =
+        [
+          22000
+        ]
+        ++ (
+          if cfg.gui
+          then [8384]
+          else []
+        );
 
       allowedUDPPorts = [
         22000
@@ -93,7 +95,10 @@ in {
         enable = true;
         group = "users";
         user = cfg.user;
-        guiAddress = if cfg.gui then "0.0.0.0:8384" else "127.0.0.1:8384";
+        guiAddress =
+          if cfg.gui
+          then "0.0.0.0:8384"
+          else "127.0.0.1:8384";
         dataDir = "/home/${cfg.user}/Documents";
         configDir = "/home/${cfg.user}/.config/syncthing";
         overrideDevices = true;

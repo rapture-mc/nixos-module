@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.config.ssh;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;

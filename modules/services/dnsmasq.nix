@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.dnsmasq;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

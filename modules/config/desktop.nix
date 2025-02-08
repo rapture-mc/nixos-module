@@ -4,7 +4,8 @@
   ...
 }: let
   cfg = config.megacorp.config.desktop;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

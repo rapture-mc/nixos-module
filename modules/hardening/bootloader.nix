@@ -3,7 +3,8 @@
   config,
   ...
 }: let
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

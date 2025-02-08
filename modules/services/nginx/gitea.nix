@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.nginx.gitea;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

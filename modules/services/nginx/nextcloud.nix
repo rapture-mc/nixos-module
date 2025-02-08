@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.nginx.nextcloud;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

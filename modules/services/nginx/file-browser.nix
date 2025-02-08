@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.nginx.file-browser;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.nginx.semaphore;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf

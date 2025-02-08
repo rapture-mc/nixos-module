@@ -50,7 +50,8 @@
   psql = "${pkgs.postgresql}/bin/psql";
   cat = "${pkgs.coreutils-full}/bin/cat";
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
@@ -107,7 +108,10 @@ in {
       "guacamole/extensions/guacamole-auth-jdbc-postgresql-${guacVer}.jar".source = "${pgsqlExtension}/guacamole-auth-jdbc-postgresql-${guacVer}.jar";
 
       "guacamole/extensions/guacamole-auth-totp-${guacVer}.jar" = {
-        enable = if cfg.mfa then true else false;
+        enable =
+          if cfg.mfa
+          then true
+          else false;
         source = "${totpExtension}/guacamole-auth-totp-${guacVer}.jar";
       };
     };

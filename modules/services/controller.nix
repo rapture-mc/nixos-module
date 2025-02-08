@@ -6,7 +6,8 @@
 }: let
   cfg = config.megacorp.services.controller;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
