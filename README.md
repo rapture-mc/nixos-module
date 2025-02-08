@@ -1,5 +1,22 @@
 # Megacorp NixOS Module
 
+## Directory structure
+```
+.
+├── flake.nix
+├── home-manager        # <--- Home-manager related configuration
+│   ├── config
+│   └── programs
+├── modules             # <--- Actual modules that can be consumed/customized
+│   ├── config
+│   ├── services
+│   └── virtualisation
+├── README.md
+└── system              # <--- System related configuration
+    ├── nixvim
+    └── packages
+```
+
 ## Getting started
 
 To consume this module add this repository to your Nix flake inputs like so:
@@ -37,3 +54,6 @@ file: flake.nix
   };
 }
 ```
+
+### More info
+My other [repository](https://github.com/rapture-mc/mgc-machines) provides a more complete example of utilizing this repository if you're interested.
