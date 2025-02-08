@@ -41,7 +41,7 @@ file: flake.nix
     nixosConfigurations."<hostname>" = nixpkgs.lib.nixosSystem {
       system = "${system}";
       modules = [
-        megacorp.nixosModules.default                            # <--- This is the important part where you actually import the megacorp nixos module
+        megacorp.nixosModules.default                            # <--- This is the important part where you actually install/import the megacorp nixos module into your nixos machine configuration
         ./hardware-configuration.nix                             # <--- Hardware config file (update to your hardware file located in /etc/nixos/hardware-configuration.nix)
         {
           megacorp.config.users.admin-user = "megaman";          # <--- Example option specifying default admin usernanme
