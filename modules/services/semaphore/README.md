@@ -22,8 +22,9 @@ These files will then be mounted by docker as environment variables which in tur
 
 The contents of the secret file should follow docker environment variable syntax like so:
 
-Contents of "/run/secrets/postgres-password":
 ```
+file: /run/secrets/postgres-password
+
 POSTGRES_PASSWORD=<example-password>
 ```
 
