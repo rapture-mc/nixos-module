@@ -5,7 +5,7 @@
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
-        nerd-fonts.Terminus
+        (nerdfonts.override {fonts = ["Terminus"];})
         noto-fonts-emoji
       ];
     };
