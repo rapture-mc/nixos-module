@@ -13,7 +13,7 @@
     ;
 in {
   options.megacorp.services.comin = {
-    enable = mkEnableOption "Whether to enable comin";
+    enable = mkEnableOption "Whether to enable comin, a pull-based GitOps NixOS deployment tool";
 
     repo = mkOption {
       type = types.str;
