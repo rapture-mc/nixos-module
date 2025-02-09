@@ -27,11 +27,11 @@ in {
   config = mkIf cfg.enable {
     services.comin = {
       enable = true;
+      hostname = config.networking.hostName;
       remotes = [
         {
           name = "origin";
           url = cfg.repo;
-          branches.main.name = "main";
         }
       ];
     };
