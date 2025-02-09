@@ -4,8 +4,15 @@
   ...
 }: let
   cfg = config.megacorp.services.sshd;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    types
+    ;
 in {
-  options.megacorp.services.sshd = with lib; {
+  options.megacorp.services.sshd = {
     bastion = {
       enable = mkEnableOption "Whether to configure as a bastion server";
       logo = mkEnableOption "Whether to show bastion logo on shell startup";

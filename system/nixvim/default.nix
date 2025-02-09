@@ -1,10 +1,8 @@
-{pkgs, ...}: {
+_: {
   imports = [
     ./plugins.nix
     ./keymaps.nix
   ];
-
-  environment.systemPackages = [pkgs.alejandra];
 
   programs.nixvim = {
     enable = true;

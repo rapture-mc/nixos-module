@@ -4,8 +4,14 @@
   ...
 }: let
   cfg = config.megacorp.virtualisation.guest;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkIf
+    ;
 in {
-  options.megacorp.virtualisation.guest = with lib; {
+  options.megacorp.virtualisation.guest = {
     virtualbox.enable = mkEnableOption "Enable Virtualbox guest additionns";
 
     vmware.enable = mkEnableOption "Enable VMWare guest additionns";
@@ -26,7 +32,7 @@ in {
         else false;
     };
 
-    systemd.services."serial-getty@ttyS0" = lib.mkIf cfg.qemuConsole.enable {
+    systemd.services."serial-getty@ttyS0" = mkIf cfg.qemuConsole.enable {
       enable = true;
       wantedBy = ["multi-user.target"];
     };

@@ -4,8 +4,16 @@
   ...
 }: let
   cfg = config.megacorp.services.zabbix;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.zabbix = with lib; {
+  options.megacorp.services.zabbix = {
     server = {
       enable = mkEnableOption "Whether to enable Zabbix server (also enables web server)";
       reverse-proxied = mkEnableOption "Whether Zabbix is served behind a reverse proxy";
@@ -45,18 +53,18 @@ in {
         else []
       );
 
-    security.acme = lib.mkIf (!cfg.server.reverse-proxied) {
+    security.acme = mkIf (!cfg.server.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.server.tls-email}";
     };
 
     services = {
-      zabbixServer = lib.mkIf cfg.server.enable {
+      zabbixServer = mkIf cfg.server.enable {
         enable = true;
         openFirewall = true;
       };
 
-      zabbixWeb = lib.mkIf (!cfg.server.reverse-proxied) {
+      zabbixWeb = mkIf (!cfg.server.reverse-proxied) {
         enable = cfg.server.enable;
         hostname = cfg.server.fqdn;
         frontend = "nginx";
@@ -66,7 +74,7 @@ in {
         };
       };
 
-      zabbixAgent = lib.mkIf cfg.agent.enable {
+      zabbixAgent = mkIf cfg.agent.enable {
         enable = true;
         openFirewall = true;
         server =

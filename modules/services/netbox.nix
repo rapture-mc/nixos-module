@@ -7,8 +7,16 @@
   ...
 }: let
   cfg = config.megacorp.services.netbox;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.netbox = with lib; {
+  options.megacorp.services.netbox = {
     enable = mkEnableOption "Enable Netbox";
 
     tls-email = mkOption {
@@ -30,7 +38,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [80 443];
 
     security.acme = {

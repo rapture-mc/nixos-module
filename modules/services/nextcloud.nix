@@ -6,8 +6,16 @@
 }: let
   cfg = config.megacorp.services.nextcloud;
   occCommand = "${config.services.nextcloud.occ}/bin/nextcloud-occ";
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.nextcloud = with lib; {
+  options.megacorp.services.nextcloud = {
     enable = mkEnableOption "Enable Nextcloud";
 
     package = mkOption {
@@ -58,10 +66,10 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [80 443];
 
-    security.acme = lib.mkIf (!cfg.reverse-proxied) {
+    security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.tls-email}";
     };
@@ -70,7 +78,7 @@ in {
 
     services = {
       # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
-      nginx = lib.mkIf (!cfg.reverse-proxied) {
+      nginx = mkIf (!cfg.reverse-proxied) {
         enable = true;
         virtualHosts."${cfg.fqdn}" = {
           forceSSL = true;
@@ -99,7 +107,7 @@ in {
       };
     };
 
-    users = lib.mkIf cfg.backups.enable {
+    users = mkIf cfg.backups.enable {
       groups.nextcloud-backup = {};
       users = {
         nextcloud.extraGroups = ["nextcloud-backup"];
@@ -113,7 +121,7 @@ in {
       };
     };
 
-    systemd = lib.mkIf cfg.backups.enable {
+    systemd = mkIf cfg.backups.enable {
       timers."nextcloud-backup" = {
         wantedBy = ["timers.target"];
         requires = ["network-online.target"];

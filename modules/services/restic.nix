@@ -5,8 +5,16 @@
   ...
 }: let
   cfg = config.megacorp.services.restic;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.restic = with lib; {
+  options.megacorp.services.restic = {
     sftp-server = {
       enable = mkEnableOption "Enable Restic server";
 
@@ -86,7 +94,7 @@ in {
   };
 
   config = {
-    users = lib.mkIf cfg.sftp-server.enable {
+    users = mkIf cfg.sftp-server.enable {
       users.restic-backup = {
         home = "/var/lib/restic-backup";
         shell = pkgs.bash;
@@ -103,9 +111,9 @@ in {
       ];
     };
 
-    environment.systemPackages = lib.mkIf cfg.sftp-server.enable [pkgs.restic];
+    environment.systemPackages = mkIf cfg.sftp-server.enable [pkgs.restic];
 
-    services.restic.backups = lib.mkIf cfg.backups.enable {
+    services.restic.backups = mkIf cfg.backups.enable {
       default = {
         initialize = true;
         user = cfg.backups.run-as;

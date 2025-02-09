@@ -4,8 +4,16 @@
   ...
 }: let
   cfg = config.megacorp.services.prometheus;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.prometheus = with lib; {
+  options.megacorp.services.prometheus = {
     enable = mkEnableOption "Enable Prometheus";
 
     node-exporter.enable = mkEnableOption "Enable Prometheus node exporter";
@@ -21,7 +29,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts =
       [
         9001
@@ -36,7 +44,7 @@ in {
       enable = true;
       port = 9001;
       globalConfig.scrape_interval = "10s";
-      scrapeConfigs = lib.mkIf cfg.scraper.enable [
+      scrapeConfigs = mkIf cfg.scraper.enable [
         {
           job_name = "scrape-all";
           static_configs = [
@@ -46,7 +54,7 @@ in {
           ];
         }
       ];
-      exporters = lib.mkIf cfg.node-exporter.enable {
+      exporters = mkIf cfg.node-exporter.enable {
         node = {
           enable = true;
           enabledCollectors = ["systemd"];

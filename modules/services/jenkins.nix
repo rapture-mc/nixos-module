@@ -4,8 +4,16 @@
   ...
 }: let
   cfg = config.megacorp.services.jenkins;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.jenkins = with lib; {
+  options.megacorp.services.jenkins = {
     enable = mkEnableOption "Enable Jenkins";
 
     reverse-proxied = mkEnableOption "Whether Jenkins is served behind a reverse proxy";
@@ -29,7 +37,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts =
       [
         8080
@@ -40,14 +48,14 @@ in {
         else []
       );
 
-    security.acme = lib.mkIf (!cfg.reverse-proxied) {
+    security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
       defaults.email = "${cfg.tls-email}";
     };
 
     # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
     services = {
-      nginx = lib.mkIf (!cfg.reverse-proxied) {
+      nginx = mkIf (!cfg.reverse-proxied) {
         enable = true;
         virtualHosts."${cfg.fqdn}" = {
           forceSSL = true;

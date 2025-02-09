@@ -5,8 +5,16 @@
   ...
 }: let
   cfg = config.megacorp.services.k3s;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.k3s = with lib; {
+  options.megacorp.services.k3s = {
     enable = mkEnableOption "Enable k3s";
 
     clusterInit = mkEnableOption "Whether to initialize the cluster";
@@ -32,7 +40,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     networking.firewall = {
       allowedTCPPorts = [
         6443
@@ -47,7 +55,7 @@ in {
       ];
     };
 
-    environment = lib.mkIf (cfg.role == "server") {
+    environment = mkIf (cfg.role == "server") {
       sessionVariables = {KUBECONFIG = "$HOME/.kube/config";};
       systemPackages = [pkgs.k9s];
     };

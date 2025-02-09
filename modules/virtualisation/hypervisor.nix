@@ -5,8 +5,16 @@
   ...
 }: let
   cfg = config.megacorp.virtualisation.hypervisor;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.virtualisation.hypervisor = with lib; {
+  options.megacorp.virtualisation.hypervisor = {
     enable = mkEnableOption "Enable Libvirt hypervisor";
 
     logo = mkEnableOption "Whether to show hypervisor logo on shell startup";
@@ -18,7 +26,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     users.groups.libvirtd.members = cfg.libvirt-users;
 
     services.earlyoom.enable = true;

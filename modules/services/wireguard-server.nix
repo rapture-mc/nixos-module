@@ -5,8 +5,16 @@
   ...
 }: let
   cfg = config.megacorp.services.wireguard-server;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.wireguard-server = with lib; {
+  options.megacorp.services.wireguard-server = {
     enable = mkEnableOption "Whether to wireguard server";
 
     logo = mkEnableOption "Whether to show wireguard logo on shell startup";
@@ -67,7 +75,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.wireguard-tools];
 
     networking = {

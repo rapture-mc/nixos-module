@@ -13,15 +13,21 @@
     url = "https://github.com/UnstoppableSwap/core/releases/download/${version}/${pname}_${version}_amd64.AppImage";
     hash = "sha256-ot9yHm2mUaFJL9G80T6VhzYrpRmoSR9wUL79tnZiuyA=";
   };
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkIf
+    ;
 in {
-  options.megacorp.virtualisation.whonix = with lib; {
+  options.megacorp.virtualisation.whonix = {
     enable = mkEnableOption "Enable Whonix Gateway and Workstation VMs";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     virtualisation.virtualbox.host.enable = true;
 
-    environment.systemPackages = lib.mkIf config.megacorp.virtualisation.whonix.enable [
+    environment.systemPackages = mkIf config.megacorp.virtualisation.whonix.enable [
       (pkgs.appimageTools.wrapType2 {
         inherit pname version src;
       })

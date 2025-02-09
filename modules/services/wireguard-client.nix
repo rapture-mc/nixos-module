@@ -5,8 +5,16 @@
   ...
 }: let
   cfg = config.megacorp.services.wireguard-client;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.wireguard-client = with lib; {
+  options.megacorp.services.wireguard-client = {
     enable = mkEnableOption "Whether to wireguard client";
 
     private-key-file = mkOption {
@@ -66,7 +74,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.wireguard-tools];
 
     networking = {

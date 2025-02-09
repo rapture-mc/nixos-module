@@ -5,8 +5,16 @@
   ...
 }: let
   cfg = config.megacorp.services.rebuild-machine;
+
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in {
-  options.megacorp.services.rebuild-machine = with lib; {
+  options.megacorp.services.rebuild-machine = {
     enable = mkEnableOption ''
       Whether to enable the custom systemd rebuild-machine service/timer.
       If enabled, this unit is activated and will automatically fetch the latest git config repo and rebuild its own system.
@@ -20,7 +28,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     systemd = {
       timers."rebuild-machine" = {
         wantedBy = ["timers.target"];
