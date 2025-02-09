@@ -24,7 +24,6 @@ _: {
     ./services/nginx/default.nix
     ./services/password-store.nix
     ./services/prometheus.nix
-    ./services/rebuild-machine.nix
     ./services/restic.nix
     ./services/sshd.nix
     ./services/semaphore
