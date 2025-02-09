@@ -32,6 +32,7 @@ in {
         {
           name = "origin";
           url = cfg.repo;
+          branches.main.name = "main";
         }
       ];
     };
