@@ -24,6 +24,11 @@
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -31,6 +36,7 @@
     home-manager,
     nixvim,
     arion,
+    comin,
     ...
   } @ inputs: {
     nixosModules.default = {
@@ -38,6 +44,7 @@
         nixvim.nixosModules.nixvim
         home-manager.nixosModules.home-manager
         arion.nixosModules.arion
+        comin.nixosModules.comin
         ./system
         ./modules
       ];

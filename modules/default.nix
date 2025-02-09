@@ -9,6 +9,7 @@ _: {
     ./config/system.nix
     ./config/users.nix
     ./hardening/bootloader.nix
+    ./services/comin
     ./services/controller.nix
     ./services/dnsmasq.nix
     ./services/file-browser.nix
