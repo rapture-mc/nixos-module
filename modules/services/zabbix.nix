@@ -64,13 +64,13 @@ in {
         openFirewall = true;
       };
 
-      zabbixWeb = mkIf (!cfg.server.reverse-proxied) {
+      zabbixWeb = {
         enable = cfg.server.enable;
         hostname = cfg.server.fqdn;
         frontend = "nginx";
         nginx.virtualHost = {
-          forceSSL = true;
-          enableACME = true;
+          forceSSL = if cfg.server.reverse-proxied then false else true;
+          enableACME = if cfg.server.reverse-proxied then false else true;
         };
       };
 
