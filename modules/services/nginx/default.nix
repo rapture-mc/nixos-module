@@ -21,6 +21,7 @@ in {
     ./jenkins.nix
     ./nextcloud.nix
     ./semaphore.nix
+    ./zabbix.nix
   ];
 
   options.megacorp.services.nginx = {
