@@ -58,6 +58,8 @@ in {
       defaults.email = "${cfg.server.tls-email}";
     };
 
+    systemd.services."acme-${cfg.server.fqdn}".serviceConfig.SuccessExitStatus = 10;  # Allow self-signed SSL certificates
+
     services = {
       zabbixServer = mkIf cfg.server.enable {
         enable = true;
