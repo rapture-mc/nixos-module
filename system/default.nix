@@ -3,7 +3,7 @@ _: {
     ./packages/custom-commands.nix
     ./packages/default.nix
     ./packages/desktop.nix
-    ./nixvim/default.nix
+    # ./nixvim/default.nix  # Not enabling until I figure out how to import github:rapture-mc/nixvim as a package into this module
   ];
 
   home-manager.backupFileExtension = "backup";
