@@ -25,9 +25,34 @@
         theme = "startify";
       };
       lualine.enable = true;
-      noice.enable = true;
-      notify.enable = true;
-      nui.enable = true;
+      noice = {
+        enable = true;
+        settings = {
+          notify = {
+            enabled = false;
+            view = "notify";
+          };
+          messages = {
+            enabled = true;
+            view = "mini";
+          };
+          popupmenu = {
+            enabled = true;
+            backend = "nui";
+          };
+          lsp = {
+            message = {
+              enabled = false;
+            };
+            progress = {
+              enabled = false;
+              view = "mini";
+            };
+          };
+        };
+      };
+      # notify.enable = true;
+      # nui.enable = true;
       chadtree.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
