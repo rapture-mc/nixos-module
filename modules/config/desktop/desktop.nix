@@ -13,7 +13,7 @@
     ;
 in {
   imports = [
-    ./desktop-shared.nix
+    ./shared.nix
   ];
 
   options.megacorp.config.desktop = {
