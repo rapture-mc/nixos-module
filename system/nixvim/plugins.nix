@@ -9,6 +9,7 @@
             {name = "nvim_lsp";}
             {name = "buffer";}
             {name = "path";}
+            {name = "cmdline";}
           ];
           mapping = {
             "<C-j>" = "cmp.mapping.select_next_item()";
@@ -18,12 +19,6 @@
             "<C-Space>" = "cmp.mapping.complete()";
           };
         };
-        sources = [
-          {
-            name = "cmdline";
-            priority = 300;
-          }
-        ];
       };
       cmp-nvim-lsp.enable = true;
       lsp-lines.enable = true;
