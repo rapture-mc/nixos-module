@@ -29,7 +29,7 @@ in {
       description = "List of authorized ssh keys who are allowed to connect using the admin user";
     };
 
-    accept-host-key = mkEnableOption ''
+    auto-accept-server-keys = mkEnableOption ''
       Whether to automatically accept remote machines SSH key
 
       use this option if it isn't plausible to add each known host key to the known_hosts file
