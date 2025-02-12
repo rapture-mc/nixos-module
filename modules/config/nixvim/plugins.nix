@@ -44,8 +44,14 @@ in {
         noice.enable = true;
         notify.enable = true;
         nui.enable = true;
-        # chadtree.enable = true;
-        oil.enable = true;
+        oil = {
+          enable = true;
+          settings = {
+            view_options = {
+              show_hidden = true;
+            };
+          };
+        };
         telescope.enable = true;
         treesitter.enable = true;
         barbar.enable = true;
