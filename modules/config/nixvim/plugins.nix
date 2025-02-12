@@ -39,6 +39,7 @@ in {
           enable = true;
           theme = "startify";
         };
+        web-devicons.enable = true;
         lualine.enable = true;
         noice.enable = true;
         notify.enable = true;
