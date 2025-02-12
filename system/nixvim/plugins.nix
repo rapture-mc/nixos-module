@@ -25,6 +25,7 @@
         theme = "startify";
       };
       lualine.enable = true;
+      noice.enable = true;
       chadtree.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
