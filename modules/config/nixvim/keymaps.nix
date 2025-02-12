@@ -13,11 +13,11 @@ in {
   config = mkIf cfg.enable {
     programs.nixvim = {
       keymaps = [
-        # {
-        #   action = "<cmd>CHADopen<CR>";
-        #   key = "<C-n>";
-        #   mode = "n";
-        # }
+        {
+          action = "<cmd>Oil<CR>";
+          key = "<C-n>";
+          mode = "n";
+        }
         {
           action = "<cmd>Telescope<CR>";
           key = "<leader>t";
