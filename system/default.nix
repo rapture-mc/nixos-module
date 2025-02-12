@@ -3,7 +3,6 @@ _: {
     ./packages/custom-commands.nix
     ./packages/default.nix
     ./packages/desktop.nix
-    ./nixvim/default.nix
   ];
 
   home-manager.backupFileExtension = "backup";

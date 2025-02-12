@@ -58,7 +58,7 @@ in {
       defaults.email = "${cfg.server.tls-email}";
     };
 
-    systemd.services."acme-${cfg.server.fqdn}".serviceConfig.SuccessExitStatus = 10;  # Allow self-signed SSL certificates
+    systemd.services."acme-${cfg.server.fqdn}".serviceConfig.SuccessExitStatus = 10; # Allow self-signed SSL certificates
 
     services = {
       zabbixServer = mkIf cfg.server.enable {
@@ -71,8 +71,14 @@ in {
         hostname = cfg.server.fqdn;
         frontend = "nginx";
         nginx.virtualHost = {
-          forceSSL = if cfg.server.reverse-proxied then false else true;
-          enableACME = if cfg.server.reverse-proxied then false else true;
+          forceSSL =
+            if cfg.server.reverse-proxied
+            then false
+            else true;
+          enableACME =
+            if cfg.server.reverse-proxied
+            then false
+            else true;
         };
       };
 

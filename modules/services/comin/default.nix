@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.services.comin;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
