@@ -3,6 +3,7 @@
     plugins = {
       cmp = {
         enable = true;
+        autoEnableSources = true;
         settings = {
           sources = [
             {name = "nvim_lsp";}
@@ -17,6 +18,12 @@
             "<C-Space>" = "cmp.mapping.complete()";
           };
         };
+        sources = [
+          {
+            name = "cmdline";
+            priority = 300;
+          }
+        ];
       };
       cmp-nvim-lsp.enable = true;
       lsp-lines.enable = true;
