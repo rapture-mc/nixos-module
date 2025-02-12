@@ -56,9 +56,12 @@ in {
           servers = {
             nixd = {
               enable = true;
-              settings = {
-                nixpkgs.expr = "import <nixpkgs> { }";
-                options.nixos.expr = "(builtins.getFlake \"git+https://github.com/rapture-mc/mgc-machines\").nixosConfigurations.MGC-HVS-01.options";
+              settings = let
+                flake = ''(builtins.getFlake "github:rapture-mc/mgc-machines)""'';
+
+              in {
+                nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
+                options.nixos.expr = ''${flake}.nixosConfigurations.MGC-LT01.options'';
               };
             };
             gopls.enable = true;
