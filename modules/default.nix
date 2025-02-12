@@ -30,7 +30,6 @@ _: {
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
     ./services/zabbix.nix
-    ./virtualisation/guest.nix
     ./virtualisation/hypervisor.nix
     ./virtualisation/whonix.nix
   ];
