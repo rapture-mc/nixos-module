@@ -16,6 +16,8 @@
     ;
 in {
   options.megacorp.config.users = {
+    enable = mkEnableOption "Whether to enable Megacorp defined users";
+
     admin-user = mkOption {
       type = types.str;
       default = "megaroot";
@@ -33,7 +35,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     programs.zsh.enable = true;
 
     home-manager.users = mkMerge [
