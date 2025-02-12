@@ -6,7 +6,7 @@ _: {
     ./config/networking/wireless.nix
     ./config/packages
     ./config/nixvim
-    ./config/ssh.nix
+    ./config/openssh
     ./config/system.nix
     ./config/users.nix
     ./hardening/bootloader.nix
@@ -26,7 +26,6 @@ _: {
     ./services/password-store.nix
     ./services/prometheus.nix
     ./services/restic.nix
-    ./services/sshd.nix
     ./services/semaphore
     ./services/syncthing
     ./services/wireguard-server.nix
