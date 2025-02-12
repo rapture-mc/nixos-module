@@ -33,23 +33,12 @@
 
   outputs = {
     self,
-    nixpkgs,
     home-manager,
     nixvim,
     arion,
     comin,
     ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-
-    nixvimPkgs = nixvim.legacyPackages.${system};
-    nixvimModule = {
-      inherit pkgs;
-      module = import ./system/nixvim;
-    };
-    nvim = nixvimPkgs.makeNixvimWithModule nixvimModule;
-  in {
+  } @ inputs: {
     nixosModules.default = {
       imports = [
         nixvim.nixosModules.nixvim
@@ -60,7 +49,5 @@
         ./modules
       ];
     };
-
-    packages.${system}.nixvim = nvim;
   };
 }
