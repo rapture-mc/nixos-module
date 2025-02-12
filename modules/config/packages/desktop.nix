@@ -3,8 +3,13 @@
   config,
   lib,
   ...
-}:
-with pkgs; {
+}: let
+  cfg = config.megacorp.config.packages;
+
+  inherit (lib)
+  mkIf
+  ;
+in mkIf cfg.enable (with pkgs; {
   environment.systemPackages = lib.mkIf (config.megacorp.config.desktop.enable || config.megacorp.config.hyprland.enable) [
     chromium
     firefox
@@ -17,4 +22,4 @@ with pkgs; {
     thunderbird
     vlc
   ];
-}
+})

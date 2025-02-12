@@ -8,10 +8,14 @@
   inherit
     (lib)
     mkOption
+    mkEnableOption
+    mkIf
     types
     ;
 in {
   options.megacorp.config.system = {
+    enable = mkEnableOption "Whether to allow Megacorp to control system configuration";
+
     hostname = mkOption {
       type = types.str;
       default = "nixos";
@@ -37,7 +41,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     networking.hostName = cfg.hostname;
 
     time.timeZone = cfg.timezone;
@@ -55,6 +59,15 @@ in {
       LC_PAPER = "${cfg.locale}";
       LC_TELEPHONE = "${cfg.locale}";
       LC_TIME = "${cfg.locale}";
+    };
+
+    home-manager.backupFileExtension = "backup";
+
+    nixpkgs.config.allowUnfree = true;
+
+    nix.settings = {
+      experimental-features = ["nix-command" "flakes"];
+      trusted-users = ["root" "@wheel"];
     };
   };
 }

@@ -45,7 +45,6 @@
         home-manager.nixosModules.home-manager
         arion.nixosModules.arion
         comin.nixosModules.comin
-        ./system
         ./modules
       ];
     };
