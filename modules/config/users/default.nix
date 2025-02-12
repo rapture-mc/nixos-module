@@ -41,13 +41,13 @@ in {
     home-manager.users = mkMerge [
       {
         ${cfg.admin-user} = {
-          imports = [../../home-manager/default.nix];
+          imports = [../../../home-manager/default.nix];
         };
       }
 
       (mkIf cfg.regular-user.enable {
         ${cfg.regular-user.name} = {
-          imports = [../../home-manager/default.nix];
+          imports = [../../../home-manager/default.nix];
         };
       })
     ];
