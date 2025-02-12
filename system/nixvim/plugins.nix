@@ -53,8 +53,8 @@
           };
         };
       };
-      # notify.enable = true;
-      # nui.enable = true;
+      notify.enable = true;
+      nui.enable = true;
       chadtree.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
