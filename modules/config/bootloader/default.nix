@@ -22,11 +22,7 @@
     ;
 in {
   options.megacorp.config.bootloader = {
-    enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Whether to enable bootloader";
-    };
+    enable = mkEnableOption "Whether to bootloader";
 
     type = mkOption {
       type = types.str;

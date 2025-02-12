@@ -1,14 +1,13 @@
 _: {
   imports = [
-    ./config/bootloader.nix
+    ./config/bootloader
     ./config/desktop
-    ./config/networking/static.nix
-    ./config/networking/wireless.nix
     ./config/packages
+    ./config/networking
     ./config/nixvim
     ./config/openssh
-    ./config/system.nix
-    ./config/users.nix
+    ./config/system
+    ./config/users
     ./hardening/bootloader.nix
     ./services/comin
     ./services/controller.nix
