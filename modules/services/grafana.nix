@@ -55,6 +55,8 @@ in {
       defaults.email = "${cfg.tls-email}";
     };
 
+    systemd.services."acme-${cfg.fqdn}".serviceConfig.SuccessExitStatus = 10; # Allow self-signed SSL certificates
+
     services = {
       # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
       nginx = mkIf (!cfg.reverse-proxied) {
