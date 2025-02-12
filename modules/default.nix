@@ -5,6 +5,7 @@ _: {
     ./config/hyprland.nix
     ./config/networking/static.nix
     ./config/networking/wireless.nix
+    ./config/packages
     ./config/nixvim
     ./config/ssh.nix
     ./config/system.nix
