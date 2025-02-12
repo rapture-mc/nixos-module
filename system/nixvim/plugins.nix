@@ -29,7 +29,6 @@
       lualine.enable = true;
       noice = {
         enable = true;
-        lazyLoad.settings.event = "DeferredUIEnter";
         settings = {
           notify = {
             enabled = false;
