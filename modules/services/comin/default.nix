@@ -41,7 +41,7 @@ in {
         {
           name = "origin";
           url = cfg.repo;
-          branches.${cfg.branch}.name = cfg.branch;
+          branches.main.name = cfg.branch;
         }
       ];
     };
