@@ -23,6 +23,14 @@ in {
         The git repo where NixOS configuration is stored.
       '';
     };
+
+    branch = mkOption {
+      type = types.str;
+      default = "main";
+      description = ''
+        The git repo where NixOS configuration is stored.
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -33,7 +41,7 @@ in {
         {
           name = "origin";
           url = cfg.repo;
-          branches.main.name = "main";
+          branches.${cfg.branch}.name = cfg.branch;
         }
       ];
     };
