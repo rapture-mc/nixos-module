@@ -1,10 +1,11 @@
 {osConfig, ...}: {
   imports = [
-    ./programs/zsh.nix
-    ./programs/tmux.nix
-    ./programs/kitty.nix
-    ./programs/btop.nix
     ./config/desktop/applications.nix
+    ./programs/btop.nix
+    ./programs/kitty.nix
+    ./programs/ranger.nix
+    ./programs/tmux.nix
+    ./programs/zsh.nix
     (
       if
         osConfig.megacorp.config.desktop.desktop-manager
