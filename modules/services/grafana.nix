@@ -87,7 +87,7 @@ in {
         settings.server = {
           domain = "${cfg.fqdn}";
           http_port = 2342;
-          http_addr = "${if cfg.reverse-proxied then config.megacorp.config.networking.static-ip.ipv4 else "localhost"}";
+          http_addr = "${if cfg.reverse-proxied then config.megacorp.config.networking.static-ip.ipv4 else "127.0.0.1"}";
         };
       };
     };
