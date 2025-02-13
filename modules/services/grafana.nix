@@ -65,7 +65,7 @@ in {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://${config.megacorp.config.networking.static-ip.ipv4}:2342/";
+            proxyPass = "http://localhost:2342/";
             recommendedProxySettings = true;
             proxyWebsockets = true;
           };
@@ -87,7 +87,7 @@ in {
         settings.server = {
           domain = "${cfg.fqdn}";
           http_port = 2342;
-          http_addr = "${config.megacorp.config.networking.static-ip.ipv4}";
+          http_addr = "${if cfg.reverse-proxied then config.megacorp.config.networking.static-ip.ipv4 else "localhost"}";
         };
       };
     };
