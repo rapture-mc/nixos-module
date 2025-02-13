@@ -23,7 +23,7 @@ in {
 
       targets = mkOption {
         type = types.listOf types.str;
-        default = ["127.0.0.1:9002"];
+        default = [""];
         description = "List of targets to scrape";
       };
     };
@@ -49,7 +49,7 @@ in {
           job_name = "scrape-all";
           static_configs = [
             {
-              targets = cfg.scraper.targets;
+              targets = [ "127.0.0.1:9002" ] ++ cfg.scraper.targets;
             }
           ];
         }
