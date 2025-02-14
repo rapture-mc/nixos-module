@@ -1,7 +1,10 @@
  _: {
+  imports = [fastfetch/default.nix];
+
   programs = {
     nushell = {
       enable = true;
+      extraLogin = "fastfetch";
       shellAliases = {
         v = "vi";
         ra = "ranger";
