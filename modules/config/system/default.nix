@@ -16,12 +16,6 @@ in {
   options.megacorp.config.system = {
     enable = mkEnableOption "Whether to allow Megacorp to control system configuration";
 
-    hostname = mkOption {
-      type = types.str;
-      default = "nixos";
-      description = "System hostname";
-    };
-
     timezone = mkOption {
       type = types.str;
       default = "Australia/Darwin";
@@ -42,8 +36,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.hostName = cfg.hostname;
-
     time.timeZone = cfg.timezone;
 
     system.stateVersion = "${cfg.state-version}";
