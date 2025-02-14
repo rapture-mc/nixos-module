@@ -23,7 +23,7 @@ in {
         "zsh"
         "nushell"
       ];
-      default = pkgs.zsh;
+      default = "zsh";
       description = ''
         The shell to use for Megacorp users
 
