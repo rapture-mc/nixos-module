@@ -4,9 +4,10 @@
   programs = {
     nushell = {
       enable = true;
-      loginFile = ''
+      loginFile.text = ''
         fastfetch
       '';
+
       shellAliases = {
         v = "vi";
         ra = "ranger";
