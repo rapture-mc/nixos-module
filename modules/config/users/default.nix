@@ -18,6 +18,19 @@ in {
   options.megacorp.config.users = {
     enable = mkEnableOption "Whether to enable Megacorp defined users";
 
+    shell = mkOption {
+      type = types.enum [
+        pkgs.zsh
+        pkgs.nushell
+      ];
+      default = pkgs.zsh;
+      description = ''
+        The shell to use for Megacorp users
+
+        Either pkgs.zsh or pkgs.nushell
+      '';
+    };
+
     admin-user = mkOption {
       type = types.str;
       default = "megaroot";
@@ -57,7 +70,7 @@ in {
         ${cfg.admin-user} = {
           isNormalUser = true;
           initialPassword = "changeme";
-          shell = pkgs.zsh;
+          shell = cfg.shell;
           extraGroups = ["wheel"];
         };
       }
@@ -66,7 +79,7 @@ in {
         ${cfg.regular-user.name} = {
           isNormalUser = true;
           initialPassword = "changeme";
-          shell = pkgs.zsh;
+          shell = cfg.shell;
         };
       })
     ];
