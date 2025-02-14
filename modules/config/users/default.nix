@@ -20,8 +20,8 @@ in {
 
     shell = mkOption {
       type = types.enum [
-        pkgs.zsh
-        pkgs.nushell
+        "zsh"
+        "nushell"
       ];
       default = pkgs.zsh;
       description = ''
@@ -70,7 +70,7 @@ in {
         ${cfg.admin-user} = {
           isNormalUser = true;
           initialPassword = "changeme";
-          shell = cfg.shell;
+          shell = pkgs.${cfg.shell};
           extraGroups = ["wheel"];
         };
       }
@@ -79,7 +79,7 @@ in {
         ${cfg.regular-user.name} = {
           isNormalUser = true;
           initialPassword = "changeme";
-          shell = cfg.shell;
+          shell = pkgs.${cfg.shell};
         };
       })
     ];
