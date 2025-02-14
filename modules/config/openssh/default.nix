@@ -23,9 +23,7 @@ in {
 
     authorized-ssh-keys = mkOption {
       type = types.listOf types.singleLineStr;
-      default = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOzlYmoWjZYFeCNdMBCHBXmqpzK1IBmRiB3hNlsgEtre benny@MGC-DRW-BST01"
-      ];
+      default = [""];
       description = "List of authorized ssh keys who are allowed to connect using the admin user";
     };
 
