@@ -5,6 +5,8 @@
     nushell = {
       enable = true;
       loginFile.text = ''
+        $env.config.buffer_editor = "nvim"
+        $env.config.show_banner = false
         fastfetch
       '';
 
