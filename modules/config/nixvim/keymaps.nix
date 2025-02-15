@@ -19,7 +19,7 @@ in {
           mode = "n";
         }
         {
-          action = "<cmd>Telescope<CR>";
+          action = "<cmd>Telescope live_grep<CR>";
           key = "<leader>t";
           mode = "n";
         }
