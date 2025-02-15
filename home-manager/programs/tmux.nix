@@ -7,7 +7,6 @@
     mouse = true;
     terminal = "xterm-256color";
     plugins = with pkgs; [tmuxPlugins.catppuccin];
-    newSession = true;
 
     # For some reason keyMode = "vi" isn't sufficient when using plugins
     extraConfig = ''
