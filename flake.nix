@@ -6,7 +6,7 @@
       type = "github";
       owner = "nixos";
       repo = "nixpkgs";
-      ref = "unstable";
+      ref = "nixos-unstable";
     };
 
     home-manager = {
