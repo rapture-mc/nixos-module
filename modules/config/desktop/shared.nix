@@ -13,7 +13,7 @@
 
     services = {
       pulseaudio.enable = false;
-      pipwire = {
+      pipewire = {
         enable = true;
         alsa = {
           enable = true;
