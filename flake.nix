@@ -32,13 +32,12 @@
   };
 
   outputs = {
-    self,
     home-manager,
     nixvim,
     arion,
     comin,
     ...
-  } @ inputs: {
+  }: {
     nixosModules.default = {
       imports = [
         nixvim.nixosModules.nixvim
