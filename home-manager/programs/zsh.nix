@@ -14,17 +14,13 @@ _: {
       shellAliases = {
         v = "vi";
         ra = "ranger";
-        ".." = "cd ..";
-        "..2" = "cd ../..";
-        "..3" = "cd ../../..";
-        "..4" = "cd ../../../..";
         nix-list-generations = "nix profile history --profile /nix/var/nix/profiles/system";
       };
 
       oh-my-zsh = {
         enable = true;
         theme = "fino-time";
-        plugins = ["tmux" "terraform" "kubectl"];
+        plugins = ["tmux"];
       };
     };
 
