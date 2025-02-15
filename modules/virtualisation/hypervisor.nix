@@ -11,11 +11,16 @@
     mkEnableOption
     mkOption
     mkIf
+    mkForce
     types
     ;
 in {
   options.megacorp.virtualisation.hypervisor = {
-    enable = mkEnableOption "Enable Libvirt hypervisor";
+    enable = mkEnableOption ''
+      Enable Libvirt hypervisor.
+
+      Also setup a static IP and bridge interface with megacorp.config.networking.static-ip option.
+    '';
 
     logo = mkEnableOption "Whether to show hypervisor logo on shell startup";
 
@@ -27,6 +32,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # We want to use systemd-networkd instead of NetworkManager for a hypervisor setup
+    networking.networkmanager.enable = mkForce false;
+    systemd.network.enable = true;
+
     users.groups.libvirtd.members = cfg.libvirt-users;
 
     services.earlyoom.enable = true;
