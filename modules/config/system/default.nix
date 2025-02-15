@@ -24,8 +24,12 @@ in {
 
     state-version = mkOption {
       type = types.str;
-      default = "24.05";
-      description = "The nixos version the system was initially installed with";
+      default = "";
+      description = ''
+        The Nixpkgs version that the NixOS system was initially installed with.
+
+        This should be set on a per-system basis and never be changed once set. NixOS uses this value to assist with Nixpkgs migration and detect potentially breaking changes when moving between Nixpkgs versions (particularly from auto-generated stateful data).
+      '';
     };
 
     locale = mkOption {
