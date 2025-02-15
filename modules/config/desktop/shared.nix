@@ -5,19 +5,22 @@
     fonts = {
       enableDefaultPackages = true;
       packages = [
-        pkgs.nerd-fonts.Terminus
+        pkgs.nerd-fonts.terminess-ttf
       ];
     };
 
-    hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa = {
+
+    services = {
+      pulseaudio.enable = false;
+      pipwire = {
         enable = true;
-        support32Bit = true;
+        alsa = {
+          enable = true;
+          support32Bit = true;
+        };
+        pulse.enable = true;
       };
-      pulse.enable = true;
     };
   };
 }
