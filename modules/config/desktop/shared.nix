@@ -4,7 +4,7 @@
     mkIf
     ;
 in {
-  config = (mkIf cfg.desktop.enable || cfg.hyprland.enable) {
+  config = (mkIf cfg.desktop.enable || mkIf cfg.hyprland.enable) {
     networking.networkmanager.enable = true;
 
     fonts = {
