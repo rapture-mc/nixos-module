@@ -2,9 +2,12 @@
   cfg = config.megacorp.config;
   inherit (lib)
     mkIf
+    bool
     ;
+
+  desktop-enabled = bool.any [ cfg.desktop.enable cfg.hyprland.enable ];
 in {
-  config = (mkIf cfg.desktop.enable) || (mkIf cfg.hyprland.enable) {
+  config = mkIf desktop-enabled {
     networking.networkmanager.enable = true;
 
     fonts = {
