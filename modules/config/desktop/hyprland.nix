@@ -12,6 +12,10 @@
     mkIf
     ;
 in {
+  imports = [
+    (if cfg.enable then ./shared.nix else ./none.nix)
+  ];
+
   options.megacorp.config.hyprland = {
     enable = mkEnableOption "Whether to enable hyprland";
   };

@@ -12,6 +12,10 @@
     types
     ;
 in {
+  imports = [
+    (if cfg.enable then ./shared.nix else ./none.nix)
+  ];
+
   options.megacorp.config.desktop = {
     enable = mkEnableOption "Whether to enable desktop environment";
 
