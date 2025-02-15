@@ -7,7 +7,7 @@
       owner = "nixos";
       repo = "nixpkgs";
       ref = "nixos-unstable";
-      rev = "2ff53fe64443980e139eaa286017f53f88336dd0";
+      rev = "ibdf9a15c55a3de477027dd23433836babf7b9f27";
     };
 
     home-manager = {
