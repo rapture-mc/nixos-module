@@ -14,35 +14,27 @@
     ;
 in {
   options.megacorp.config.system = {
-    enable = mkEnableOption "Whether to allow Megacorp to control system configuration";
+    enable = mkEnableOption ''
+      Whether to allow Megacorp to control essential system related settings.
+
+      Things such as nix-daemon settings, timezone, system-locale and other stuff.
+    '';
 
     timezone = mkOption {
       type = types.str;
       default = "Australia/Darwin";
-      description = "Timezone to set";
-    };
-
-    state-version = mkOption {
-      type = types.str;
-      default = "";
-      description = ''
-        The Nixpkgs version that the NixOS system was initially installed with.
-
-        This should be set on a per-system basis and never be changed once set. NixOS uses this value to assist with Nixpkgs migration and detect potentially breaking changes when moving between Nixpkgs versions (particularly from auto-generated stateful data).
-      '';
+      description = "Timezone to set.";
     };
 
     locale = mkOption {
       type = types.str;
       default = "en_AU.UTF-8";
-      description = "The default system locale";
+      description = "The default system locale.";
     };
   };
 
   config = mkIf cfg.enable {
     time.timeZone = cfg.timezone;
-
-    system.stateVersion = "${cfg.state-version}";
 
     i18n.defaultLocale = "${cfg.locale}";
     i18n.extraLocaleSettings = {

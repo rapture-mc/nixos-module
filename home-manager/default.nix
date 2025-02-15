@@ -26,7 +26,7 @@ in {
     )
   ];
 
-  home.stateVersion = "${osConfig.megacorp.config.system.state-version}";
+  home.stateVersion = osConfig.system.stateVersion;
 
   programs.home-manager.enable = true;
 }
