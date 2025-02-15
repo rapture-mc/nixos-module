@@ -13,7 +13,7 @@
     ;
 in {
   imports = [
-    (if cfg.enable then ./shared.nix else ./none.nix)
+    ./shared.nix
   ];
 
   options.megacorp.config.desktop = {

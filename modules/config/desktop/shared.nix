@@ -1,5 +1,10 @@
-{pkgs, ...}: {
-  config = {
+{pkgs, config, lib, ...}: let
+  cfg = config.megacorp.config;
+  inherit (lib)
+    mkIf
+    ;
+in {
+  config = (mkIf cfg.desktop.enable || cfg.hyprland.enable) {
     networking.networkmanager.enable = true;
 
     fonts = {
