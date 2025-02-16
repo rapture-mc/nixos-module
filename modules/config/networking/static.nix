@@ -91,7 +91,7 @@ in {
       };
 
       networks = {
-        cfg.bridge.name = {
+        ${cfg.bridge.name} = {
           enable = cfg.bridge.enable;
           matchConfig = {
             Name = cfg.bridge.name;
@@ -110,7 +110,7 @@ in {
           ];
         };
 
-        cfg.interface = {
+        ${cfg.interface} = {
           matchConfig = {
             Name = cfg.interface;
           };
