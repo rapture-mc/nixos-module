@@ -11,7 +11,6 @@
     mkEnableOption
     mkOption
     mkIf
-    mkForce
     types
     ;
 in {
@@ -32,10 +31,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # We want to use systemd-networkd instead of NetworkManager for a hypervisor setup
-    networking.networkmanager.enable = mkForce false;
-    systemd.network.enable = true;
-
     users.groups.libvirtd.members = cfg.libvirt-users;
 
     services.earlyoom.enable = true;

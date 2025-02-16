@@ -4,9 +4,22 @@
   ...
 }: let
   cfg = config.megacorp.config.networking.static-ip;
+
+  inherit (lib)
+    mkOption
+    mkForce
+    mkEnableOption
+    types
+    mkIf
+    ;
 in {
-  options.megacorp.config.networking.static-ip = with lib; {
-    enable = mkEnableOption "Enable a static IP";
+  options.megacorp.config.networking.static-ip = {
+    enable = mkEnableOption ''
+      Enable a static IP on an interface.
+
+      Note: This method uses systemd-networkd (the recommened way) to set a static IP on an interface.
+      This also disables NetworkManager in the process to prevent 2 services from simultaneously managing the same interface.
+    '';
 
     interface = mkOption {
       type = types.str;
@@ -45,7 +58,7 @@ in {
     };
 
     bridge = {
-      enable = mkEnableOption "Enable bridge interface";
+      enable = mkEnableOption "Make physical interface a bridge interface";
 
       name = mkOption {
         type = types.str;
@@ -55,56 +68,65 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     networking = {
+      networkmanager.enable = mkForce false;
+      domain = cfg.lan-domain;
       nameservers = cfg.nameservers;
-      domain = "${cfg.lan-domain}";
+      useDHCP = false;
+      useNetworkd = true;
+    };
 
-      bridges = lib.mkIf cfg.bridge.enable {
-        "${cfg.bridge.name}" = {
-          interfaces = ["${cfg.interface}"];
+    systemd.services."systemd-networkd".environment.SYSTEMD_LOG_LEVEL = "debug";
+
+    systemd.network = {
+      enable = true;
+
+      netdevs.${cfg.bridge.name} = {
+        enable = cfg.bridge.enable;
+        netdevConfig = {
+          Kind = "bridge";
+          Name = cfg.bridge.name;
         };
       };
 
-      interfaces = {
-        ${cfg.interface} = {
-          useDHCP = lib.mkIf cfg.bridge.enable false;
-
-          ipv4 = lib.mkIf (!cfg.bridge.enable) {
-            addresses = [
-              {
-                address = "${cfg.ipv4}";
-                prefixLength = cfg.prefix;
-              }
-            ];
-
-            routes = lib.mkIf (!cfg.bridge.enable) [
-              {
-                address = "0.0.0.0";
-                prefixLength = 0;
-                via = "${cfg.gateway}";
-              }
-            ];
+      networks = {
+        cfg.bridge.name = {
+          enable = cfg.bridge.enable;
+          matchConfig = {
+            Name = cfg.bridge.name;
           };
+
+          networkConfig = {
+            DHCP = "no";
+            Address = "${cfg.ipv4}/${cfg.prefix}";
+          };
+
+          routes = [
+            {
+              Destination = "0.0.0.0/0";
+              Gateway = cfg.gateway;
+            }
+          ];
         };
 
-        ${cfg.bridge.name} = lib.mkIf cfg.bridge.enable {
-          ipv4 = {
-            addresses = [
-              {
-                address = "${cfg.ipv4}";
-                prefixLength = cfg.prefix;
-              }
-            ];
-
-            routes = [
-              {
-                address = "0.0.0.0";
-                prefixLength = 0;
-                via = "${cfg.gateway}";
-              }
-            ];
+        cfg.interface = {
+          matchConfig = {
+            Name = cfg.interface;
           };
+
+          networkConfig = {
+            Bridge = mkIf cfg.bridge.enable cfg.bridge.name;
+            DHCP = "no";
+            Address = mkIf (!cfg.bridge.enable) "${cfg.ipv4}/${cfg.prefix}";
+          };
+
+          routes = mkIf (!cfg.bridge.enable) [
+            {
+              Destination = "0.0.0.0/0";
+              Gateway = cfg.gateway;
+            }
+          ];
         };
       };
     };
