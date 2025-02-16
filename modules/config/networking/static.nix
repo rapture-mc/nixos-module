@@ -91,13 +91,24 @@ in {
       };
 
       networks = {
-        ${cfg.bridge.name} = {
+        "${cfg.bridge.name}-lan" = {
           enable = cfg.bridge.enable;
           matchConfig = {
             Name = [
               cfg.bridge.name
               "vm-*"
             ];
+          };
+
+          networkConfig = {
+            Bridge = cfg.bridge.name;
+          };
+        };
+
+        "${cfg.bridge.name}-lan-bridge" = {
+          enable = cfg.bridge.enable;
+          matchConfig = {
+            Name = cfg.bridge.name;
           };
 
           networkConfig = {
