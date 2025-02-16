@@ -99,7 +99,7 @@ in {
 
           networkConfig = {
             DHCP = "no";
-            Address = "${cfg.ipv4}/${cfg.prefix}";
+            Address = "${cfg.ipv4}/${builtins.toString cfg.prefix}";
           };
 
           routes = [
