@@ -94,7 +94,10 @@ in {
         ${cfg.bridge.name} = {
           enable = cfg.bridge.enable;
           matchConfig = {
-            Name = cfg.bridge.name;
+            Name = [
+              cfg.bridge.name
+              "vm-*"
+            ];
           };
 
           networkConfig = {
