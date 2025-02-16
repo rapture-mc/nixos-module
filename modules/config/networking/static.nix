@@ -118,7 +118,7 @@ in {
           networkConfig = {
             Bridge = mkIf cfg.bridge.enable cfg.bridge.name;
             DHCP = "no";
-            Address = mkIf (!cfg.bridge.enable) "${cfg.ipv4}/${cfg.prefix}";
+            Address = mkIf (!cfg.bridge.enable) "${cfg.ipv4}/${builtins.toString cfg.prefix}";
           };
 
           routes = mkIf (!cfg.bridge.enable) [
