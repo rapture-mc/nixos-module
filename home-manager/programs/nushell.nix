@@ -15,6 +15,7 @@ _: {
         ra = "ranger";
         l = "ls";
         ll = "ls -l";
+        lla = "ls -la";
         nix-list-generations = "nix profile history --profile /nix/var/nix/profiles/system";
 
         # No tmux plugin exists for nushell (as oppose to oh-my-zsh's tmux plugin so need to manually declare them)
