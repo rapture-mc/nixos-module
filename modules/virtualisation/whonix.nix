@@ -9,10 +9,10 @@
   whonixVersion = "17.2.3.7";
 
   pname = "UnstoppableSwap";
-  unstoppableSwapVersion = "1.0.0-rc.11";
+  version = "1.0.0-rc.11";
 
-  unstoppableSwapSrc = pkgs.fetchurl {
-    url = "https://github.com/UnstoppableSwap/core/releases/download/${unstoppableSwapVersion}/${pname}_${unstoppableSwapVersion}_amd64.AppImage";
+  src = pkgs.fetchurl {
+    url = "https://github.com/UnstoppableSwap/core/releases/download/${version}/${pname}_${version}_amd64.AppImage";
     hash = "sha256-ot9yHm2mUaFJL9G80T6VhzYrpRmoSR9wUL79tnZiuyA=";
   };
 
@@ -83,7 +83,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       (appimageTools.wrapType2 {
-        inherit pname unstoppableSwapVersion unstoppableSwapSrc;
+        inherit pname version src;
       })
       electrum
       monero-gui
