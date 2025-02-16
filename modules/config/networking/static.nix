@@ -5,7 +5,8 @@
 }: let
   cfg = config.megacorp.config.networking.static-ip;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkOption
     mkForce
     mkEnableOption

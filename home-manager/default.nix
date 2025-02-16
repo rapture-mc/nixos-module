@@ -1,7 +1,5 @@
 {osConfig, ...}: let
-
   cfg = osConfig.megacorp.config;
-
 in {
   imports = [
     ./config/desktop/applications.nix
@@ -9,7 +7,11 @@ in {
     ./programs/kitty.nix
     ./programs/ranger.nix
     ./programs/tmux.nix
-    (if cfg.users.shell == "nushell" then ./programs/nushell.nix else ./programs/zsh.nix)
+    (
+      if cfg.users.shell == "nushell"
+      then ./programs/nushell.nix
+      else ./programs/zsh.nix
+    )
     (
       if
         osConfig.megacorp.config.desktop.desktop-manager

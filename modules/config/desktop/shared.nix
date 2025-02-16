@@ -1,6 +1,12 @@
-{pkgs, config, lib, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   cfg = config.megacorp.config;
-  inherit (lib)
+  inherit
+    (lib)
     mkIf
     ;
 in {

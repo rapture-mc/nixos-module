@@ -1,7 +1,13 @@
-{pkgs, lib, config, ...}: let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.megacorp.config.packages;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkIf
     mkEnableOption
     ;

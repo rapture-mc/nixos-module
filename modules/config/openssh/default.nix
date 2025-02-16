@@ -53,7 +53,11 @@ in {
     # Required for oh-my-tmux ssh sessions to work correctly
     programs.ssh.extraConfig = ''
       SetEnv TERM=screen-256color
-      ${if cfg.auto-accept-server-keys then "StrictHostKeyChecking=accept-new" else ""}
+      ${
+        if cfg.auto-accept-server-keys
+        then "StrictHostKeyChecking=accept-new"
+        else ""
+      }
     '';
   };
 }

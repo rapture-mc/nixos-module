@@ -1,4 +1,4 @@
- _: {
+_: {
   imports = [fastfetch/default.nix];
 
   programs = {

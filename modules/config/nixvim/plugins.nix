@@ -65,7 +65,6 @@ in {
               enable = true;
               settings = let
                 flake = ''(builtins.getFlake "github:rapture-mc/mgc-machines)""'';
-
               in {
                 nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
                 options.nixos.expr = ''${flake}.nixosConfigurations.MGC-LT01.options'';

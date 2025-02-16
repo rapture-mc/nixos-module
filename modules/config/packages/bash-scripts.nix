@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   generateAgeKey = pkgs.writeShellScriptBin "generateAgeKey" ''
     mkdir -p ~/.config/sops/age
     if [ "$(id -u)" -ne 0 ]; then
