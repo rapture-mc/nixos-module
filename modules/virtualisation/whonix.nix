@@ -6,13 +6,67 @@
 }: let
   cfg = config.megacorp.virtualisation.whonix;
 
-  pname = "UnstoppableSwap";
-  version = "1.0.0-rc.11";
+  whonixVersion = "17.2.3.7";
 
-  src = pkgs.fetchurl {
-    url = "https://github.com/UnstoppableSwap/core/releases/download/${version}/${pname}_${version}_amd64.AppImage";
+  pname = "UnstoppableSwap";
+  unstoppableSwapVersion = "1.0.0-rc.11";
+
+  unstoppableSwapSrc = pkgs.fetchurl {
+    url = "https://github.com/UnstoppableSwap/core/releases/download/${unstoppableSwapVersion}/${pname}_${unstoppableSwapVersion}_amd64.AppImage";
     hash = "sha256-ot9yHm2mUaFJL9G80T6VhzYrpRmoSR9wUL79tnZiuyA=";
   };
+
+  startWhonix = pkgs.writeShellScriptBin "startWhonix" ''
+    VBoxManage startvm Whonix-Gateway-Xfce --type headless
+
+    sleep 1
+
+    VBoxManage startvm Whonix-Workstation-Xfce
+  '';
+
+  stopWhonix = pkgs.writeShellScriptBin "stopWhonix" ''
+    VBoxManage controlvm Whonix-Workstation-Xfce poweroff
+
+    VBoxManage controlvm Whonix-Gateway-Xfce poweroff
+  '';
+
+  installWhonix = pkgs.writeShellScriptBin "installWhonix" ''
+    echo -e "This script will check for the existence of Whonix and if not found download Whonix from the internet and import it into VirtualBox"
+
+    while true; do
+      read -p "Continue? (y/n)" response
+      case $response in
+        [Yy]* )
+          if ! VBoxManage list vms | grep -q "Whonix" && [ -e /tmp/Whonix-Xfce-${whonixVersion}.ova ]; then
+            echo "Whonix VMs don't exist, importing..."
+
+            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+
+          elif ! VBoxManage list vms | grep -q "Whonix" && [ ! -e /tmp/Whonix-Xfce-${whonixVersion}.ova ]; then
+            echo "Whonix VMs don't exist and Whonix OVA file doesn't exist, downloading OVA file..."
+
+            wget https://download.whonix.org/ova/${whonixVersion}/Whonix-Xfce-${whonixVersion}.ova -O /tmp/Whonix-Xfce-${whonixVersion}.ova
+
+            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+
+            echo -e "Import successful!\n Cleaning up OVA file from /tmp folder..."
+
+            rm /tmp/Whonix-Xfce-${whonixVersion}.ova
+
+          else
+            echo "Whonix VMs already exist, skipping..."
+
+            exit 1
+
+          fi
+
+          echo  "Done!"; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer y or n.";;
+      esac
+    done
+  '';
+
 
   inherit
     (lib)
@@ -21,18 +75,21 @@
     ;
 in {
   options.megacorp.virtualisation.whonix = {
-    enable = mkEnableOption "Enable Whonix Gateway and Workstation VMs";
+    enable = mkEnableOption "Enable Whonix Gateway and Workstation VMs along with bash helper scripts";
   };
 
   config = mkIf cfg.enable {
     virtualisation.virtualbox.host.enable = true;
 
-    environment.systemPackages = mkIf config.megacorp.virtualisation.whonix.enable [
-      (pkgs.appimageTools.wrapType2 {
-        inherit pname version src;
+    environment.systemPackages = with pkgs; [
+      (appimageTools.wrapType2 {
+        inherit pname unstoppableSwapVersion unstoppableSwapSrc;
       })
-      pkgs.electrum
-      pkgs.monero-gui
+      electrum
+      monero-gui
+      installWhonix
+      startWhonix
+      stopWhonix
     ];
   };
 }

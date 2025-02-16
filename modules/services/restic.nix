@@ -6,6 +6,24 @@
 }: let
   cfg = config.megacorp.services.restic;
 
+  makeRepoGroupWriteable = pkgs.writeShellScriptBin "makeRepoGroupWriteable" ''
+    if [ -z "$1" ]; then
+      echo "Error: You must pass a directory as a paramater to this command... Exiting!"
+      exit 1
+    elif [ "$(id -u)" -ne 0 ]; then
+      echo "Error: This command must be run with sudo... Exiting!"
+      exit 1
+    else
+      echo "Ensuring files within $1 inherit the group belonging to $1..."
+      find $1 -type d -exec chmod g+s '{}' \;
+      echo -e "Done!\n"
+
+      echo "Recursively setting group read/write permissions on $1..."
+      chmod -R g+rw $1
+      echo -e "Done!\n"
+    fi
+  '';
+
   inherit
     (lib)
     mkEnableOption
@@ -111,7 +129,10 @@ in {
       ];
     };
 
-    environment.systemPackages = mkIf cfg.sftp-server.enable [pkgs.restic];
+    environment.systemPackages = mkIf cfg.sftp-server.enable [
+      pkgs.restic
+      makeRepoGroupWriteable
+    ];
 
     services.restic.backups = mkIf cfg.backups.enable {
       default = {

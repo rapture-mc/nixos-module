@@ -7,7 +7,7 @@
     ;
 in {
   imports = [
-    ./custom-scripts.nix
+    ./bash-scripts.nix
     ./desktop.nix
   ];
 
