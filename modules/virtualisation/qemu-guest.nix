@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  modulesPath,
   ...
 }: let
   cfg = config.megacorp.virtualisation.qemu-guest;
@@ -11,17 +10,32 @@
     mkIf
     ;
 in {
-  imports = [
-    "${toString modulesPath}/profiles/qemu-guest.nix"
-  ];
 
   options.megacorp.virtualisation.qemu-guest = {
     enable = mkEnableOption "Enable qemu-guest components";
   };
 
   config = mkIf cfg.enable {
-    virtualisation.qemu.guestAgent.enable = true;
+    boot = {
+      kernelParams = ["console=ttyS0"];
+      initrd = {
+        availableKernelModules = [
+          "virtio_net"
+          "virtio_pci"
+          "virtio_mmio"
+          "virtio_blk"
+          "virtio_scsi"
+          "9p"
+          "9pnet_virtio"
+        ];
 
-    boot.kernelParams = ["console=ttyS0"];
+        kernelModules = [
+          "virtio_balloon"
+          "virtio_console"
+          "virtio_rng"
+          "virtio_gpu"
+        ];
+      };
+    };
   };
 }
