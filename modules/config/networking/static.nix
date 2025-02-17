@@ -78,8 +78,6 @@ in {
       useNetworkd = true;
     };
 
-    services.resolved.enable = false;
-
     systemd.services."systemd-networkd".environment.SYSTEMD_LOG_LEVEL = "debug";
 
     systemd.network = {
