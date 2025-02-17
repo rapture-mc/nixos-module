@@ -31,6 +31,7 @@ _: {
     ./services/wireguard-client.nix
     ./services/zabbix.nix
     ./virtualisation/hypervisor.nix
+    ./virtualisation/qemu-guest.nix
     ./virtualisation/whonix.nix
   ];
 }
