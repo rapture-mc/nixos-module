@@ -33,15 +33,18 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.dnsmasq = {
-      enable = true;
-      settings = {
-        cache-size = 1000;
-        server = cfg.nameservers;
-        domain-needed = true;
-        expand-hosts = true;
-        domain = cfg.domain;
-        bogus-priv = true;
+    services = {
+      resolved.enable = false;
+      dnsmasq = {
+        enable = true;
+        settings = {
+          cache-size = 1000;
+          server = cfg.nameservers;
+          domain-needed = true;
+          expand-hosts = true;
+          domain = cfg.domain;
+          bogus-priv = true;
+        };
       };
     };
 
