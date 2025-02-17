@@ -21,6 +21,15 @@ in {
       default = "localhost";
       description = "The domain name that dnsmasq will be deployed in";
     };
+
+    nameservers = mkOption {
+      type = types.listOf types.str;
+      default = [
+        "8.8.8.8"
+        "8.8.4.4"
+      ];
+      description = "The nameservers dnsmasq should use for all other DNS queries";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -28,10 +37,7 @@ in {
       enable = true;
       settings = {
         cache-size = 1000;
-        server = [
-          "8.8.8.8"
-          "8.8.4.4"
-        ];
+        server = cfg.nameservers;
         domain-needed = true;
         expand-hosts = true;
         domain = cfg.domain;
