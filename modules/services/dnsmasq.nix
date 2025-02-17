@@ -34,7 +34,6 @@ in {
 
   config = mkIf cfg.enable {
     services = {
-      resolved.enable = false;
       dnsmasq = {
         enable = true;
         settings = {
@@ -46,6 +45,10 @@ in {
           bogus-priv = true;
         };
       };
+
+      resolved.extraConfig = ''
+        DNSStubListener=no
+      '';
     };
 
     networking.firewall.allowedUDPPorts = [53];
