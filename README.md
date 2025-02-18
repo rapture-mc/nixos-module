@@ -12,9 +12,6 @@
 │   ├── services
 │   └── virtualisation
 ├── README.md
-└── system              # <--- System related configuration
-    ├── nixvim
-    └── packages
 ```
 
 ## Getting started
@@ -45,7 +42,25 @@ file: flake.nix
         megacorp.nixosModules.default                            # <--- This is the important part where you actually install/import the megacorp nixos module into your nixos machine configuration
         ./hardware-configuration.nix                             # <--- Hardware config file (update to your hardware file located in /etc/nixos/hardware-configuration.nix)
         {
-          megacorp.config.users.admin-user = "megaman";          # <--- Example option specifying default admin usernanme
+          megacorp = {
+            config = {
+              system.enable = true;                              # <--- System-related config defined by Megacorp module
+
+              bootloader = {
+                enable = true;                                   # <--- Using Megacorp defined bootloader (grub)
+                efi.enable = true;
+              };
+
+              users = {
+                enable = true;
+                admin-user = "administrator";                    # <--- Example option specifying default admin usernanme
+
+              };
+
+              nixvim.enable = true;                              # <--- Setting up custom neovim configuration
+              packages.enable = true;
+            };
+          };
 
           environment.systemPackages = with pkgs; [              # <--- You can continue to declare nixos options as you would in a standard configuration.nix file
             firefox
