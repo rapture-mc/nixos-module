@@ -79,6 +79,11 @@ in {
 
     systemd.services."systemd-networkd".environment.SYSTEMD_LOG_LEVEL = "debug";
 
+    services.resolved = {
+      llmnr = false;
+      domains = [ cfg.lan-domain ];
+    };
+
     systemd.network = {
       enable = true;
 
