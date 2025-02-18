@@ -119,6 +119,7 @@ in {
             DHCP = "no";
             Address = "${cfg.ipv4}/${builtins.toString cfg.prefix}";
             DNS = cfg.nameservers;
+            Domains = cfg.lan-domain;
           };
 
           routes = [
