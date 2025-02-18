@@ -81,7 +81,6 @@ in {
 
     services.resolved = {
       llmnr = "false";
-      domains = [ cfg.lan-domain ];
     };
 
     systemd.network = {
@@ -140,6 +139,7 @@ in {
             DHCP = "no";
             Address = mkIf (!cfg.bridge.enable) "${cfg.ipv4}/${builtins.toString cfg.prefix}";
             DNS = cfg.nameservers;
+            Domains = cfg.lan-domain;
           };
 
           routes = mkIf (!cfg.bridge.enable) [
