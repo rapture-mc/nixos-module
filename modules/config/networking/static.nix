@@ -73,7 +73,6 @@ in {
     networking = {
       networkmanager.enable = mkForce false;
       domain = cfg.lan-domain;
-      nameservers = cfg.nameservers;
       useDHCP = false;
       useNetworkd = true;
     };
@@ -115,6 +114,7 @@ in {
           networkConfig = {
             DHCP = "no";
             Address = "${cfg.ipv4}/${builtins.toString cfg.prefix}";
+            DNS = cfg.nameservers;
           };
 
           routes = [
@@ -134,6 +134,7 @@ in {
             Bridge = mkIf cfg.bridge.enable cfg.bridge.name;
             DHCP = "no";
             Address = mkIf (!cfg.bridge.enable) "${cfg.ipv4}/${builtins.toString cfg.prefix}";
+            DNS = cfg.nameservers;
           };
 
           routes = mkIf (!cfg.bridge.enable) [
