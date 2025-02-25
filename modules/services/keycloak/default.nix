@@ -30,7 +30,7 @@ in {
         initialAdminPassword = "changeme";
         database.passwordFile = "/run/secrets/keycloak-db-password";
         settings = {
-          hostname = "${cfg.fqdn}/cloak";
+          hostname = cfg.fqdn;
           http-port = 8300;
           http-relative-path = "/cloak";
           proxy-headers = "forwarded";
