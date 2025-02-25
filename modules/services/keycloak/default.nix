@@ -16,7 +16,7 @@ in {
   options.megacorp.services.keycloak = {
     enable = mkEnableOption "Enable keycloak";
 
-    domain = mkOption {
+    fqdn = mkOption {
       type = types.str;
       default = "localhost";
       description = "The domain name that keycloak will be deployed in";
@@ -28,11 +28,12 @@ in {
       keycloak = {
         enable = true;
         initialAdminPassword = "changeme";
+        database.passwordFile = "/run/secrets/keycloak-db-password";
         settings = {
           hostname = cfg.fqdn;
           http-port = 8300;
         };
-        database.passwordFile = "/run/secrets/keycloak-db-password";
+
       };
     };
 
