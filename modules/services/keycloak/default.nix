@@ -33,7 +33,7 @@ in {
           hostname = cfg.fqdn;
           http-port = 8300;
           http-relative-path = "/cloak";
-          proxy = "passthrough";
+          proxy-headers = "forwarded";
           http-enabled = true;
         };
       };
