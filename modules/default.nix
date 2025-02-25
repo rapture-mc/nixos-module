@@ -19,7 +19,6 @@ _: {
     ./services/guacamole.nix
     ./services/jenkins.nix
     ./services/k3s.nix
-    ./services/keycloak
     ./services/netbox.nix
     ./services/nextcloud.nix
     ./services/nginx/default.nix
