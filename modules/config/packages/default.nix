@@ -56,6 +56,7 @@ in {
       monero-cli
       mullvad
       nuclei
+      subfinder
     ];
   };
 }
