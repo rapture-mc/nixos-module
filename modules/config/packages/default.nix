@@ -10,6 +10,7 @@
     (lib)
     mkIf
     mkEnableOption
+    optionals
     ;
 in {
   imports = [
@@ -18,14 +19,15 @@ in {
   ];
 
   options.megacorp.config.packages = {
-    enable = mkEnableOption "Whether to enable core packages";
+    enable = mkEnableOption "Whether to enable Megacorp packages.";
+
+    ninja-cli.enable = mkEnableOption "Whether to install pentesting cli tools too (makes you a internet ninja!)";
   };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       alejandra
       age
-      asciiquarium
       bat
       dig
       file
@@ -50,6 +52,10 @@ in {
       viddy
       vim
       wget
+    ] ++ optionals cfg.pentesting-cli.enable [
+      monero-cli
+      mullvad
+      nuclei
     ];
   };
 }
