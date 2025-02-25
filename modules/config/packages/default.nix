@@ -52,7 +52,7 @@ in {
       viddy
       vim
       wget
-    ] ++ optionals cfg.pentesting-cli.enable [
+    ] ++ optionals cfg.ninja-cli.enable [
       monero-cli
       mullvad
       nuclei
