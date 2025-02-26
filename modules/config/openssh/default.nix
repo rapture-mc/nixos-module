@@ -10,6 +10,7 @@
     mkEnableOption
     mkOption
     mkIf
+    mkDefault
     types
     ;
 in {
@@ -43,7 +44,7 @@ in {
           if cfg.bastion.enable
           then true
           else false;
-        PermitRootLogin = "no";
+        PermitRootLogin = mkDefault "no";
       };
     };
 
