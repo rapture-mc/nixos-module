@@ -27,7 +27,7 @@ in {
       description = ''
         The shell to use for Megacorp users
 
-        Either pkgs.zsh or pkgs.nushell
+        Either zsh or nushell
       '';
     };
 
