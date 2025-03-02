@@ -70,6 +70,7 @@ in {
                 options.nixos.expr = ''${flake}.nixosConfigurations.MGC-LT01.options'';
               };
             };
+            ts_ls.enable = true;
             gopls.enable = true;
             terraformls.enable = true;
           };
