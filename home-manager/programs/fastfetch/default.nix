@@ -30,6 +30,8 @@ in {
       then ./wireguard-logo
       else if cfg.services.restic.sftp-server.logo
       then ./restic-logo
+      else if cfg.services.bookstack.logo
+      then ./bookstack-logo
       else ./megacorp-logo
     );
     target = ".config/fastfetch/logo";
