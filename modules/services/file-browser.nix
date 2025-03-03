@@ -61,7 +61,7 @@ in {
 
     security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
-      defaults.email = "${cfg.tls-email}";
+      defaults.email = cfg.tls-email;
     };
 
     # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
@@ -77,6 +77,7 @@ in {
         };
       };
     };
+
     systemd.services."file-browser-setup" = {
       wantedBy = ["file-browser.service"];
       serviceConfig = {
