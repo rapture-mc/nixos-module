@@ -9,6 +9,7 @@ _: {
     ./config/system
     ./config/users
     ./hardening/bootloader.nix
+    ./services/bookstack
     ./services/comin
     ./services/controller.nix
     ./services/dnsmasq.nix
