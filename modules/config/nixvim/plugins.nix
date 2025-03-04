@@ -14,6 +14,8 @@ in {
   config = mkIf cfg.enable {
     programs.nixvim = {
       plugins = {
+        # CMP and LMP completion
+        cmp-nvim-lsp.enable = true;
         cmp = {
           enable = true;
           autoEnableSources = true;
@@ -33,7 +35,24 @@ in {
             };
           };
         };
-        cmp-nvim-lsp.enable = true;
+        lsp = {
+          enable = true;
+          servers = {
+            nixd = {
+              enable = true;
+              settings = let
+                flake = ''(builtins.getFlake "github:rapture-mc/mgc-machines)""'';
+              in {
+                nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
+                options.nixos.expr = ''${flake}.nixosConfigurations.MGC-LT01.options'';
+              };
+            };
+            ts_ls.enable = true;
+            gopls.enable = true;
+            terraformls.enable = true;
+          };
+        };
+
         lsp-lines.enable = true;
         alpha = {
           enable = true;
@@ -58,23 +77,7 @@ in {
         gitgutter.enable = true;
         comment.enable = true;
         autoclose.enable = true;
-        lsp = {
-          enable = true;
-          servers = {
-            nixd = {
-              enable = true;
-              settings = let
-                flake = ''(builtins.getFlake "github:rapture-mc/mgc-machines)""'';
-              in {
-                nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
-                options.nixos.expr = ''${flake}.nixosConfigurations.MGC-LT01.options'';
-              };
-            };
-            ts_ls.enable = true;
-            gopls.enable = true;
-            terraformls.enable = true;
-          };
-        };
+        ts-autotag.enable = true;
       };
       extraPlugins = with pkgs.vimPlugins; [
         lazygit-nvim
