@@ -78,10 +78,10 @@ in {
         comment.enable = true;
         autoclose.enable = true;
         ts-autotag.enable = true;
+        ledger.enable = true;
       };
       extraPlugins = with pkgs.vimPlugins; [
         lazygit-nvim
-        vim-ledger
         vim-table-mode
       ];
     };
