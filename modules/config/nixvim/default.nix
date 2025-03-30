@@ -37,6 +37,7 @@ in {
         undofile = true;
         tabstop = 4;
         expandtab = true;
+        scrolloff = 3;
       };
     };
   };
