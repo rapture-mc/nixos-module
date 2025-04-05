@@ -7,5 +7,10 @@ _:
       lookAndFeel = "org.kde.breezedark.desktop";
       wallpaper = ./desktop-wallpaper.jpg;
     };
+    input.mice = [
+      {
+        naturalScroll = true;
+      }
+    ];
   };
 }
