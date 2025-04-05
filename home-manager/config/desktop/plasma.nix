@@ -11,6 +11,7 @@ _:
       {
         naturalScroll = true;
         vendorId = "04f3";
+        productId = "0080";
       }
     ];
   };
