@@ -60,8 +60,7 @@ in {
         };
         web-devicons.enable = true;
         lualine.enable = true;
-        noice.enable = true;
-        notify.enable = true;
+        # noice.enable = true;
         nui.enable = true;
         oil = {
           enable = true;
