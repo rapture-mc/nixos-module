@@ -7,9 +7,10 @@ _:
       lookAndFeel = "org.kde.breezedark.desktop";
       wallpaper = ./desktop-wallpaper.jpg;
     };
-    input.mice = [
+    input.touchpads = [
       {
         naturalScroll = true;
+        vendorId = "04f3";
       }
     ];
   };
