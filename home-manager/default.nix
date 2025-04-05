@@ -1,4 +1,4 @@
-{osConfig, plasma-manager, ...}: {
+{osConfig, ...}: {
   imports = [
     ./config/desktop/applications.nix
     ./programs/btop.nix
@@ -23,10 +23,7 @@
     )
   ];
 
-  home = {
-    stateVersion = osConfig.system.stateVersion;
-    sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-  };
+  home.stateVersion = osConfig.system.stateVersion;
 
   programs.home-manager.enable = true;
 }

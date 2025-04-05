@@ -51,6 +51,7 @@
         home-manager.nixosModules.home-manager
         arion.nixosModules.arion
         comin.nixosModules.comin
+        plasma-manager.nixosModules.plasma-manager
         ./modules
       ];
     };
