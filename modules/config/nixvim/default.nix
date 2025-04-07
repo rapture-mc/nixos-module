@@ -23,7 +23,7 @@ in {
   config = mkIf cfg.enable {
     programs.nixvim = {
       enable = true;
-      defaultEditor = true;
+      # defaultEditor = true;
       viAlias = true;
       vimAlias = true;
       colorschemes.catppuccin.enable = true;
