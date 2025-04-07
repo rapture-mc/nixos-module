@@ -8,7 +8,7 @@ _: {
       autosuggestion.enable = true;
       sessionVariables = {
         TERM = "xterm-256color";
-        EDITOR = "vi";
+        EDITOR = "vim";
       };
 
       shellAliases = {
