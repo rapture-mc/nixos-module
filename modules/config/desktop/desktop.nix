@@ -36,12 +36,23 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [
+      (pkgs.callPackage ./sddm-astronaut-theme.nix {
+        theme = "cyberpunk";
+      })
+    ];
+
     services = {
       xserver = {
         enable = true;
         displayManager.${cfg.display-manager} = {
           enable = true;
-          theme = mkIf (cfg.display-manager == "sddm") "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";
+          theme = mkIf (cfg.display-manager == "sddm") "sddm-astronaut-theme";
+          extraPackages = mkIf (cfg.display-manager == "sddm") [
+            pkgs.qtmultimedia
+            pkgs.qtsvg
+            pkgs.qtvirtualkeyboard
+          ];
         };
         desktopManager.${cfg.desktop-manager}.enable = true;
         xkb.layout = "au";
