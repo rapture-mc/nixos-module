@@ -43,6 +43,7 @@ in {
     panels = [
       {
         opacity = "opaque";
+        screen = "all";
       }
     ];
   };
