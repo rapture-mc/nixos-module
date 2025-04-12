@@ -24,13 +24,13 @@ in {
 
     desktop-manager = mkOption {
       type = types.str;
-      default = "cinnamon";
+      default = "plasma6";
       description = "Desktop environment to set";
     };
 
     display-manager = mkOption {
       type = types.str;
-      default = "lightdm";
+      default = "sddm";
       description = "Lock screen to set";
     };
   };
@@ -41,6 +41,7 @@ in {
         theme = "cyberpunk";
         themeConfig.General = {
           Background = "${../../../home-manager/config/desktop/desktop-wallpaper.jpg}";
+          HeaderText = "Megacorp Industries";
         };
       })
     ];
