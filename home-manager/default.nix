@@ -25,6 +25,14 @@
       else ./config/desktop/none.nix
     )
     (
+      if osConfig.megacorp.config.desktop.display-manager
+      == "plasma6"
+      && osConfig.megacorp.config.desktop.enable
+        && !osConfig.megacorp.config.hyprland.enable
+      then ./config/desktop/sddm.nix
+      else ./config/desktop/none.nix
+    )
+    (
       if osConfig.megacorp.config.hyprland.enable
       then ./config/desktop/hyprland.nix
       else ./config/desktop/none.nix
