@@ -42,7 +42,7 @@ in {
         themeConfig.General = {
           Background = "${../../../home-manager/config/desktop/desktop-wallpaper.jpg}";
           HeaderText = "System Locked...";
-          DateFormat = "dd/M/YYYY";
+          DateFormat = "dd/M";
         };
       })
     ];
