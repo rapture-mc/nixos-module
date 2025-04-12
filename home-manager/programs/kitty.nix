@@ -7,7 +7,7 @@
     kitty = {
       enable = true;
       shellIntegration.enableZshIntegration = true;
-      themeFile = "Argonaut";
+      themeFile = "Cyberpunk-Neon";
       extraConfig = ''
         background_opacity 0.8
       '';
