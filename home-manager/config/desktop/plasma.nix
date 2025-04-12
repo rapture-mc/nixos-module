@@ -42,6 +42,7 @@ in {
     ];
     panels = [
       {
+        location = "left";
         opacity = "opaque";
         screen = "all";
       }
