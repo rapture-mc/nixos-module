@@ -49,9 +49,9 @@ in {
           enable = true;
           theme = mkIf (cfg.display-manager == "sddm") "sddm-astronaut-theme";
           extraPackages = mkIf (cfg.display-manager == "sddm") [
-            pkgs.qtmultimedia
-            pkgs.qtsvg
-            pkgs.qtvirtualkeyboard
+            pkgs.kdePackages.qtmultimedia
+            pkgs.kdePackages.qtsvg
+            pkgs.kdePackages.qtvirtualkeyboard
           ];
         };
         desktopManager.${cfg.desktop-manager}.enable = true;
