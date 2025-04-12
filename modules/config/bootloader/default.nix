@@ -13,13 +13,6 @@
     sha256 = "sha256-mvb44mFVToZ11V09fTeEQRplabswQhqnkYHH/057wLE=";
   };
 
-  cybergrub = pkgs.fetchFromGitHub {
-    owner = "adnksharp";
-    repo = "CyberGRUB-2077";
-    rev = "76b13c8e591958a104f6186efae3000da1032a35";
-    sha256 = "";
-  };
-
   inherit
     (lib)
     mkEnableOption
@@ -35,15 +28,6 @@ in {
       type = types.str;
       default = "grub";
       description = "Either grub or extlinux (Extlinux for raspberry Pi's";
-    };
-
-    theme = mkOption {
-      type = types.enum [
-        fallout
-        cybergrub
-      ];
-      default = fallout;
-      description = "Either fallout or cybergrub";
     };
 
     efi.enable = mkEnableOption "Whether to enable EFI support";
@@ -65,7 +49,7 @@ in {
           then true
           else false;
         devices = ["nodev"];
-        theme = cfg.theme;
+        theme = fallout;
       };
 
       generic-extlinux-compatible = mkIf (cfg.type == "extlinux") {
