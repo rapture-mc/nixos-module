@@ -17,7 +17,7 @@
     owner = "adnksharp";
     repo = "CyberGRUB-2077";
     rev = "76b13c8e591958a104f6186efae3000da1032a35";
-    sha256 = "";
+    sha256 = "sha256-Y5Jr+huIXnsSbN/HFhXQewFprX+FySTPdUa1KT0nMfM=";
   };
 
   inherit
