@@ -41,7 +41,8 @@ in {
         theme = "cyberpunk";
         themeConfig.General = {
           Background = "${../../../home-manager/config/desktop/desktop-wallpaper.jpg}";
-          HeaderText = "Megacorp Industries";
+          HeaderText = "System Locked...";
+          DateFormat = "dd/M";
         };
       })
     ];
