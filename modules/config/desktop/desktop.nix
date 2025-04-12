@@ -39,6 +39,9 @@ in {
     environment.systemPackages = [
       (pkgs.callPackage ./sddm-astronaut-theme.nix {
         theme = "cyberpunk";
+        themeConfig = {
+          Background = "${../../../home-manager/config/desktop/desktop-wallpaper.jpg}";
+        };
       })
     ];
 
