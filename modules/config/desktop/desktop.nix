@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.megacorp.config.desktop;
+  
   inherit
     (lib)
     mkEnableOption
@@ -12,6 +13,10 @@
     mkIf
     types
     ;
+
+  cyberpunk-theme = builtins.fromTOML (builtins.readFile "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme/Themes/cyberpunk/pixel_sakura.conf");
+
+  theme = cyberpunk-theme.General;
 in {
   imports = [
     ./shared.nix
@@ -41,7 +46,9 @@ in {
         enable = true;
         displayManager.${cfg.display-manager} = {
           enable = true;
-          theme = mkIf (cfg.display-manager == "sddm") "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";
+          theme = mkIf (cfg.display-manager == "sddm") "${pkgs.sddm-astronaut.override {
+            themeConfig = theme;
+          }}/share/sddm/themes/sddm-astronaut-theme";
         };
         desktopManager.${cfg.desktop-manager}.enable = true;
         xkb.layout = "au";
