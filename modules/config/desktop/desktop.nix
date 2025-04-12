@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -38,7 +39,10 @@ in {
     services = {
       xserver = {
         enable = true;
-        displayManager.${cfg.display-manager}.enable = true;
+        displayManager.${cfg.display-manager} = {
+          enable = true;
+          theme = (mkIf cfg.display-manager == "sddm") "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";
+        };
         desktopManager.${cfg.desktop-manager}.enable = true;
         xkb.layout = "au";
       };
