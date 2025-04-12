@@ -40,5 +40,10 @@ in {
         name = "Elan Touchpad";
       }
     ];
+    panels = [
+      {
+        opacity = "opaque";
+      }
+    ];
   };
 }
