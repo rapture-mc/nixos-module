@@ -56,7 +56,7 @@ in {
           then true
           else false;
         devices = ["nodev"];
-        theme = cybergrub;
+        theme = "${cybergrub}/CyberGRUB-2077";
       };
 
       generic-extlinux-compatible = mkIf (cfg.type == "extlinux") {
