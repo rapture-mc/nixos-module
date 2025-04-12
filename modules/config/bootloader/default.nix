@@ -6,11 +6,18 @@
 }: let
   cfg = config.megacorp.config.bootloader;
 
-  fallout = pkgs.fetchFromGitHub {
-    owner = "shvchk";
-    repo = "fallout-grub-theme";
-    rev = "e8433860b11abb08720d7c32f5b9a2a534011bca";
-    sha256 = "sha256-mvb44mFVToZ11V09fTeEQRplabswQhqnkYHH/057wLE=";
+  # fallout = pkgs.fetchFromGitHub {
+  #   owner = "shvchk";
+  #   repo = "fallout-grub-theme";
+  #   rev = "e8433860b11abb08720d7c32f5b9a2a534011bca";
+  #   sha256 = "sha256-mvb44mFVToZ11V09fTeEQRplabswQhqnkYHH/057wLE=";
+  # };
+
+  cybergrub = pkgs.fetchFromGitHub {
+    owner = "adnksharp";
+    repo = "CyberGRUB-2077";
+    rev = "76b13c8e591958a104f6186efae3000da1032a35";
+    sha256 = "";
   };
 
   inherit
@@ -49,7 +56,7 @@ in {
           then true
           else false;
         devices = ["nodev"];
-        theme = fallout;
+        theme = cybergrub;
       };
 
       generic-extlinux-compatible = mkIf (cfg.type == "extlinux") {
