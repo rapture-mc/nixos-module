@@ -41,13 +41,7 @@ in {
         enable = true;
         displayManager.${cfg.display-manager} = {
           enable = true;
-          theme = mkIf (cfg.display-manager == "sddm") "${
-            pkgs.sddm-astronaut.override {
-              themeConfig = {
-                ConfigFile = "cyberpunk.conf";
-              };
-            }
-          }/share/sddm/themes/sddm-astronaut-theme";
+          theme = mkIf (cfg.display-manager == "sddm") "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";
         };
         desktopManager.${cfg.desktop-manager}.enable = true;
         xkb.layout = "au";
