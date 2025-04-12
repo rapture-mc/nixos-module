@@ -26,7 +26,7 @@
     )
     (
       if osConfig.megacorp.config.desktop.display-manager
-      == "plasma6"
+      == "sddm"
       && osConfig.megacorp.config.desktop.enable
         && !osConfig.megacorp.config.hyprland.enable
       then ./config/desktop/sddm.nix
