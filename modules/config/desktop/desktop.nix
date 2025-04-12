@@ -14,7 +14,7 @@
     types
     ;
 
-  cyberpunk-theme = builtins.fromTOML (builtins.readFile "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme/Themes/cyberpunk/pixel_sakura.conf");
+  cyberpunk-theme = builtins.fromTOML (builtins.readFile "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme/Themes/pixel_sakura.conf");
 
   theme = cyberpunk-theme.General;
 in {
