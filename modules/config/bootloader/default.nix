@@ -63,5 +63,21 @@ in {
         enable = true;
       };
     };
+
+    systemd.services."grub-setup" = mkIf (cfg.type == "grub") {
+      wantedBy = ["multi-user.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+      script = ''
+        if [ -d /boot/EFI/systemd ]; then
+          echo "Directory /boot/EFI/systemd exists... Deleting..."
+          rm -r /boot/EFI/systemd
+        else
+          echo "Directory /boot/EFI/systemd doesn't exist... Skipping..."
+        fi
+      '';
+    };
   };
 }
