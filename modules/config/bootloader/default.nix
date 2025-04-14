@@ -29,7 +29,7 @@
     ;
 in {
   options.megacorp.config.bootloader = {
-    enable = mkEnableOption "Whether to bootloader";
+    enable = mkEnableOption "Whether to enable custom grub bootloader";
 
     type = mkOption {
       type = types.str;
