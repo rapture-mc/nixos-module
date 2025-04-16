@@ -5,12 +5,11 @@
   ...
 }: let
   cfg = config.megacorp.config.desktop;
+
   inherit
     (lib)
     mkEnableOption
-    mkOption
     mkIf
-    types
     ;
 in {
   imports = [
@@ -21,18 +20,6 @@ in {
     enable = mkEnableOption "Whether to enable desktop environment";
 
     xrdp = mkEnableOption "Whether to enable RDP server";
-
-    desktop-manager = mkOption {
-      type = types.str;
-      default = "plasma6";
-      description = "Desktop environment to set";
-    };
-
-    display-manager = mkOption {
-      type = types.str;
-      default = "sddm";
-      description = "Lock screen to set";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -50,23 +37,23 @@ in {
     services = {
       xserver = {
         enable = true;
-        displayManager.${cfg.display-manager} = {
+        displayManager.sddm = {
           enable = true;
-          theme = mkIf (cfg.display-manager == "sddm") "sddm-astronaut-theme";
-          extraPackages = mkIf (cfg.display-manager == "sddm") [
+          theme = "sddm-astronaut-theme";
+          extraPackages = [
             pkgs.kdePackages.qtmultimedia
             pkgs.kdePackages.qtsvg
             pkgs.kdePackages.qtvirtualkeyboard
           ];
         };
-        desktopManager.${cfg.desktop-manager}.enable = true;
+        desktopManager.plasma6.enable = true;
         xkb.layout = "au";
       };
 
       xrdp = mkIf cfg.xrdp {
         enable = true;
         openFirewall = true;
-        defaultWindowManager = "${cfg.desktop-manager}-session";
+        defaultWindowManager = "plasma_session";
       };
     };
   };
