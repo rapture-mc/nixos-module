@@ -62,6 +62,71 @@
       "prompt" = {
         margin = mkLiteral "0px 5px 0px 0px";
       };
+
+      "listview" = {
+        layout = mkLiteral "vertical";
+        padding = "5px";
+        lines = 12;
+        colums = 1;
+        border = "0px 3px 3px 3px";
+        border-radius = "0px 0px 6px 6px";
+        border-color = "@primary";
+        dynamic = "false";
+      };
+
+      "element" = {
+        padding = "2px";
+        vertical-align = 1;
+        color = "@kl";
+        font = "inherit";
+      };
+
+      "element-text" = {
+        background-color = "inherit";
+        text-color = "inherit";
+      };
+
+      "element selected.normal" = {
+        color = "@black";
+        background-color = "@hv";
+      };
+
+      "element normal active" = {
+        background-color = "@hv";
+        color = "@black";
+      };
+
+      "element-text, element-icon" = {
+        background-color = "inherit";
+        text-color = "inherit";
+      };
+
+      "element normal urgent" = {
+        background-color = "@primary";
+      };
+
+      "element selected active" = {
+        background = "@hv";
+        foreground = "@bg";
+      };
+
+      "button" = {
+        padding = "6px";
+        color = "@primary";
+        horizontal-align = "0.5";
+        border = "2px 0px 2px 2px";
+        border-radius = "4px 0px 0px 4px";
+        border-color = "@primary";
+      };
+
+      "button selected normal" = {
+        border = "2px 0px 2px 2px";
+        border-color = "@primary";
+      };
+
+      "scrollbar" = {
+        enabled = "true;";
+      };
     };
   };
 }
