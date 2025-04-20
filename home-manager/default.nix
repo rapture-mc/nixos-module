@@ -7,6 +7,7 @@
     ./programs/tmux.nix
     ./programs/nushell.nix
     ./programs/zsh.nix
+    ./programs/rofi.nix
     (
       if osConfig.megacorp.config.desktop.enable
         && !osConfig.megacorp.config.hyprland.enable
