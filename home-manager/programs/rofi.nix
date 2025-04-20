@@ -23,7 +23,7 @@
         orientation = mkLiteral "horizontal";
         location = mkLiteral "center";
         anchor = mkLiteral "center";
-        transparency = mkLiteral "screenshot";
+        transparency = "screenshot";
         border-color = mkLiteral "@transparent";
         border = mkLiteral "0px";
         border-radius = mkLiteral "6px";
