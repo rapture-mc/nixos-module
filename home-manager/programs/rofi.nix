@@ -2,9 +2,7 @@
   programs.rofi = {
     enable = true;
     theme = let
-      inherit
-        (config.lib.formats.rasi)
-        mkLiteral;
+      inherit (config.lib.formats.rasi) mkLiteral;
     in {
       "*" = {
         bg = mkLiteral "#24283b";
@@ -13,11 +11,56 @@
         ug = mkLiteral "#0B2447";
         font = "Monospace 11";
         background-color = "@bg";
-        dark = "@bg";
+        # dark = "@bg";
         border = "0px";
         kl = "#7aa2f7";
         black = "#000000";
         transparent = "rgba(46,52,64,0)";
+      };
+
+      "window" = {
+        width = 700;
+        orientation = mkLiteral "horizontal";
+        location = mkLiteral "center";
+        anchor = mkLiteral "center";
+        transparency = mkLiteral "screenshot";
+        border-color = mkLiteral "@transparent";
+        border = mkLiteral "0px";
+        border-radius = mkLiteral "6px";
+        spacing = 0;
+        children = [ "mainbox" ];
+      };
+
+      "mainbox" = {
+        spacing = 0;
+        children = [ "inputbar" "message" "listview" ];
+      };
+
+      "inputbar" = {
+        color = mkLiteral "@kl";
+        padding = mkLiteral "11px";
+        border = mkLiteral "3px 3px 2px 3px";
+        border-color = mkLiteral "@primary";
+        border-radius = mkLiteral "6px 6px 0px 0px";
+      };
+
+      "message" = {
+        padding = 0;
+        border-color = mkLiteral "@primary";
+        border = mkLiteral "0px 1px 1px 1px";
+      };
+
+      "entry, prompt, case-indicator" = {
+        text-font = mkLiteral "inherit";
+        text-color = mkLiteral "inherit";
+      };
+
+      "entry" = {
+        cursor = mkLiteral "pointer";
+      };
+
+      "prompt" = {
+        margin = mkLiteral "0px 5px 0px 0px";
       };
     };
   };
