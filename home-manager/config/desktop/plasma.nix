@@ -27,19 +27,19 @@ in {
 
   programs.plasma = {
     enable = true;
+
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
       wallpaper = ./desktop-wallpaper.jpg;
       colorScheme = "cyberpunk-neon";
     };
-    input.touchpads = [
-      {
-        naturalScroll = true;
-        vendorId = "04f3";
-        productId = "0080";
-        name = "Elan Touchpad";
-      }
-    ];
+
+    hotkeys.commands."launch-rofi" = {
+      name = "Launch Rofi";
+      key = "Ctrl+K";
+      command = "rofi -normal-window -show drun";
+    };
+
     panels = [
       {
         opacity = "opaque";
