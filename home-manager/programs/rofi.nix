@@ -27,7 +27,7 @@
         border = mkLiteral "0px";
         border-radius = mkLiteral "6px";
         spacing = 0;
-        children = [ "mainbox" ];
+        children = [ (mkLiteral "mainbox") ];
       };
 
       "mainbox" = {
