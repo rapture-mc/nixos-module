@@ -128,7 +128,7 @@
       };
 
       "scrollbar" = {
-        enabled = mkLiteral "true;";
+        enabled = mkLiteral "true";
       };
     };
   };
