@@ -32,7 +32,11 @@
 
       "mainbox" = {
         spacing = 0;
-        children = [ "inputbar" "message" "listview" ];
+        children = [
+          (mkLiteral "inputbar")
+          (mkLiteral "message")
+          (mkLiteral "listview")
+        ];
       };
 
       "inputbar" = {
@@ -64,67 +68,67 @@
 
       "listview" = {
         layout = mkLiteral "vertical";
-        padding = "5px";
+        padding = mkLiteral "5px";
         lines = 12;
         colums = 1;
-        border = "0px 3px 3px 3px";
-        border-radius = "0px 0px 6px 6px";
-        border-color = "@primary";
-        dynamic = "false";
+        border = mkLiteral "0px 3px 3px 3px";
+        border-radius = mkLiteral "0px 0px 6px 6px";
+        border-color = mkLiteral "@primary";
+        dynamic = mkLiteral "false";
       };
 
       "element" = {
-        padding = "2px";
+        padding = mkLiteral "2px";
         vertical-align = 1;
-        color = "@kl";
-        font = "inherit";
+        color = mkLiteral "@kl";
+        font = mkLiteral "inherit";
       };
 
       "element-text" = {
-        background-color = "inherit";
-        text-color = "inherit";
+        background-color = mkLiteral "inherit";
+        text-color = mkLiteral "inherit";
       };
 
       "element selected.normal" = {
-        color = "@black";
-        background-color = "@hv";
+        color = mkLiteral "@black";
+        background-color = mkLiteral "@hv";
       };
 
       "element normal active" = {
-        background-color = "@hv";
-        color = "@black";
+        background-color = mkLiteral "@hv";
+        color = mkLiteral "@black";
       };
 
       "element-text, element-icon" = {
-        background-color = "inherit";
-        text-color = "inherit";
+        background-color = mkLiteral "inherit";
+        text-color = mkLiteral "inherit";
       };
 
       "element normal urgent" = {
-        background-color = "@primary";
+        background-color = mkLiteral "@primary";
       };
 
       "element selected active" = {
-        background = "@hv";
-        foreground = "@bg";
+        background = mkLiteral "@hv";
+        foreground = mkLiteral "@bg";
       };
 
       "button" = {
-        padding = "6px";
-        color = "@primary";
-        horizontal-align = "0.5";
-        border = "2px 0px 2px 2px";
-        border-radius = "4px 0px 0px 4px";
-        border-color = "@primary";
+        padding = mkLiteral "6px";
+        color = mkLiteral "@primary";
+        horizontal-align = mkLiteral "0.5";
+        border = mkLiteral "2px 0px 2px 2px";
+        border-radius = mkLiteral "4px 0px 0px 4px";
+        border-color = mkLiteral "@primary";
       };
 
       "button selected normal" = {
-        border = "2px 0px 2px 2px";
-        border-color = "@primary";
+        border = mkLiteral "2px 0px 2px 2px";
+        border-color = mkLiteral "@primary";
       };
 
       "scrollbar" = {
-        enabled = "true;";
+        enabled = mkLiteral "true;";
       };
     };
   };
