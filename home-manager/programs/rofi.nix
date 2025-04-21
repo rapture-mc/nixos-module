@@ -1,6 +1,7 @@
 { config, ...}: {
   programs.rofi = {
     enable = true;
+    pass.enable = true;
     theme = let
       inherit (config.lib.formats.rasi) mkLiteral;
     in {
@@ -9,7 +10,7 @@
         hv = mkLiteral "#9274ca";
         primary = mkLiteral "#C5C8C6";
         ug = mkLiteral "#0B2447";
-        font = "Monospace 15";
+        font = "Monospace 16";
         background-color = mkLiteral "@bg";
         border = mkLiteral "0px";
         kl = mkLiteral "#7aa2f7";
