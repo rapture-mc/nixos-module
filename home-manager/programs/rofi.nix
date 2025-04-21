@@ -9,7 +9,7 @@
         hv = mkLiteral "#9274ca";
         primary = mkLiteral "#C5C8C6";
         ug = mkLiteral "#0B2447";
-        font = "Monospace 11";
+        font = "Monospace 15";
         background-color = mkLiteral "@bg";
         border = mkLiteral "0px";
         kl = mkLiteral "#7aa2f7";
