@@ -36,7 +36,7 @@ in {
 
     hotkeys.commands."launch-rofi" = {
       name = "Launch Rofi";
-      key = "Ctrl+K";
+      key = "Meta+K";
       command = "rofi -normal-window -show-icons -show drun";
     };
 
