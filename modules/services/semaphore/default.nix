@@ -74,6 +74,9 @@ in {
       defaults.email = "${cfg.tls-email}";
     };
 
+    # See https://github.com/NixOS/nixpkgs/issues/95017
+    security.pam.krb5.enable = false;
+
     security.krb5 = mkIf cfg.kerberos.enable {
       enable = true;
       settings = {
