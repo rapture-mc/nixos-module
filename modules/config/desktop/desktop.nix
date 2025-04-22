@@ -53,7 +53,7 @@ in {
       xrdp = mkIf cfg.xrdp {
         enable = true;
         openFirewall = true;
-        # defaultWindowManager = "plasmashell";
+        defaultWindowManager = "startplasma-x11";
       };
     };
   };
