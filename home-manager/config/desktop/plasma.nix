@@ -46,5 +46,11 @@ in {
         screen = "all";
       }
     ];
+
+    powerdevil = {
+      ac.autoSuspend.action = "nothing";
+      battery.autoSuspend.action = "nothing";
+      lowBattery.autoSuspend.action = "nothing";
+    };
   };
 }
