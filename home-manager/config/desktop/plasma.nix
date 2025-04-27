@@ -54,29 +54,5 @@ in {
       battery.autoSuspend.action = "nothing";
       lowBattery.autoSuspend.action = "nothing";
     };
-
-    kwin.tiling.layout = {
-      id = "cf5c25c2-4217-4193-add6-b5971cb543f2";
-      tiles = {
-        layoutDirection = "horizontal";
-        tiles = [
-          {
-            width = 0.5;
-          }
-          {
-            layoutDirection = "vertical";
-            tiles = [
-              {
-                height = 0.5;
-              }
-              {
-                height = 0.5;
-              }
-            ];
-            width = 0.5;
-          }
-        ];
-      };
-    };
   };
 }
