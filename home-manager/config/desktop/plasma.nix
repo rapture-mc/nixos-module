@@ -50,7 +50,7 @@ in {
     ];
 
     powerdevil = {
-      ac.autoSuspend.action = "nothing";
+      AC.autoSuspend.action = "nothing";
       battery.autoSuspend.action = "nothing";
       lowBattery.autoSuspend.action = "nothing";
     };
