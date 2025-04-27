@@ -34,6 +34,8 @@ in {
       colorScheme = "cyberpunk-neon";
     };
 
+    kscreenlocker.appearance.wallpaper = ./desktop-wallpaper.jpg;
+
     hotkeys.commands."launch-rofi" = {
       name = "Launch Rofi";
       key = "Meta+K";
