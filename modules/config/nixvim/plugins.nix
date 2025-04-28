@@ -50,6 +50,7 @@ in {
             ts_ls.enable = true;
             gopls.enable = true;
             terraformls.enable = true;
+            clangd.enable = true;
           };
         };
 
