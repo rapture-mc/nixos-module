@@ -17,7 +17,7 @@
     owner = "rapture-mc";
     repo = "cyberre";
     rev = "9114b944f4689d0961450cf667d8257ece4880c4";
-    sha256 = "";
+    sha256 = "sha256-u0P+LxRgdwj5vT5aNpv0D93zT9KNnT2fFspYGtyhC0U=";
   };
 
   cybergrub = pkgs.fetchFromGitHub {
