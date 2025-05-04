@@ -46,6 +46,16 @@ in {
       {
         opacity = "opaque";
         screen = "all";
+
+        widgets = [
+          {
+            iconTasks = {
+              launchers = [
+                "applications:org.kde.dolphin.desktop"
+              ];
+            };
+          }
+        ];
       }
     ];
 
