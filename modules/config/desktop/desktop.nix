@@ -34,10 +34,6 @@ in {
       })
     ];
 
-    environment.sessionVariables = {
-      LS_COLORS = "$LS_COLORS:'di=0;32:'";
-    };
-
     services = {
       xserver = {
         enable = true;

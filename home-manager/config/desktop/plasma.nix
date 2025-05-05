@@ -25,6 +25,14 @@ in {
     target = ".local/share/color-schemes/cyberpunk-neon.colors";
   };
 
+  programs.dircolors = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      DIR = "0;32";
+    };
+  };
+
   programs.plasma = {
     enable = true;
 
