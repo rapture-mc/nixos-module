@@ -28,9 +28,7 @@ in {
   programs.dircolors = {
     enable = true;
     enableZshIntegration = true;
-    settings = {
-      DIR = "0;32";
-    };
+    settings.DIR = "0;32";
   };
 
   programs.plasma = {

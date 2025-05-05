@@ -1,7 +1,10 @@
 {osConfig, ...}: let
   cfg = osConfig.megacorp;
 in {
-  programs.fastfetch.enable = true;
+  programs.fastfetch = {
+    enable = true;
+    settings.logo.color = ''{"1": "green"}'';
+  };
 
   home.file.fastFetchLogo = {
     enable = true;
