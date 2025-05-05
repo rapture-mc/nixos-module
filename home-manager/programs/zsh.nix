@@ -9,6 +9,7 @@ _: {
       sessionVariables = {
         TERM = "xterm-256color";
         EDITOR = "vim";
+        LS_COLORS = "$LS_COLORS:'di=0;32:'";
       };
 
       shellAliases = {

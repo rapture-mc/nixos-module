@@ -25,11 +25,6 @@ in {
     target = ".local/share/color-schemes/cyberpunk-neon.colors";
   };
 
-  # Makes terminal directors pink instead of default (hard to see) blue
-  home.sessionVariables = {
-    LS_COLORS = "$LS_COLORS:'di=0;32:'";
-  };
-
   programs.plasma = {
     enable = true;
 
