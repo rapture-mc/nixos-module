@@ -13,13 +13,6 @@
   #   sha256 = "sha256-mvb44mFVToZ11V09fTeEQRplabswQhqnkYHH/057wLE=";
   # };
 
-  cyberre = pkgs.fetchFromGitHub {
-    owner = "rapture-mc";
-    repo = "cyberre";
-    rev = "9114b944f4689d0961450cf667d8257ece4880c4";
-    sha256 = "sha256-u0P+LxRgdwj5vT5aNpv0D93zT9KNnT2fFspYGtyhC0U=";
-  };
-
   cybergrub = pkgs.fetchFromGitHub {
     owner = "adnksharp";
     repo = "CyberGRUB-2077";
@@ -63,7 +56,7 @@ in {
           then true
           else false;
         devices = ["nodev"];
-        theme = cyberre;
+        theme = "${cybergrub}/CyberGRUB-2077";
       };
 
       generic-extlinux-compatible = mkIf (cfg.type == "extlinux") {
