@@ -1,6 +1,13 @@
 _: {
   imports = [fastfetch/default.nix];
 
+  # Makes directories pink
+  programs.dircolors = {
+    enable = true;
+    enableZshIntegration = true;
+    settings.DIR = "0;32";
+  };
+
   programs = {
     zsh = {
       enable = true;
