@@ -16,7 +16,7 @@ in {
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
-        nerdfonts.terminus
+        nerd-fonts.terminess-ttf
         noto-fonts-emoji
       ];
     };
