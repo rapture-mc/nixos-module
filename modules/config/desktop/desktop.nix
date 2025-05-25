@@ -45,7 +45,7 @@ in {
         ];
       };
       desktopManager.plasma6.enable = true;
-      xkb.layout = "au";
+      xserver.xkb.layout = "au";
     };
 
     xrdp = mkIf cfg.xrdp {
