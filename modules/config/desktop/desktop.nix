@@ -35,6 +35,8 @@ in {
     ];
 
     services = {
+      desktopManager.plasma6.enable = true;
+      xserver.xkb.layout = "au";
       displayManager.sddm = {
         enable = true;
         theme = "sddm-astronaut-theme";
@@ -44,14 +46,11 @@ in {
           pkgs.kdePackages.qtvirtualkeyboard
         ];
       };
-      desktopManager.plasma6.enable = true;
-      xserver.xkb.layout = "au";
-    };
-
-    xrdp = mkIf cfg.xrdp {
-      enable = true;
-      openFirewall = true;
-      defaultWindowManager = "startplasma-x11";
+      xrdp = mkIf cfg.xrdp {
+        enable = true;
+        openFirewall = true;
+        defaultWindowManager = "startplasma-x11";
+      };
     };
   };
 }
