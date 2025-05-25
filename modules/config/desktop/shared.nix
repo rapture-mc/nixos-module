@@ -16,7 +16,7 @@ in {
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
-        (nerdfonts.override {fonts = ["Terminus"];})
+        nerdfonts.terminus
         noto-fonts-emoji
       ];
     };
