@@ -2,21 +2,15 @@
   description = "Megacorp NixOS config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    #   type = "github";
-    #   owner = "nixos";
-    #   repo = "nixpkgs";
-    #   ref = "nixos-24.11";
-    #   rev = "0a2935209750c0d2f4ee9f7803fae476cc0d2854";
-    # };
+    nixpkgs.url = "github:nixos/nixpkgs";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
