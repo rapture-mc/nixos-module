@@ -35,26 +35,23 @@ in {
     ];
 
     services = {
-      xserver = {
+      displayManager.sddm = {
         enable = true;
-        displayManager.sddm = {
-          enable = true;
-          theme = "sddm-astronaut-theme";
-          extraPackages = [
-            pkgs.kdePackages.qtmultimedia
-            pkgs.kdePackages.qtsvg
-            pkgs.kdePackages.qtvirtualkeyboard
-          ];
-        };
-        desktopManager.plasma6.enable = true;
-        xkb.layout = "au";
+        theme = "sddm-astronaut-theme";
+        extraPackages = [
+          pkgs.kdePackages.qtmultimedia
+          pkgs.kdePackages.qtsvg
+          pkgs.kdePackages.qtvirtualkeyboard
+        ];
       };
+      desktopManager.plasma6.enable = true;
+      xkb.layout = "au";
+    };
 
-      xrdp = mkIf cfg.xrdp {
-        enable = true;
-        openFirewall = true;
-        defaultWindowManager = "startplasma-x11";
-      };
+    xrdp = mkIf cfg.xrdp {
+      enable = true;
+      openFirewall = true;
+      defaultWindowManager = "startplasma-x11";
     };
   };
 }
