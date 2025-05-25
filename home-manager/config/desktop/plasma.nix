@@ -37,7 +37,7 @@ in {
 
     kscreenlocker = {
       appearance.wallpaper = ./desktop-wallpaper.jpg;
-      autoLock = if osConfig.megacorp.desktop.xrdp then false else true;
+      autoLock = if osConfig.megacorp.config.desktop.xrdp then false else true;
     };
 
     hotkeys.commands."launch-rofi" = {
