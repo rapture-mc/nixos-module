@@ -1,5 +1,6 @@
 {
   pkgs,
+  osConfig,
   ...
 }: let
 cyberpunk-theme = pkgs.stdenv.mkDerivation {
@@ -34,7 +35,10 @@ in {
       colorScheme = "cyberpunk-neon";
     };
 
-    kscreenlocker.appearance.wallpaper = ./desktop-wallpaper.jpg;
+    kscreenlocker = {
+      appearance.wallpaper = ./desktop-wallpaper.jpg;
+      autoLock = if osConfig.megacorp.desktop.xrdp then false else true;
+    };
 
     hotkeys.commands."launch-rofi" = {
       name = "Launch Rofi";
