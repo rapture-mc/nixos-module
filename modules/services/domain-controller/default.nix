@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  nixpkgs,
   pkgs,
   ...
 }: let
@@ -22,10 +21,10 @@
 
     vendorHash = "sha256-NiNhKbf5bU1SQXFTZCp8/yNPc89ss8go6M2867ziqq4=";
 
-    meta = with nixpkgs.lib; {
+    meta = {
       homepage = "https://github.com/Macmod/godap";
       description = "TUI for LDAP";
-      license = licenses.mit;
+      license = lib.licenses.mit;
     };
   };
 
