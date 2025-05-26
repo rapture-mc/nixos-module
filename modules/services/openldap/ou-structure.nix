@@ -1,5 +1,5 @@
 { config }: let
-  cfg = config.megacorp.services.domain-controller;
+  cfg = config.megacorp.services.openldap;
 in ''
   dn: ${cfg.domain-component}
   objectClass: domain

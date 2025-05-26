@@ -26,7 +26,7 @@
     };
   };
 
-  cfg = config.megacorp.services.domain-controller;
+  cfg = config.megacorp.services.openldap;
 
   inherit
     (lib)
@@ -36,7 +36,7 @@
     types
     ;
 in {
-  options.megacorp.services.domain-controller = {
+  options.megacorp.services.openldap = {
     enable = mkEnableOption "Enable domain controller";
 
     logo = mkEnableOption "Enable domain controller logo";
