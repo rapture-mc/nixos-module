@@ -37,21 +37,21 @@
       read -p "Continue? (y/n)" response
       case $response in
         [Yy]* )
-          if ! VBoxManage list vms | grep -q "Whonix" && [ -e /tmp/Whonix-Xfce-${whonixVersion}.ova ]; then
+          if ! VBoxManage list vms | grep -q "Whonix" && [ -e /tmp/Whonix-Xfce-${whonixVersion}.Intel_AMD64.ova ]; then
             echo "Whonix VMs don't exist, importing..."
 
-            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.Intel_AMD64.ova --vsys 0 --eula accept --vsys 1 --eula accept
 
-          elif ! VBoxManage list vms | grep -q "Whonix" && [ ! -e /tmp/Whonix-Xfce-${whonixVersion}.ova ]; then
+          elif ! VBoxManage list vms | grep -q "Whonix" && [ ! -e /tmp/Whonix-Xfce-${whonixVersion}.Intel_AMD64.ova ]; then
             echo "Whonix VMs don't exist and Whonix OVA file doesn't exist, downloading OVA file..."
 
-            wget https://download.whonix.org/ova/${whonixVersion}/Whonix-Xfce-${whonixVersion}.ova -O /tmp/Whonix-Xfce-${whonixVersion}.ova
+            wget https://download.whonix.org/ova/${whonixVersion}/Whonix-Xfce-${whonixVersion}.Intel_AMD64.ova -O /tmp/Whonix-Xfce-${whonixVersion}.Intel_AMD64.ova
 
-            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.ova --vsys 0 --eula accept --vsys 1 --eula accept
+            VBoxManage import /tmp/Whonix-Xfce-${whonixVersion}.Intel_AMD64.ova --vsys 0 --eula accept --vsys 1 --eula accept
 
             echo -e "Import successful!\n Cleaning up OVA file from /tmp folder..."
 
-            rm /tmp/Whonix-Xfce-${whonixVersion}.ova
+            rm /tmp/Whonix-Xfce-${whonixVersion}.Intel_AMD64.ova
 
           else
             echo "Whonix VMs already exist, skipping..."
