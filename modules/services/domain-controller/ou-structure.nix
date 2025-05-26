@@ -5,15 +5,15 @@ in ''
   objectClass: domain
   dc: megacorp
 
-  dn: ou=Users,dc=megacorp,dc=industries
+  dn: ou=Users,${cfg.domain-component}
   objectClass: organizationalUnit
   ou: Users
 
-  dn: ou=IT,ou=Users,dc=megacorp,dc=industries
+  dn: ou=IT,ou=Users,${cfg.domain-component}
   objectClass: organizationalUnit
   ou: IT
 
-  dn: ou=Finance,ou=Users,dc=megacorp,dc=industries
+  dn: ou=Finance,ou=Users,${cfg.domain-component}
   objectClass: organizationalUnit
   ou: Finance
 

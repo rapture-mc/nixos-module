@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: let
-  cfg = config.megacorp.services.domain-controller;
-
   version = "2.10.4";
 
   godap = pkgs.buildGoModule {
@@ -27,6 +25,8 @@
       license = lib.licenses.mit;
     };
   };
+
+  cfg = config.megacorp.services.domain-controller;
 
   inherit
     (lib)
@@ -114,8 +114,7 @@ in {
 
       declarativeContents = {
         "${cfg.domain-component}" =
-          (import ./ou-structure.nix {inherit config;})
-          + import ./users.nix;
+          (import ./ou-structure.nix {inherit config;});
       };
     };
   };
