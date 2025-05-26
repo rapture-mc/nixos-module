@@ -6,7 +6,7 @@
 }: let
   cfg = config.megacorp.virtualisation.whonix;
 
-  whonixVersion = "17.2.3.7";
+  whonixVersion = "17.3.9.9";
 
   pname = "UnstoppableSwap";
   version = "1.0.0-rc.11";
