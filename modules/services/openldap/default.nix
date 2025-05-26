@@ -50,6 +50,24 @@ in {
         Example: dc=megacorp,dc=industries
       '';
     };
+
+    extra-declarative-contents = mkOption {
+      type = types.lines;
+      default = "";
+      description = ''
+        LDIF formatted config that will be appended to already existing ./ou-structure.nix file.
+
+
+        Declare users for example using something like this:
+
+        ``
+          dn: cn=John Smith,ou=IT,ou=Users,dc=megacorp,dc=local
+          objectClass: person
+          cn: John Smith
+          sn: Smith
+        ``;
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -114,7 +132,8 @@ in {
 
       declarativeContents = {
         "${cfg.domain-component}" =
-          (import ./ou-structure.nix {inherit config;});
+          (import ./ou-structure.nix {inherit config;}) +
+          cfg.extra-declarative-contents;
       };
     };
   };
