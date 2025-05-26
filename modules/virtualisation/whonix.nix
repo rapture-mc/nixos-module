@@ -80,6 +80,9 @@ in {
   config = mkIf cfg.enable {
     virtualisation.virtualbox.host.enable = true;
 
+    # See https://github.com/NixOS/nixpkgs/issues/363887 for details
+    boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+
     environment.systemPackages = with pkgs; [
       (appimageTools.wrapType2 {
         inherit pname version src;
