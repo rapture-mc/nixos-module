@@ -8,7 +8,7 @@ in {
     source = (
       if cfg.config.openssh.bastion.logo
       then ./bastion-logo
-      else if cfg.services.controller.server.logo
+      else if cfg.services.domain-controller.logo
       then ./controller-logo
       else if cfg.virtualisation.hypervisor.logo
       then ./hypervisor-logo

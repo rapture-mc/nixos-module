@@ -13,6 +13,7 @@ _: {
     ./services/comin
     ./services/controller.nix
     ./services/dnsmasq.nix
+    ./services/domain-controller
     ./services/file-browser.nix
     ./services/gitea.nix
     ./services/gitea-runner.nix

@@ -20,8 +20,6 @@ in {
     server = {
       enable = mkEnableOption "Enable controller server component";
 
-      logo = mkEnableOption "Whether to show controller logo on shell startup";
-
       public-key = mkOption {
         type = types.listOf types.str;
         default = [];
