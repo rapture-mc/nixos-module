@@ -93,7 +93,7 @@ in {
         attrs = {
           olcLogLevel = "conns config";
 
-          olcTLSCACertificateFile = "/etc/openldap/slapd.d/MegacorpIndustries-RootCA.crt";
+          olcTLSCACertificateFile = "/etc/megacorp-cert";
         };
 
         children = {
