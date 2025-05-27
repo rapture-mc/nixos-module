@@ -48,7 +48,7 @@ in {
   config = mkIf cfg.enable {
     environment.etc.custom-hosts = {
       enable = true;
-      text = cfg.hosts
+      text = cfg.hosts;
     };
 
     services = {
