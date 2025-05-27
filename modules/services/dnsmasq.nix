@@ -30,9 +30,27 @@ in {
       ];
       description = "The nameservers dnsmasq should use for all other DNS queries";
     };
+
+    hosts = mkOption {
+      type = types.lines;
+      default = "";
+      description = ''
+        Custom hosts that DNSMASQ should resolve in /etc/hosts format.
+
+        This option creates a new file /etc/custom-hosts and doesn't use the default /etc/hosts file because the hostname of the dnsmasq server (when queried) will otherwise resolve to 127.0.0.2 when queried. As in "ping dnsmasq-server" resolves to the localhost of the machine making the query instead of the IP address of the dnsmasq server.
+
+        Example value:
+        local-server 192.168.1.50
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
+    environment.etc.custom-hosts = {
+      enable = true;
+      text = cfg.hosts
+    };
+
     services = {
       dnsmasq = {
         enable = true;
@@ -43,6 +61,8 @@ in {
           expand-hosts = true;
           domain = cfg.domain;
           bogus-priv = true;
+          no-hosts = true;
+          addn-hosts = "/etc/custom-hosts";
         };
       };
 
