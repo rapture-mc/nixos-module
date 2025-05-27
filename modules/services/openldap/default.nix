@@ -75,6 +75,7 @@ in {
 
     networking.firewall.allowedTCPPorts = [
       389
+      636
     ];
 
     services.openldap = {
@@ -85,11 +86,14 @@ in {
       */
       urlList = [
         "ldap:///"
+        "ldaps:///"
       ];
 
       settings = {
         attrs = {
           olcLogLevel = "conns config";
+
+          olcTLSCACertificateFile = "/etc/openldap/slapd.d/MegacorpIndustries-RootCA.crt";
         };
 
         children = {
