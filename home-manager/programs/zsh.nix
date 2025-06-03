@@ -27,7 +27,10 @@ _: {
       oh-my-zsh = {
         enable = true;
         theme = "fino-time";
-        plugins = ["tmux"];
+        plugins = [
+          "tmux"
+          "direnv"
+        ];
       };
     };
 
