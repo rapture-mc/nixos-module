@@ -19,6 +19,7 @@ in {
         cmp = {
           enable = true;
           autoEnableSources = true;
+          filetype.markdown.completion.autocomplete = false;
           settings = {
             sources = [
               {name = "nvim_lsp";}
